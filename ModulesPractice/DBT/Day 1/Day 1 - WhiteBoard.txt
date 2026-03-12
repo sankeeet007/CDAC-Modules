@@ -1,0 +1,112 @@
+Dr. Codd is Father of RDBMS.
+
+He says that:
+1) DO NOT mix different info in ONE single table.
+2) Create logical tables, each one having ONE SUBJECT AREA
+
+DI Rules:
+1) Primary Key (PK)
+a) Value has to be UNIQUE
+b) Value is MUST
+
+2) Foreign Key (FK)
+a) Can repeat
+b) Can be blank
+
+3) Unique Key (UK)
+a) Value has to be UNIQUE
+b) Can be blank
+
+4) Not Null (NN)
+
+5) Check Constraint 
+
+------
+Composite Keys
+
+
+SQL is 4GL
+
+SQL Script Types:
+1) ANSI SQL
+2) Proprietory SQL
+
+SQL Databases: They will implement RDBMS framework using SQL scripting.
+
+SQL Database?
+1) It is a software based on Client-Server Architecture
+2) It has SQL compiler
+3) It has means to manage the data.
+	a) Data Storage
+	b) Data Retrieval
+	c) Data Security
+	d) Backups
+	e) It has users
+
+Examples of SQL Database:
+1) Oracle
+2) DB2 (IBM)
+3) SQL Server (Microsoft) 
+4) Sybase 
+5) Teradata
+6) PostGre SQL (Open Source)
+7) MS Access (Microsoft)
+8) MySQL (Open Source) (Oracle)
+
+Types of SQL Commands:
+1) DDL -- Create, Alter, Drop, Modify, Truncate, etc.
+2) DML -- Insert, Update, Delete, Merge (SL)
+***** 3)DQL or DRL  -- Select and many more keywords
+---------------------------------------------
+4) DCL -- Grant, Revoke
+5) TCL -- Commit, Rollback and SavePoint (SL)
+
+-----------------------
+
+Default Values for a column
+
+-----------------------------------
+
+Parent Table or Master Table & Child Table or Details Table
+
+"WorkBench" is an GUI Editor for SQL Scripting in MySQL Database.
+
+In SQL Databases theer are two job profiles:
+1) DBA
+2) Developer
+
+
+root is the default DBA user in MySQL
+
+"MySQL 8.0 Command Line Client" is the command prompt editor in this training
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

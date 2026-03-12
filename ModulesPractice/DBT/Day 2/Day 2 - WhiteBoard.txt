@@ -1,0 +1,425 @@
+
+
+select * from emp;
+
+
+select empno, ename from emp;
+
+select * from emp
+where sal < 1000;
+
+select empno, ename
+from emp
+where sal < 1000;
+
+select empno, ename
+from emp
+where 6 > 8;
+
+select empno, ename
+from emp
+where 6 > 2;
+
+select * from emp
+where sal > 20000;
+
+select * from emp
+where ename = 'SMITH';
+
+select * from emp
+where ename = 'smith';
+
+
+select * from emp
+where hiredate = '1980-12-17';
+
+
+select * from emp
+where hiredate = '17-Dec-1980';
+
+
+select * from emp
+where hiredate = '17-12-1980';
+
+
+-- Display clerks earning less than 1000
+
+select * from emp
+where job = 'CLERK' and sal < 1000;
+
+
+select * from emp
+where job = 'CLERK' or sal < 1000;
+
+select * from emp
+where job = 'CLERK' or sal >= 3000;
+
+
+select * from emp
+where job = 'CLERK' and sal >= 3000;
+
+-- Multiple sets of conditions
+
+select *
+from emp
+where (job = 'CLERK' and sal < 1000) AND  (job = 'MANAGER' and sal > 2900);
+
+select *
+from emp
+where (job = 'CLERK' and sal < 1000) OR (job = 'MANAGER' and sal > 2900);
+
+-- Display all earners above 3000 excluding 3000.
+
+select *
+from emp
+where sal >= 3000;
+
+-- Display all clerks as well as managers
+
+select *
+from emp
+where job = 'CLERK' or job = 'MANAGER';
+
+
+select *
+from emp
+where job IN ('CLERK','MANAGER');
+
+select *
+from emp
+where job Not IN ('CLERK','MANAGER');
+
+select *
+from emp
+where sal between 1250 And 3000;
+
+select *
+from emp
+where sal Not between 1250 And 3000;
+
+select *
+from emp
+where comm Is Null;
+
+select *
+from emp
+where comm Is Not Null;
+
+Create table test_nulls
+(string varchar(10),
+ description varchar(70)
+ );
+
+ Insert into test_nulls Values('a','Actual Value Entered');
+ Insert into test_nulls Values(' ','white space');
+ Insert into test_nulls Values('','Single quotes opened and closed, zero length');
+ Insert into test_nulls Values(Null,'Null explicitly mentioned');
+ Insert into test_nulls Values('Null','Null as a value entered');
+
+select * from test_nulls
+where string is null;
+
+select * from test_nulls
+where string is not null;
+
+-- Display records of names starting with S
+
+select *
+from emp
+where ename Like 'S%';
+
+select *
+from emp
+where ename Like '%R';
+
+select *
+from emp
+where ename Not Like '%R';
+
+-------------------------------------------------------------
+
+-- Distinct Clause
+
+select distinct job from emp;
+
+select distinct deptno from emp;
+
+select distinct job, deptno from emp;
+
+-------------------------------------------------------------
+
+
+-- Order By
+select *
+from emp
+order by sal;
+
+select *
+from emp
+order by sal asc;
+
+select *
+from emp
+order by sal desc;
+
+select ename, deptno, sal
+from emp
+order by deptno, sal desc;
+
+
+select ename, deptno, sal
+from emp
+order by sal desc, deptno;
+
+select ename, deptno, sal
+from emp
+order by empno, sal desc;
+
+--------------------------------------------
+
+Column Expressions:
+
+select ename, sal, sal * 12 from emp;
+
+select ename, sal, sal * 12 as Annual from emp;
+
+
+--------------------------------------------
+
+Column Aliases:
+select ename, sal Salary, sal * 12 as Annual from emp;
+
+select ename Employee Name, sal Salary, sal * 12 as Annual from emp;
+
+select ename "Employee Name", sal Salary, sal * 12 as Annual from emp;
+
+--------------------------------------------
+
+
+
+select ename, sal, comm, sal + comm as "Total" from emp;
+
+
+
+select ename, sal, comm, sal + ifnull(comm, 0 ) "Total" from emp;
+
+
+
+ifnull(column name or Expr, Value if null or Expr)
+
+
+coalesce(arg1, arg2, arg3, ..... argn)
+
+select coalesce(Null, Null, Null, Null, -3, Null, Null, 97)
+
+select ename, sal, comm, sal + coalesce(comm, 0 ) "Total" from emp;
+
+
+---------------------------
+
+Conditional ANSI SQL Function "Case".
+Case acting as Switch Case (exactly value comparison)
+
+select ename, deptno, case deptno
+                           when 10 then 'A'
+			   when 20 then 'B'
+			else
+			'C'
+		       end as "Deptno Code"
+from emp;
+
+select ename, deptno, case deptno
+                           when 10 then 'A'
+			   when 20 then 'B'
+
+		       end as "Deptno Code"
+from emp;
+
+Case acting as if ... else if .. else (based on a boolean condition)
+
+select ename, sal, case 
+			when sal >= 2900 then 'A'
+			when sal >= 2600 then 'B'
+			when sal >= 2000 then 'C'
+			else
+			'D'
+		   end as  "Salary Class"
+from emp;
+
+
+select ename, sal, case 
+			when sal >= 2600 then 'B'
+			when sal >= 2900 then 'A'
+			when sal >= 2000 then 'C'
+			else
+			'D'
+		   end as  "Salary Class"
+from emp;
+
+ 
+
+select ename, sal, case 
+		when sal between 1000 and 2000 then 'A'
+
+----------------
+
+Limit Clause:
+select *
+from emp
+Limit 4;
+
+select *
+from emp
+where sal > 1000
+Limit 3;
+
+
+select ename, sal
+from emp
+order by sal desc
+Limit 3;
+
+select *
+from emp
+Limit 40;
+
+
+Limit with offset
+
+Offset is handy to skip some number of rows from top.
+
+Display 4th to 8th records.
+
+Select *
+from emp
+Limit 5 offset 3;
+
+Dsiplay Top 3 salary values:
+select distinct sal
+from emp
+order by sal desc
+limit 3;
+
+
+
+select distinct sal
+from emp
+order by sal desc
+limit 1 offset 3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

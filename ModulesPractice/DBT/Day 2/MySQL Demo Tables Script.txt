@@ -1,0 +1,316 @@
+create database sql1;
+
+use sql1;
+
+CREATE TABLE EMP
+       (EMPNO Integer Primary Key,
+        ENAME Varchar(15),
+        JOB Varchar(9),
+        MGR Integer,
+        HIREDATE Date,
+        SAL Integer,
+        COMM Integer,
+        DEPTNO Integer);
+INSERT INTO EMP VALUES
+        (7369, 'SMITH',  'CLERK',     7902, '1980-12-17',
+        800, NULL, 20);
+INSERT INTO EMP VALUES
+        (7499, 'ALLEN',  'SALESMAN',  7698,
+        '1981-05-20',1600,  300, 30);
+INSERT INTO EMP VALUES
+        (7521, 'WARD',   'SALESMAN',  7698,
+        '1981-05-22', 1250,  500, 30);
+INSERT INTO EMP VALUES
+        (7566, 'JONES',  'MANAGER',   7839,
+        '1981-04-02',  2975, NULL, 20);
+INSERT INTO EMP VALUES
+        (7654, 'MARTIN', 'SALESMAN',  7698,
+        '1981-09-20', 1250, 1400, 30);
+INSERT INTO EMP VALUES
+        (7698, 'BLAKE',  'MANAGER',   7839,
+        '1981-05-01',  2850, NULL, 30);
+INSERT INTO EMP VALUES
+        (7782, 'CLARK',  'MANAGER',   7839,
+        '1981-06-8',  2450, NULL, 10);
+INSERT INTO EMP VALUES
+        (7788, 'SCOTT',  'ANALYST',   7566,
+        '1982-12-09', 3000, NULL, 20);
+INSERT INTO EMP VALUES
+        (7839, 'KING',   'PRESIDENT', NULL,
+        '1981-11-17', 5000, NULL, 10);
+INSERT INTO EMP VALUES
+        (7844, 'TURNER', 'SALESMAN',  7698,
+        '1981-08-09',  1500,    0, 30);
+INSERT INTO EMP VALUES
+        (7876, 'ADAMS',  'CLERK',     7788,
+        '1983-12-01', 1100, NULL, 20);
+INSERT INTO EMP VALUES
+        (7900, 'JAMES',  'CLERK',     7698,
+        '1981-12-03',   950, NULL, 30);
+INSERT INTO EMP VALUES
+        (7902, 'FORD',   'ANALYST',   7566,
+        '1981-03-06',  3000, NULL, 20);
+INSERT INTO EMP VALUES
+        (7934, 'MILLER', 'CLERK',     7782,
+        '1982-01-23', 1300, NULL, 10);
+
+
+CREATE TABLE DEPT
+       (DEPTNO INTEGER Primary Key,
+        DNAME VARCHAR(14),
+        LOC VARCHAR(13) );
+
+INSERT INTO DEPT VALUES
+        (10,'ACCOUNTING','NEW YORK');
+INSERT INTO DEPT VALUES (20,'RESEARCH','DALLAS');
+INSERT INTO DEPT VALUES
+        (30,'SALES','CHICAGO');
+INSERT INTO DEPT VALUES
+        (40,'OPERATIONS','BOSTON');
+
+
+create table PCodes
+(Code Varchar(20),
+ Qty Int);
+
+ Insert Into PCodes
+ Values('A01', 10);
+ Insert Into PCodes
+ Values('AB01', 20);
+ Insert Into PCodes
+ Values('ABC01',30);
+ Insert Into PCodes
+ Values('ABCD01',25);
+ Insert Into PCodes
+ Values('P01',35);
+ Insert Into PCodes
+ Values('PQ04',27);
+ Insert Into PCodes
+ Values('PQR01',29);
+ Insert Into PCodes
+ Values('01',28);
+ Insert Into PCodes
+ Values('A%C01',31);
+ Insert Into PCodes
+ Values('A%D01',32);
+ Insert Into PCodes
+ Values('AB_01',33);
+
+create table e
+(empno Integer,
+ename varchar(10),
+deptno Integer);
+
+create table d
+(deptno Integer,
+dname varchar(10),
+pcode varchar(5));
+
+create  table p
+(pcode varchar(5),	
+pname varchar(10));
+
+-- Insert records in e
+insert into e
+values(1,'A',10);
+insert into e
+values(2,'B',20);
+insert into e
+values(3,'C',30);
+insert into e
+values(4,'D',20);
+
+-- Insert records in d
+insert into d
+values(10,'Prod','P1');
+insert into d
+values(20,'Maint','P2');
+insert into d
+values(30,'Insp','P1');
+ 
+-- Insert records in p
+insert into p
+values('P1','Nuts');
+insert into p
+values('P2','Bolts');
+insert into p	
+values('P3','Gears');
+
+create table rates
+(scheme char(2),
+ roi float);
+
+create table period
+(code char(5),
+ month float);
+
+insert into rates
+values('s1',5);
+insert into rates
+values('s2',5.5);
+insert into rates
+values('s3',6);
+insert into rates
+values('s4',6.5);
+insert into rates
+values('s5',7);
+insert into rates
+values('s6',7.5);
+insert into rates
+values('s7',8);
+
+insert into period
+values('c1',1);
+insert into period
+values('c2',2);
+insert into period
+values('c3',3);
+insert into period
+values('c4',4);
+insert into period
+values('c5',5);
+insert into period
+values('c6',6);
+insert into period
+values('c7',7);
+insert into period
+values('c8',8);
+insert into period
+values('c9',9);
+insert into period
+values('c10',10);
+insert into period
+values('c11',11);
+insert into period
+values('c12',12);
+
+create table emp1
+(empno varchar(5),
+ename varchar(15),
+deptno Integer);
+
+create table dept1
+(deptno Integer,
+dname varchar(20));
+
+
+insert into emp1
+values('E1','Smith',10);
+insert into emp1
+values('E2','Roger',20);
+insert into emp1
+values('E3','Martin',10);
+insert into emp1
+values('E4','Kim',30);
+insert into emp1
+values('E5','Glen',77);
+insert into emp1
+values('E6','Richards',80);
+
+
+insert into dept1
+values(10,'Accounts');
+insert into dept1
+values(20,'Production');
+insert into dept1
+values(30,'Marketing');
+insert into dept1
+values(40,'Inspection');
+insert into dept1
+values(50,'R&D');
+
+-- Set Operators on multiple tables
+
+create table mech
+(rollno integer,
+ marks integer);
+
+create table comp
+(rollno integer,
+marks integer);
+
+insert into mech values (101,90);
+insert into mech values (102,56);
+insert into mech values (103,78);
+insert into mech values (104,35);
+insert into mech values (105,100);
+insert into mech values (106,56);
+
+insert into comp values(201,78);
+insert into comp values(202,88);
+insert into comp values(203,43);
+insert into comp values(204,56);
+insert into comp values(205,59);
+
+create table India
+(TrID Varchar(20),
+ Pname Varchar(40),
+ Qty Integer,
+ Amount Integer);
+
+create table Australia
+(TrID Varchar(20),
+ Pname Varchar(40),
+ Qty Integer,
+ Amount Integer);
+
+-- -----------------
+
+
+Insert into India Values('Ind_101_C1','Washing Machine',1,20000);
+Insert into India Values('Ind_102_C3','LCD',1,25000);
+Insert into India Values('Ind_103_C2','LCD',1,20000);
+Insert into India Values('Ind_104_C2','LCD',1,19000);
+Insert into India Values('Ind_105_C1','Refrigerator',1,19000);
+Insert into India Values('Ind_106_C1','Refrigerator',1,20000);
+Insert into India Values('Ind_107_C3','Washing Machine',1,20000);
+Insert into India Values('Ind_108_C4','Washing Machine',1,25000);
+Insert into India Values('Ind_109_C1','Refrigerator',1,10000);
+Insert into India Values('Ind_110_C2','LCD',1,25000);
+Insert into India Values('Ind_111_C2','Washing Machine',1,19000);
+Insert into India Values('Ind_112_C3','LCD',1,20000);
+Insert into India Values('Ind_113_C4','LCD',1,20000);
+Insert into India Values('Ind_114_C3','Washing Machine',1,25000);
+Insert into India Values('Ind_115_C1','Washing Machine',1,19000);
+Insert into India Values('Ind_116_C1','Refrigerator',1,10000);
+Insert into India Values('Ind_117_C3','Chairs',4,20000);
+Insert into India Values('Ind_118_C2','Chairs',6,30000);
+Insert into India Values('Ind_119_C1','LCD',2,20000);
+Insert into India Values('Ind_120_C2','Washing Machine',1,25000);
+
+Insert into Australia Values('Aus_101_C1','LCD',1,25000);
+Insert into Australia Values('Aus_102_C1','Dinning Table',1,25000);
+Insert into Australia Values('Aus_103_C2','Dinning Table',1,10000);
+Insert into Australia Values('Aus_104_C3','Sofa',1,10000);
+Insert into Australia Values('Aus_105_C3','Washing Machine',12,60000);
+Insert into Australia Values('Aus_106_C4','LCD',1,20000);
+Insert into Australia Values('Aus_107_C2','LCD',1,25000);
+Insert into Australia Values('Aus_108_C4','LCD',2,50000);
+Insert into Australia Values('Aus_109_C1','Sofa',1,25000);
+Insert into Australia Values('Aus_110_C2','Sofa',2,10000);
+Insert into Australia Values('Aus_111_C3','Sofa',10,50000);
+Insert into Australia Values('Aus_112_C3','Washing Machine',5,25000);
+Insert into Australia Values('Aus_113_C4','LCD',1,20000);
+Insert into Australia Values('Aus_114_C1','LCD',1,25000);
+Insert into Australia Values('Aus_115_C2','LCD',1,25000);
+Insert into Australia Values('Aus_116_C3','LCD',1,25000);
+Insert into Australia Values('Aus_117_C4','LCD',1,25000);
+Insert into Australia Values('Aus_118_C1','LCD',1,25000);
+Insert into Australia Values('Aus_119_C4','Sofa',1,25000);
+Insert into Australia Values('Aus_120_C2','Sofa',2,10000);
+Insert into Australia Values('Aus_121_C3','Refrigerator',4,20000);
+Insert into Australia Values('Aus_122_C1','Sofa',1,19000);
+Insert into Australia Values('Aus_123_C3','Refrigerator',20,100000);
+Insert into Australia Values('Aus_124_C2','Refrigerator',1,19000);
+
+
+
+
+
+
+
+
+
+
+
+

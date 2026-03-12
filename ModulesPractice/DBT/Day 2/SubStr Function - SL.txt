@@ -1,0 +1,61 @@
+SubStr is a function which will extract a part of string.
+
+SubStr(Column Name Or String, 
+            From which position to extract
+            [, number of characters to extract]
+         )
+
+
+Select SubStr('ABCDEFGHIJ', 3, 4);
+
+Select SubStr('ABCDEFGHIJ', 3);
+
+Real Life Example of SubStr Function:
+
+create table code_data
+(code varchar(25),
+qty int);
+
+Insert into code_data Values('BXABCD_90', 100);
+Insert into code_data Values('PXABCD_91', 200);    
+Insert into code_data Values('QXJKLM_93', 500);
+Commit;
+
+select * from code_data;
+
+
+Display records where the 3rd character to 6th character are ABCD in the code column.
+
+select * from code_data
+where substr(code, 3,4) = 'ABCD';
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+

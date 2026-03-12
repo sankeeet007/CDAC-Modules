@@ -1,0 +1,49 @@
+
+Creating Tables:
+
+Create Table Customer_Master
+(CustID Int Primary Key,
+ CustName Varchar(40) Not Null,
+ CustDeposit Int Check(CustDeposit >= 500),
+ CustInvoice Varchar(10) Unique
+);
+
+One Complete Record to Insert:
+Insert into Customer_Master Values(1, 'John', 700,'Inv1');
+
+
+Create Table Customer_Transaction2
+(CustID Int,
+ CustAmount Int,
+ Constraint FK Foreign Key(CustID) References Customer_Master(CustID) 
+);
+
+Insert into Customer_Transaction2 Values(78, 600); -- Error
+
+Insert into Customer_Transaction2 Values(1, 600); -- Works fine now!!!!
+
+
+create table t1
+(a int,
+ b int,
+ c int,
+ d int,
+ e int,
+ f int,
+ g int);
+
+Insert into t1 Values(100, null, null, 500, null, null, null);
+
+Insert into t1 (a,d) Values(100, 500);
+
+Insert into t1 (d,a) Values(500,100);
+
+
+
+
+
+
+
+
+
+

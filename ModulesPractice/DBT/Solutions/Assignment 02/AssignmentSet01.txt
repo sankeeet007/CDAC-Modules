@@ -1,0 +1,171 @@
+
+Q1. Display the records of job clerk and manager for deptno 20.
+
+Solution:-	
+	select * from emp
+	where job IN('clerk', 'manager') and deptno = 20;
+
+Q2. Display the records for the employees, which have the last character as R or H 
+in their name.
+
+Solution:-	
+	SELECT * FROM emp
+	WHERE ename LIKE '%R' or ename LIKE '%H';
+
+Q3. Display the records of the employees earning sal less than 1000 and there is no comm provided.
+
+Solution:-
+	SELECT * FROM emp 
+	WHERE sal < 1000 AND comm is NULL;
+
+Q4. Produce the following output: 
+Details ----------------------------------------------------------------------- 
+SMITH is from the deptno 20, earns salary 800 
+ALLEN is from the deptno 30, earns salary 1600 
+WARD is from the deptno 30, earns salary 1250 
+JONES is from the deptno 20, earns salary 2975 
+MARTIN is from the deptno 30, earns salary 1250 
+BLAKE is from the deptno 30, earns salary 2850 
+CLARK is from the deptno 10, earns salary 2450 
+SCOTT is from the deptno 20, earns salary 3000 
+KING is from the deptno 10, earns salary 5000 
+TURNER is from the deptno 30, earns salary 1500 
+ADAMS is from the deptno 20, earns salary 1100 
+JAMES is from the deptno 30, earns salary 950 
+FORD is from the deptno 20, earns salary 3000 
+MILLER is from the deptno 10, earns salary 1300 
+
+Solution:-
+	SELECT CONCAT(ename, ' is from the deptno ' ,deptno, ', earns salary ', sal) as 'Details' FROM emp;
+
+Q5. Display the ename, sal, comm,  sal+comm. For the null value of commission 10% 
+of sal should be used. 
+
+Solution:-
+	select ename, sal, comm, sal+ifnull(comm, 0.1*sal) as 'Total' from emp;
+
+Q6. Display the names, sal, job, deptno and raise in the salary. 
+The raise is to be given under following scenarios – 
+a) Employees from deptno 20 from job Clerk should get 30% raise in their 
+salary.
+b) Employees from deptno 20 from job Analyst should get 50% raise in their 
+salary. 
+c) Employees from deptno 30 from job Manager should get 60% raise in 
+their salary. 
+d) Employees from deptno 30 from job Salesman should get 70% raise in 
+their salary. 
+e) Employees from deptno 10 from job Clerk should get 10% raise in their 
+salary. 
+f) The remaining employees should get a raise of 500.
+
+Solution:-
+	SELECT ename, sal, job, deptno, case 
+	WHEN deptno=20 and job='clerk' then sal+sal*0.3
+	WHEN deptno=20 and job='Analyst' then sal+sal*0.5
+	WHEN deptno=30 and job='Manager' then sal+sal*0.6
+	WHEN deptno=30 and job='Salesman' then sal+sal*0.7
+	WHEN deptno=10 and job='clerk' then sal+sal*0.1
+	else sal+500
+
+	end as 'Raise' from emp; 
+
+
+7.  Display the records of employees from the job Clerk earning salary above 1000 
+as well as all Managers earning salary above 2900. 
+
+Solution:-
+	
+select * from emp
+where (job='clerk' and sal > 1000) or (job='manager' and sal > 2900);
+
+
+8. Display the records sorted as per the job. Make sure that within each job the 
+records are sorted as per the highest to lowest commissions. 
+
+Solution:-
+		select job,comm from emp
+		order by job, comm DESC;
+
+9. Display name, salary, 30% of salary as tax and salary – tax as take home salary 
+for records of employee table working in deptno 20. 
+
+
+Solution:-
+		select ename, deptno, sal, sal*0.3 as 'Tax', sal-sal*0.3 as 'Take Home' from emp;
+		
+
+10. Display records from emp table of all Salesman from deptno 20 only. 
+
+solution:-
+		select * from emp
+		where (job = 'Salesman') and (deptno = 20);
+		
+
+11. Display records from emp table of all those employees who are not reporting to 
+anyone. 
+
+Solution:-
+		select * from emp
+		where mgr is null;
+
+12. Display records from emp table of those employees who are earning salary less 
+than or equal to 2000. Records should be sorted as per deptno, and within deptno 
+as per their salaries highest to lowest. 
+
+
+Solution:-
+		select * from emp
+		where sal <= 2000 
+		order by deptno, sal desc;
+
+13. Display Name, Salary, Commission and Total as Salary + 30% of Commission 
+for all those employees whose difference between Salary and Commission is less 
+than or equal to 1200.		
+
+Solution:-
+		select ename, sal, comm, case
+		when sal-ifnull(comm,0) <= 1200 then sal+sal*0.3
+		end as 'Total' from emp;
+		
+Q14. Produce the exact same output as shown below:
+
+	select concat(ename, '/'s salary is ', sal) as 'Salary Details' from emp;
+
+
+Q15. Execute the following SQL script:
+
+create table Asia
+(TrID Integer Not Null,
+ Country Varchar(20) Not Null,
+ PName Varchar(40),
+ Amount Integer Not Null,
+ DOT Date);
+ 
+Insert into Asia Values(1,'India','Laptop', 25000, '2017-03-17'); //
+Insert into Asia Values(2,'India','Mobile', 10000, '2018-02-21'); //
+Insert into Asia Values(3,'China','Laptop',15000 , '2017-10-04');  //
+Insert into Asia Values(4,'China','Mobile',80000 , '2018-01-10');
+Insert into Asia Values(5,'Singapore','Laptop',90000 , '2017-07-11'); //
+Insert into Asia Values(6,'Singapore','Mobile',18000 , '2018-02-25');
+Insert into Asia Values(7,'Malaysia','Laptop',12000 , '2017-05-29');  //
+Insert into Asia Values(8,'Malaysia','Mobile',28000 , '2018-03-19'); //
+Insert into Asia Values(9,'India','Laptop', 14000, '2017-04-11');  //
+Insert into Asia Values(10,'India','Mobile', 70000, '2018-03-24');
+Insert into Asia Values(11,'China','Laptop',25000 , '2017-10-06');  //
+Insert into Asia Values(12,'China','Mobile',19000 , '2018-01-15');
+Insert into Asia Values(13,'Singapore','Laptop',100000 , '2017-06-14');  //
+Insert into Asia Values(14,'Singapore','Mobile',35000 , '2018-02-27');  //
+Insert into Asia Values(15,'Malaysia','Laptop',43000 , '2017-08-21');  //
+Insert into Asia Values(16,'Malaysia','Mobile',45000 , '2018-03-19');   //
+
+Question 🡪 Display India records of year 2018 of Amount > 15000, China records of year 2018 of Amount < 20000 and Singapore records of year 2018 of Amount > 40000.
+
+
+Solution:-
+		select * from asia 
+		Where (Country = 'India' and year(DOT) = 2018 and amount > 15000) OR
+		 (Country = 'China' and year(DOT) = 2018 and amount < 20000) OR
+		 (Country = 'Singapore' and year(DOT) = 2018 and amount > 40000);
+
+
+

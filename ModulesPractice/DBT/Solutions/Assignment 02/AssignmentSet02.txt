@@ -1,0 +1,41 @@
+Q1. Create the table student_master with the following specifications
+
+CREATE TABLE student_master (
+			Rollno Integer Primary Key,
+			Name CHAR(100) NOT NULL,
+			City VARCHAR(50) DEFAULT 'Mumbai',
+			Marks Integer CHECK (Marks >= 0 and Marks <= 100),
+			Invoice_No VARCHAR(50) UNIQUE KEY
+			);
+
+INSERT INTO student_master VALUES(101, 'Shubham Sagar', 'Solapur', 99, 'GSTN007GT');
+INSERT INTO student_master VALUES(102, 'Sanket Solanke', 'Chikhli', 75, 'GSTN008GT');
+INSERT INTO student_master VALUES(103, 'Tejas Bahure', 'SambhajiNagar', 60, 'GSTN009GT');
+INSERT INTO student_master VALUES(104, 'Vivek Jagarwal', 'Jalna', 89, 'GSTN010GT');
+INSERT INTO student_master VALUES(105, 'Anurag Deotale', 'Chandrapur', 95, 'GSTN011GT');
+
+Q2. Create the table certificate_details with the following specifications
+
+CREATE TABLE certificate_details (
+			Rollno Integer ,
+			DOC DATE NOT NULL,
+			Course VARCHAR(20) CHECK(Course IN('Oracle','Power BI','Azure Data Factory')),
+			Constraint fk Foreign Key (Rollno) references student_master(Rollno)
+);
+
+INSERT INTO certificate_details VALUES(101, '2028-08-25', 'Oracle');
+INSERT INTO certificate_details VALUES(102, '2029-08-25', 'Power BI');
+INSERT INTO certificate_details VALUES(103, '2030-08-25', 'Azure Data Factory');
+INSERT INTO certificate_details VALUES(104, '2030-08-25', 'Power BI');
+INSERT INTO certificate_details VALUES(105, '2030-08-25', 'Azure Data Factory');
+
+Q3. Create the table First_Attempt_Marks with the following specifications
+
+CREATE TABLE First_Attempt_Marks (
+			Rollno Integer NOT NULL,
+			Subject VARCHAR(30) Primary Key NOT NULL,
+			Marks Integer NOT NULL
+);
+
+Q4. Create the table First_Attempt_Grades with the following specifications
+
