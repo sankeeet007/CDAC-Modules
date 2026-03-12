@@ -1,0 +1,79 @@
+Q1. Update GPA to 3.00 for all students whose GPA is below 2.00.
+
+UPDATE students 
+SET GPA = 3.00 
+WHERE GPA < 2.00;
+
+Q2 Increase salary by 8% for instructors in the 'Mathematics' department.
+
+UPDATE instructors
+SET salary = salary + (salary*0.08)
+WHERE department = 'Mathematics';
+
+Q3 Set student status to 'INACTIVE' for students registered before 2021.
+
+UPDATE students 
+SET status = 'INACTIVE'
+WHERE year(registration_date) < 2021;
+
+Q4 Reduce course fee by 10% for courses having credits = 3.
+
+UPDATE courses 
+SET fee = fee-(fee*0.1)
+WHERE credits = 3;
+
+Q5 Update payment_status to 'PAID' where grade is not blank.
+
+UPDATE enrollments
+SET payment_status = 'PAID'
+WHERE grade IS NOT NULL;
+
+Q6 Increase GPA by 0.10 for students from Texas.
+
+UPDATE students
+SET GPA = GPA + 0.10
+WHERE state = 'Texas';
+
+Q7 Update fee to 1000 for 'Web Development' course.
+
+UPDATE courses 
+SET fee = 1000
+WHERE course_name = 'Web Development';
+
+Q8 Delete enrolments which have grade as 'F'.
+
+DELETE FROM enrollments
+WHERE grade = 'F';
+
+Q9 Increase salary by 5% for instructors whose salary is below 70000.
+
+UPDATE instructors
+SET salary = salary + (salary*0.05)
+WHERE salary < 70000;
+
+Q10 Delete records from enrolments table of students who have not paid.
+
+DELETE FROM enrollments
+WHERE payment_status = 'UNPAID';
+
+Q11 Delete those courses who have their fees less than 1000. [Integrity constraint] //error must come
+
+DELETE FROM courses
+WHERE fee < 1000;
+
+Error Occured:-
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`b2`.`enrollments`, CONSTRAINT `enrollments_ibfk_2` FOREIGN KEY (`course_id`) REFERENCES `courses` (`course_id`))
+
+Q12 Delete records of students from students table who have their gpa above 4.00
+
+DELETE FROM students
+WHERE GPA > 4.00;
+
+Error Occured:-
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`b2`.`enrollments`, CONSTRAINT `enrollments_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`))
+
+Q13 Change the instructor Mathhew’s department from Chemistry to Physics
+
+UPDATE instructors
+SET department = 'Physics'
+WHERE first_name = 'Matthew';

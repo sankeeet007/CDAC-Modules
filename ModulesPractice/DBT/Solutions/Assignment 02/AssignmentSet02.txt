@@ -1,3 +1,4 @@
+
 Q1. Create the table student_master with the following specifications
 
 CREATE TABLE student_master (
@@ -32,10 +33,64 @@ INSERT INTO certificate_details VALUES(105, '2030-08-25', 'Azure Data Factory');
 Q3. Create the table First_Attempt_Marks with the following specifications
 
 CREATE TABLE First_Attempt_Marks (
-			Rollno Integer NOT NULL,
-			Subject VARCHAR(30) Primary Key NOT NULL,
-			Marks Integer NOT NULL
+    Rollno INT,
+    Subject VARCHAR(50),
+    Marks DECIMAL(5, 2) NOT NULL,
+    PRIMARY KEY (Rollno, Subject),
+    FOREIGN KEY (Rollno) REFERENCES student_master(Rollno)
 );
+
+INSERT INTO First_Attempt_Marks (Rollno, Subject, Marks) VALUES 
+(101, 'Mathematics', 85.50),
+(101, 'Physics', 79.00),
+(102, 'Mathematics', 92.00),
+(103, 'Chemistry', 78.25),
+(104, 'Physics', 88.00);
 
 Q4. Create the table First_Attempt_Grades with the following specifications
 
+CREATE TABLE First_Attempt_Grades (
+			Rollno INT,
+			Subject VARCHAR(50),
+			Grade CHAR(1) CHECK(Grade IN('A','B')),
+			Foreign Key (Rollno, Subject) references First_Attempt_Marks(Rollno, Subject)
+);
+
+INSERT INTO First_Attempt_Grades (Rollno, Subject, Grade) VALUES (101, 'Mathematics','A'),
+(101, 'Physics', 'B'),
+(102, 'Mathematics', 'A'),
+(103, 'Chemistry', 'B'),
+(104, 'Physics', 'A');
+
+Q5. Create the table cost_analysis with the following specifications
+
+CREATE TABLE cost_analysis (
+			Company_ID INT Primary Key,
+			Company_Name VARCHAR(20) NOT NULL,
+			Export_Cost INT,
+			Import_Cost INT,
+			Constraint CHECK(Import_Cost >= (0.4*Export_Cost))
+);
+
+INSERT INTO cost_analysis VALUES (101, 'Infosys', 2000, 2900)
+(102, 'Siemens', 1000, 1800),
+(103, 'Google', 3000, 3900),
+(104, 'Amazon', 4000, 4800),
+(105, 'Apple', 5000, 5900);
+
+Q6. Create the table Salesman_Data with the following specifications
+
+CREATE TABLE Salesman_Data (
+			Salesman_ID INT PRIMARY KEY,
+			Salesman_Name VARCHAR(50) NOT NULL,
+			Area_Code INT UNIQUE,
+			Sales_Amt INT,
+			Profit_Amt INT,
+			Constraint CHECK(Sales_Amt>5000 OR Profit_Amt>700)
+);
+
+INSERT INTO Salesman_Data VALUES(10, 'Shubham', 411017, 5500, 1000),
+(20, 'Sanket', 411057, 10000, 5000),
+(30, 'Shivam', 413001, 6500, 2000),
+(40, 'Tanish', 413002, 7500, 3000),
+(50, 'Shrikant', 410507, 9500, 4000);
