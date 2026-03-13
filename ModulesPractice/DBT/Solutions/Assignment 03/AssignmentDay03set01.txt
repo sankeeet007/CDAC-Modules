@@ -1,0 +1,190 @@
+Q1. Display the average, lowest, highest and difference in lowest and highest salaries for each department number.
+
+	SELECT deptno, AVG(sal), MIN(SAL), MAX(SAL),MAX(SAL)-MIN(SAL) as "difference"
+	FROM emp
+	GROUP BY deptno
+	ORDER BY deptno;
+	
+	
+Q2. Display the number of employees within each job.
+
+	SELECT job, count(empno) as "No of Emp"
+	FROM emp
+	GROUP BY job;
+	
+Q3. Display the lowest salaries job-wise within each department number.
+		
+	SELECT job, deptno, MIN(sal) as "minimum sals"
+	FROM emp
+	GROUP BY job, deptno
+	ORDER BY deptno, job;
+
+Q4. Display only those jobs where the minimum salary is greater than or equal to 3000.
+
+	SELECT job, MIN(sal) as "Min sal"
+	FROM emp
+	GROUP BY job
+	HAVING MIN(sal) >= 3000;
+	
+Q5. Display the records sorted as per the job. Make sure that within each job the records are sorted as per the highest to lowest salaries.
+
+	SELECT job, sal
+	FROM emp
+	ORDER BY job, sal DESC;
+
+Q6. Display Deptno, total of that deptno and Grade. Grade should be A if the total is greater than 10000, else it should be B. Sort the summary output as per the highest to lowest Grade.
+
+	SELECT deptno, sum(sal) as "Total", case
+	WHEN sum(sal) > 10000 THEN 'A' ELSE 'B'
+	end as Grade
+	FROM emp
+	GROUP BY deptno
+	ORDER BY deptno;
+	
+	
+Q7. Calculate and display only the average salaries paid to all those employees where the employee name starts with A and name starts with S.
+
+	SELECT ename, AVG(sal)
+	FROM emp
+	GROUP BY ename
+	HAVING ename LIKE 'A%' OR ename LIKE 'S%';
+
+Q8. Product exactly same output as shown below:
+
+	SELECT concat('The total of job type ', job, ' is ', SUM(sal)) as "Job wise Total Salaries"
+	FROM emp
+	GROUP BY job
+	ORDER BY job;
+
+Q9. Display Mgr code and number of sub ordinates reporting to them for only those managers who have at least 3 sub ordinates.
+
+		SELECT mgr, job, COUNT(ename)
+		FROM emp
+		GROUP BY mgr, job
+		HAVING COUNT(ename) >= 3;
+		
+
+Q10. Produce exactly same output as shown below:
+
+	SELECT 	deptno, SUM(sal) as "Total Salary", SUM(sal)*0.1 as "Tax: 10% of Total", SUM(sal)*0.9 as "Net Total: Deducting TAX"
+	FROM emp
+	GROUP BY deptno
+	ORDER BY deptno;
+
+The below 10 questions are based on the Products2 table:
+
+Q11.Display the Highest sales for each product within a country for each continent.
+
+	SELECT continent, country, pname, MAX(sales)
+	FROM products2
+	GROUP BY continent, country, pname
+	ORDER BY continent, country, pname;
+
+Q12.Display the average sales for each product region-type wise within each area for each country.
+
+		SELECT pname, region_type, area, country, AVG(sales) as "AVERAGE SALES"
+		FROM products2
+		GROUP BY pname, region_type, area, country
+		ORDER BY pname, region_type, area, country;
+
+Q13. Display the country-wise number of products for each product
+
+	SELECT country, COUNT(pname)
+	FROM products2
+	GROUP BY country
+	ORDER BY country;
+	
+
+Q14. Display the Country wise total of sales for each Continent. The summary records should be shown as per highest to lowest sequence of totals. But in the final display only first 2 records should be shown.
+
+	SELECT country, continent, SUM(sales)
+	FROM products2
+	GROUP BY country, continent
+	ORDER BY SUM(sales) DESC
+	LIMIT 2;
+
+Q15. Display the exact following report:
+
+	select concat(continent,"-",country,"-",area,"-",region_type) as "Geography", sum(sales) as "Total Sales"
+	from products2
+	group by continent, country, area, region_type;
+
+	
+Q16. Display the product name wise total sales excluding records of Rural region of North area. 
+
+	select pname, region_type, area, sum(sales) as Total_Sales
+	from products2
+	where region_type <> 'Rural' or area <> 'North'
+	group by pname, region_type, area
+	order by pname asc;
+	
+Q17. Display country wise average sales excluding country India
+ 
+   	select country, avg(sales)
+    from products2
+    where country <> 'India'
+    group by country
+    order by country;
+	
+Q18.Display product name wise total sales for all the transactions done from transaction id 23 onwards.
+ 
+    select pname, sum(sales)
+    from products2
+    where trans_id > 22
+    group by pname
+    order by pname asc;
+	
+Q19.Display Country wise count of transactions done.
+
+    select country, count(trans_id)
+    from products2
+    group by country;
+	
+Q20.Display Country wise average sales done of Samsung only.
+
+    select country, avg(sales)
+    from products2
+    where pname = 'Samsung'
+    group by country;
+	
+The below 2 questions are based on the India table:
+
+Q21.Display product name wise count of records from India table.
+ 
+    select pname, count(pname)
+    from india
+    group by pname;
+	
+Q22.Display product name wise total of quantity for the transactions having quantity above 1. 
+
+    select pname, sum(qty)
+    from india
+    where qty > 1
+    group by pname;
+	
+The below 3 questions are based on the Code_Data table:
+	
+Q23.Display the total amount as per code which will be grouped by 3rd, 4th, 5th and 6th characters of code column’s values.
+
+    select code, sum(amount) as total_amount
+    from code_data
+    group by code
+    having code like '__ABCD_____' or code like '__JKLM_____';
+	
+Q24.The last 4 digits of code values represent the year. Display year wise total amount.
+
+    SELECT
+    RIGHT(code, 4) AS year,
+    SUM(amount) AS total_amount
+    FROM code_data
+    WHERE code LIKE '_______2022' OR code LIKE '_______2023'
+    GROUP BY RIGHT(code, 4);
+	
+Q25.Display the average amount as per the 6th character of code column’s values. 
+
+    SELECT
+    SUBSTRING(code, 6, 1) AS sixth_char,
+    AVG(amount) AS Average_Amount
+    FROM code_data
+    WHERE code LIKE '_____D%' OR code LIKE '_____M%'
+    GROUP BY SUBSTRING(code, 6, 1);

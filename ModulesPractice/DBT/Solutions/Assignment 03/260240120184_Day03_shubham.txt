@@ -1,0 +1,479 @@
+*****************  SET 01 ***************************
+
+Q1. Display the average, lowest, highest and difference in lowest and highest salaries for each department number.
+
+	SELECT deptno, AVG(sal), MIN(SAL), MAX(SAL),MAX(SAL)-MIN(SAL) as "difference"
+	FROM emp
+	GROUP BY deptno
+	ORDER BY deptno;
+	
+	
+Q2. Display the number of employees within each job.
+
+	SELECT job, count(empno) as "No of Emp"
+	FROM emp
+	GROUP BY job;
+	
+Q3. Display the lowest salaries job-wise within each department number.
+		
+	SELECT job, deptno, MIN(sal) as "minimum sals"
+	FROM emp
+	GROUP BY job, deptno
+	ORDER BY deptno, job;
+
+Q4. Display only those jobs where the minimum salary is greater than or equal to 3000.
+
+	SELECT job, MIN(sal) as "Min sal"
+	FROM emp
+	GROUP BY job
+	HAVING MIN(sal) >= 3000;
+	
+Q5. Display the records sorted as per the job. Make sure that within each job the records are sorted as per the highest to lowest salaries.
+
+	SELECT job, sal
+	FROM emp
+	ORDER BY job, sal DESC;
+
+Q6. Display Deptno, total of that deptno and Grade. Grade should be A if the total is greater than 10000, else it should be B. Sort the summary output as per the highest to lowest Grade.
+
+	SELECT deptno, sum(sal) as "Total", case
+	WHEN sum(sal) > 10000 THEN 'A' ELSE 'B'
+	end as Grade
+	FROM emp
+	GROUP BY deptno
+	ORDER BY deptno;
+	
+	
+Q7. Calculate and display only the average salaries paid to all those employees where the employee name starts with A and name starts with S.
+
+	SELECT ename, AVG(sal)
+	FROM emp
+	GROUP BY ename
+	HAVING ename LIKE 'A%' OR ename LIKE 'S%';
+
+Q8. Product exactly same output as shown below:
+
+	SELECT concat('The total of job type ', job, ' is ', SUM(sal)) as "Job wise Total Salaries"
+	FROM emp
+	GROUP BY job
+	ORDER BY job;
+
+Q9. Display Mgr code and number of sub ordinates reporting to them for only those managers who have at least 3 sub ordinates.
+
+		SELECT mgr, job, COUNT(ename)
+		FROM emp
+		GROUP BY mgr, job
+		HAVING COUNT(ename) >= 3;
+		
+
+Q10. Produce exactly same output as shown below:
+
+	SELECT 	deptno, SUM(sal) as "Total Salary", SUM(sal)*0.1 as "Tax: 10% of Total", SUM(sal)*0.9 as "Net Total: Deducting TAX"
+	FROM emp
+	GROUP BY deptno
+	ORDER BY deptno;
+
+The below 10 questions are based on the Products2 table:
+
+Q11.Display the Highest sales for each product within a country for each continent.
+
+	SELECT continent, country, pname, MAX(sales)
+	FROM products2
+	GROUP BY continent, country, pname
+	ORDER BY continent, country, pname;
+
+Q12.Display the average sales for each product region-type wise within each area for each country.
+
+		SELECT pname, region_type, area, country, AVG(sales) as "AVERAGE SALES"
+		FROM products2
+		GROUP BY pname, region_type, area, country
+		ORDER BY pname, region_type, area, country;
+
+Q13. Display the country-wise number of products for each product
+
+	SELECT country, COUNT(pname)
+	FROM products2
+	GROUP BY country
+	ORDER BY country;
+	
+
+Q14. Display the Country wise total of sales for each Continent. The summary records should be shown as per highest to lowest sequence of totals. But in the final display only first 2 records should be shown.
+
+	SELECT country, continent, SUM(sales)
+	FROM products2
+	GROUP BY country, continent
+	ORDER BY SUM(sales) DESC
+	LIMIT 2;
+
+Q15. Display the exact following report:
+
+	select concat(continent,"-",country,"-",area,"-",region_type) as "Geography", sum(sales) as "Total Sales"
+	from products2
+	group by continent, country, area, region_type;
+
+	
+Q16. Display the product name wise total sales excluding records of Rural region of North area. 
+
+	select pname, region_type, area, sum(sales) as Total_Sales
+	from products2
+	where region_type <> 'Rural' or area <> 'North'
+	group by pname, region_type, area
+	order by pname asc;
+	
+Q17. Display country wise average sales excluding country India
+ 
+   	select country, avg(sales)
+    from products2
+    where country <> 'India'
+    group by country
+    order by country;
+	
+Q18.Display product name wise total sales for all the transactions done from transaction id 23 onwards.
+ 
+    select pname, sum(sales)
+    from products2
+    where trans_id > 22
+    group by pname
+    order by pname asc;
+	
+Q19.Display Country wise count of transactions done.
+
+    select country, count(trans_id)
+    from products2
+    group by country;
+	
+Q20.Display Country wise average sales done of Samsung only.
+
+    select country, avg(sales)
+    from products2
+    where pname = 'Samsung'
+    group by country;
+	
+The below 2 questions are based on the India table:
+
+Q21.Display product name wise count of records from India table.
+ 
+    select pname, count(pname)
+    from india
+    group by pname;
+	
+Q22.Display product name wise total of quantity for the transactions having quantity above 1. 
+
+    select pname, sum(qty)
+    from india
+    where qty > 1
+    group by pname;
+	
+The below 3 questions are based on the Code_Data table:
+	
+Q23.Display the total amount as per code which will be grouped by 3rd, 4th, 5th and 6th characters of code column’s values.
+
+    select code, sum(amount) as total_amount
+    from code_data
+    group by code
+    having code like '__ABCD_____' or code like '__JKLM_____';
+	
+Q24.The last 4 digits of code values represent the year. Display year wise total amount.
+
+    SELECT
+    RIGHT(code, 4) AS year,
+    SUM(amount) AS total_amount
+    FROM code_data
+    WHERE code LIKE '_______2022' OR code LIKE '_______2023'
+    GROUP BY RIGHT(code, 4);
+	
+Q25.Display the average amount as per the 6th character of code column’s values. 
+
+    SELECT
+    SUBSTRING(code, 6, 1) AS sixth_char,
+    AVG(amount) AS Average_Amount
+    FROM code_data
+    WHERE code LIKE '_____D%' OR code LIKE '_____M%'
+    GROUP BY SUBSTRING(code, 6, 1);
+	
+*****************  SET 02 ***************************
+
+Q1.Display the employee names and department names of all the employees working in the job type Salesman as well as Analyst
+
+    select ename, job
+    from emp
+    where job like 'Salesman' or job like 'Analyst';
+	
+Q2.Display the following report.
+
+    select ename as "ENAME", concat(ename, ' works in ', job) as "DEPARTMENT NAME"
+    from emp;
+	
+Q3.Display the highest salary for each job within each department as per the following report –
+
+    select dname, job, sum(sal)
+    from emp inner join dept
+    on emp.deptno=dept.deptno
+    group by dname, job
+    order by dname;
+	
+Q4. Display employee name, department name, location and job for all employees of MANAGER job having salary above 2900.
+
+    select e.ename, d.dname, d.loc, e.job
+    from emp e join dept d on e.deptno=d.deptno
+    where e.job='Manager' and e.sal>2900;
+	
+Q5.Display the names of the customers who are going to depart on time.
+
+    select c.custname, f.status
+    from customers c join flights f on c.flightno=f.flightno
+    where f.status = 'Departure On Time';
+	
+Q6.Display the names of those customers who are not flying from Pune to Bangalore
+
+    select c.custname, f.route
+    from customers c join flights f on c.flightno=f.flightno
+    where f.route <> 'Pune-Bangalore';
+	
+Q7.Display the names of those customers who all are going from Gate number 1.
+
+    select c.custname, f.gateno
+    from customers c join flights f on c.flightno=f.flightno
+    where f.gateno = 'G1';
+	
+Q8.Display the names of those customers who are going to Chandigad through King Fisher airlines only.
+
+    select c.custname, f.flightname, f.route
+    from customers c join flights f on c.flightno=f.flightno
+    where f.flightname = 'King Fisher' and f.route = 'Pune-Chandigad';
+	
+Q9. Generate the following report –
+ 
+    select c.custid as CUSTID, c.cname as CNAME, p.amount as AMOUNT,
+    case when p.custid IS NOT NULL then 'Customer Present in Payment_Details'
+    else 'Customer Absent in Payment_Details'
+    end as Remark
+    from customer_details c left join payment_details p on c.custid = p.custid
+    order by
+    case when p.custid IS NOT NULL then 0
+    else 1
+    end,
+    c.custid;
+	
+Q10.Display the customer id customer name, status and amount of the customers who have paid as well as those who have not paid.
+
+    SELECT
+         c.CustId,
+         c.CName,
+         p.Status,
+         p.Amount
+    FROM
+         customer_details c
+    LEFT JOIN
+         Payment_Details p ON c.CustId = p.CustId;
+	
+Q14.Display transaction id, continent name, country name, city name, amount allocated and amount spent.
+
+    SELECT
+         T.TrID,
+         Con.Name_of_Continent,
+         Cou.Name_of_Country,
+         T.Name_of_City,
+         Cou.Country_Amount_Allocated,
+         T.Amount_Spent
+    FROM
+         Transactions T
+    JOIN
+         country_master Cou ON T.CountryID = Cou.CountryID
+    JOIN
+         continent_master Con ON Cou.ContinentID = Con.ContinentID;
+	
+Q15.Display the total amount spent for each city, within each country from each continent
+
+    SELECT
+         Con.Name_of_Continent,
+         Cou.Name_of_Country,
+         T.Name_of_City,
+         SUM(T.Amount_Spent) AS Total_City_Spent
+    FROM
+         Transactions T
+    JOIN
+         country_master Cou ON T.CountryID = Cou.CountryID
+    JOIN
+         continent_master Con ON Cou.ContinentID = Con.ContinentID
+    GROUP BY
+         Con.Name_of_Continent,
+         Cou.Name_of_Country,
+         T.Name_of_City
+    ORDER BY
+         Con.Name_of_Continent,
+         Cou.Name_of_Country;
+		 
+*****************  SET 03 ***************************
+
+Q1. Display patient name, doctor name, and department for completed appointments.
+
+	SELECT 	p.patientname as "Patient Name",
+			doc.doctorname as "Doctor Name", 
+			dept.departmentname as "Department Name",
+			apt.appointmentstatus as "Appointment Status"
+	FROM patients p
+	JOIN appointments apt ON p.PatientID = apt.PatientID
+	JOIN doctors doc ON apt.DoctorID = doc.DoctorID
+	JOIN departments dept ON doc.DepartmentID = dept.DepartmentID
+	WHERE apt.appointmentstatus = 'Completed'
+	ORDER BY p.patientname;
+
+Q2. List appointments in March 2024 with treatment cost > 600.
+
+	SELECT 	p.patientname as "Patient Name",
+			doc.doctorname as "Doctor Name", 
+			apt.appointmentDate as "Appointment Date",
+			apt.treatmentCost as "Treatment Cost"
+	FROM patients p
+	JOIN appointments apt ON p.patientID = apt.patientID
+	JOIN doctors doc ON apt.doctorID = doc.doctorID
+	WHERE apt.appointmentDate LIKE '_____03___'  AND apt.treatmentCost > 600
+	ORDER BY p.patientname;
+			
+Q3. Show doctors from Cardiology department who handled more than 3 appointments.
+
+	SELECT d.DoctorName, COUNT(a.AppointmentID) AS AppointmentCount
+    FROM Doctors d
+    JOIN Departments dep ON d.DepartmentID = dep.DepartmentID
+    JOIN Appointments a ON d.DoctorID = a.DoctorID
+    WHERE dep.DepartmentName = 'Cardiology'
+    GROUP BY d.DoctorID
+    HAVING AppointmentCount > 3;
+	
+
+Q4. Display total revenue generated per department.
+
+SELECT dep.DepartmentName, SUM(a.TreatmentCost) AS TotalRevenue
+    -> FROM Departments dep
+    -> JOIN Doctors d ON dep.DepartmentID = d.DepartmentID
+    -> JOIN Appointments a ON d.DoctorID = a.DoctorID
+    -> GROUP BY dep.DepartmentName;
+
+Q5. List patients who never had a cancelled appointment.
+
+SELECT PatientName FROM Patients
+    -> WHERE PatientID NOT IN (
+    ->     SELECT PatientID FROM Appointments WHERE AppointmentStatus = 'Cancelled'
+    -> );
+
+Q6. Show doctors earning more than 140000 who handled completed appointments.
+
+ SELECT DISTINCT d.DoctorName, d.Salary
+    -> FROM Doctors d
+    -> JOIN Appointments a ON d.DoctorID = a.DoctorID
+    -> WHERE d.Salary > 140000 AND a.AppointmentStatus = 'Completed';
+
+Q7. Display patients treated by doctors from Oncology department.
+
+SELECT DISTINCT p.PatientName
+    -> FROM Patients p
+    -> JOIN Appointments a ON p.PatientID = a.PatientID
+    -> JOIN Doctors d ON a.DoctorID = d.DoctorID
+    -> JOIN Departments dep ON d.DepartmentID = dep.DepartmentID
+    -> WHERE dep.DepartmentName = 'Oncology';
+
+Q8. Show total appointments per month.
+
+SELECT DATE_FORMAT(AppointmentDate, '%Y-%m') AS Month, COUNT(*) AS TotalAppointments
+    -> FROM Appointments
+    -> GROUP BY Month;
+
+Q9. Find top 3 doctors based on total treatment revenue generated.
+
+SELECT d.DoctorName, SUM(a.TreatmentCost) AS TotalRevenue
+    -> FROM Doctors d
+    -> JOIN Appointments a ON d.DoctorID = a.DoctorID
+    -> GROUP BY d.DoctorID
+    -> ORDER BY TotalRevenue DESC
+    -> LIMIT 3;
+
+Q10. Display patients from USA who had appointments in April 2024.
+
+SELECT DISTINCT p.PatientName
+    -> FROM Patients p
+    -> JOIN Appointments a ON p.PatientID = a.PatientID
+    -> WHERE p.Country = 'USA'
+    -> AND a.AppointmentDate BETWEEN '2024-04-01' AND '2024-04-30';
+
+Q11. List departments that had no cancelled appointments.
+
+SELECT DepartmentName FROM Departments
+    -> WHERE DepartmentID NOT IN (
+    ->     SELECT d.DepartmentID
+    ->     FROM Doctors d
+    ->     JOIN Appointments a ON d.DoctorID = a.DoctorID
+    ->     WHERE a.AppointmentStatus = 'Cancelled'
+    -> );
+
+Q12. Show doctors who handled more than 5 completed appointments.
+
+SELECT d.DoctorName, COUNT(a.AppointmentID) AS CompletedCount
+    -> FROM Doctors d
+    -> JOIN Appointments a ON d.DoctorID = a.DoctorID
+    -> WHERE a.AppointmentStatus = 'Completed'
+    -> GROUP BY d.DoctorID
+    -> HAVING CompletedCount > 5;
+
+Q13. Display total revenue generated by each doctor.
+
+SELECT d.DoctorName, SUM(a.TreatmentCost) AS Revenue
+    -> FROM Doctors d
+    -> LEFT JOIN Appointments a ON d.DoctorID = a.DoctorID
+    -> GROUP BY d.DoctorID;
+
+Q14. List patients who visited more than 2 different departments.
+
+SELECT p.PatientName
+    -> FROM Patients p
+    -> JOIN Appointments a ON p.PatientID = a.PatientID
+    -> JOIN Doctors d ON a.DoctorID = d.DoctorID
+    -> GROUP BY p.PatientID
+    -> HAVING COUNT(DISTINCT d.DepartmentID) > 2;
+
+Q15. Show appointments where treatment cost is greater than average treatment cost.
+
+ SELECT * FROM Appointments
+    -> WHERE TreatmentCost > (SELECT AVG(TreatmentCost) FROM Appointments);
+
+Q16. Display department-wise average treatment cost.
+
+SELECT dep.DepartmentName, AVG(a.TreatmentCost) AS AvgCost
+    -> FROM Departments dep
+    -> JOIN Doctors d ON dep.DepartmentID = d.DepartmentID
+    -> JOIN Appointments a ON d.DoctorID = a.DoctorID
+    -> GROUP BY dep.DepartmentName;
+
+Q17. List doctors who handled appointments in every month from Jan to June 2024.
+
+SELECT d.DoctorName
+    -> FROM Doctors d
+    -> JOIN Appointments a ON d.DoctorID = a.DoctorID
+    -> WHERE a.AppointmentDate BETWEEN '2024-01-01' AND '2024-06-30'
+    -> GROUP BY d.DoctorID
+    -> HAVING COUNT(DISTINCT MONTH(a.AppointmentDate)) = 6;
+
+Q18. Show patients who had both Scheduled and Completed appointments.
+
+ SELECT p.PatientName
+    -> FROM Patients p
+    -> JOIN Appointments a ON p.PatientID = a.PatientID
+    -> WHERE a.AppointmentStatus IN ('Scheduled', 'Completed')
+    -> GROUP BY p.PatientID
+    -> HAVING COUNT(DISTINCT a.AppointmentStatus) = 2;
+
+Q19. Display total completed appointments per department.
+
+ SELECT dep.DepartmentName, COUNT(a.AppointmentID) AS CompletedCount
+    -> FROM Departments dep
+    -> JOIN Doctors d ON dep.DepartmentID = d.DepartmentID
+    -> JOIN Appointments a ON d.DoctorID = a.DoctorID
+    -> WHERE a.AppointmentStatus = 'Completed'
+    -> GROUP BY dep.DepartmentName;
+
+Q20. Find doctors who never had a cancelled appointment.
+
+SELECT DoctorName FROM Doctors
+    -> WHERE DoctorID NOT IN (
+    ->     SELECT DoctorID FROM Appointments WHERE AppointmentStatus = 'Cancelled'
+    -> );
