@@ -1,0 +1,130 @@
+All questions are based on the default Emp table.
+
+Q1.Display the oldest employee in the deptno 30.
+
+  select * from emp
+  where deptno = 30
+  and hiredate = (select min(hiredate) from emp where deptno = 30);
+
+Q2.Display the records of employees who earn salary less than the average salary of job SALESMAN. The records of SALESMAN should be excluded from the
+report.
+
+  select ename, sal
+  from emp
+  where sal < (select avg(sal) from emp where job='Salesman')
+  and job <> 'Salesman';
+
+Q3.Display the top earner’s records from the job CLERK.
+
+  select ename, sal as "Top Earner"
+  from emp
+  where sal = (select max(sal) from emp where job='Clerk');
+	
+Q4.Display the records of lowest earners who joined in the year 81.
+
+  select * from emp
+  where hiredate like '1981%'
+  and sal = (select min(sal) from emp where hiredate like '1981%');
+	
+Q5.Display the records of employees who are earning above the average salary in their own deptno.
+
+  select * from emp e1
+  where sal > (
+			select avg(sal) 
+			from emp e2 
+			where e1.deptno = e2.deptno
+		);
+	
+Q6. Display the name, hire date, and salary for all employees who have both the same salary and commission as Scott.
+Note: Do not display SCOTT in the result set.
+
+  select ename, hiredate, sal
+  from emp
+  where (sal, ifnull(comm, -1)) = (
+						  select sal, ifnull(comm, -1)
+						  from emp
+						  where ename = 'SCOTT')
+  and ename <> 'SCOTT';
+
+Q7. Display the department names of employees who have their salary greater than Martin’s salary.
+
+   select distinct job
+   from emp
+   where sal > (select sal from emp where ename = 'MARTIN');
+
+Q8. Display the department name that has the highest salary record.
+
+   select job
+   from emp
+   where sal = (select max(sal) from emp);
+
+In the TrID column the first 3 characters are country code followed by _, then the next 3 digits are for the transaction serial number followed by _ and finally last two characters are for counter number, i.e. through which counter the transaction has happened.
+
+1) Display all columns along with new column Discounted_Amount as 5% on the
+amount for those transactions having quantity sold is above 3 for both the
+countries.
+
+	SELECT TrID, PNAME, QTY, amount, amount*0.95 as "Discounted_Amount"
+	FROM (SELECT *
+			FROM australia as a
+			UNION
+			SELECT *
+			FROM india as i
+			)
+	AS combined_data  -- combined_data is used as THE ALIAS
+	WHERE Qty > 3
+	ORDER BY TrID;
+
+2) Display product name wise number of products sold in each country along with a sub total of each country as shown next:
+
+
+	SELECT PNAME, COUNT(Pname) as product_sold
+	FROM india 
+	GROUP BY PNAME
+	
+	UNION ALL 
+	
+	SELECT 'India Count: ', COUNT(pname) FROM india
+	
+	UNION ALL
+	
+	SELECT PNAME, COUNT(Pname)
+	FROM australia 
+	GROUP BY PNAME
+	
+	UNION ALL 
+	
+	SELECT 'Australia Count: ', COUNT(pname) FROM australia;
+	
+	
+	
+	
+3) Display the following output:
+
+    SELECT 'India' AS Country, PName, SUM(Amount) AS `Total Bill`
+	FROM india
+	GROUP BY PName
+
+	UNION ALL
+
+	SELECT 'Australia' AS Country, PName, SUM(Amount) 
+	FROM australia
+	GROUP BY PName
+
+	ORDER BY Country DESC, PName ASC;
+		
+		
+		
+		
+4) Display week days transaction details for both the countries excluding the
+transactions done on 1-Jan-2019.
+
+5) Display all the transactions of India as well as Australia sorted as per date of purchase oldest to latest. Also display grand total of amounts country wise as the last 2 rows in the output.
+
+6) Display all the transaction details done in counter 3 for both the countries.
+
+
+
+
+
+
