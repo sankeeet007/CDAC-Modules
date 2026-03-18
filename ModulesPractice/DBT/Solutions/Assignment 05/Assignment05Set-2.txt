@@ -1,0 +1,68 @@
+Following questions are based on the emp and dept tables
+1. Create a view Salesman_data which will display all the details of Salesman job. The view should allow the user to insert records of Salesman job only.
+
+	CREATE OR REPLACE VIEW Salesman_data AS
+	SELECT * FROM emp 
+	WHERE JOB = 'SALESMAN'
+	WITH CHECK OPTION;
+
+2. Create a View Emp_Salary_Details which will display employee’s name, salary, commission, total (which will be salary plus commission), tax as 30% of the total, HRA as 10% of salary, DA as 5% of salary, TA as 7% of salary, PF as 200 and Gross that would be the formula as (Total-Tax) + (HRA + DA + TA) – PF
+
+	CREATE OR REPLACE VIEW Emp_Salary_Details AS
+	SELECT 
+		ENAME, 
+		SAL, 
+		COALESCE(COMM, 0) AS COMMISSION,
+		(SAL + COALESCE(COMM, 0)) AS TOTAL,
+		(SAL + COALESCE(COMM, 0)) * 0.30 AS TAX,
+		(SAL * 0.10) AS HRA,
+		(SAL * 0.05) AS DA,
+		(SAL * 0.07) AS TA,
+		200 AS PF,
+		-- Formula: (Total-Tax)+(HRA+DA+TA)-PF
+		((SAL + COALESCE(COMM, 0)) - ((SAL + COALESCE(COMM, 0)) * 0.30)) + 
+		((SAL * 0.10) + (SAL * 0.05) + (SAL * 0.07)) - 200 AS GROSS
+	FROM emp;
+
+3. Create a view Direct_Reporting which will display all the records of employee who are directly reporting to King.
+
+	CREATE OR REPLACE VIEW Direct_Reporting AS
+	SELECT * FROM emp 
+	WHERE MGR = (SELECT EMPNO FROM emp WHERE ENAME = 'KING');
+
+4. Create a view named Dept_High_Earners which will display employee name, job, salary and department name of those employees whose salary is greater than the average salary of their respective department.
+
+	CREATE OR REPLACE VIEW Dept_High_Earners AS
+	SELECT 
+		e.ENAME, 
+		e.JOB, 
+		e.SAL, 
+		d.DNAME
+	FROM emp e
+	JOIN dept d ON e.DEPTNO = d.DEPTNO
+	WHERE e.SAL > (
+		SELECT AVG(SAL) 
+		FROM emp 
+		WHERE DEPTNO = e.DEPTNO
+	);
+
+5. Create a view named Sales_Recent_Hires which will display all the details of employees along with department name and location who belong to SALESMAN job type and joined after 01-JAN-1982.
+
+	CREATE OR REPLACE VIEW Sales_Recent_Hires AS
+	SELECT 
+		e.*, 
+		d.DNAME, 
+		d.LOC
+	FROM emp e
+	JOIN dept d ON e.DEPTNO = d.DEPTNO
+	WHERE e.JOB = 'SALESMAN' 
+	AND e.HIREDATE > '1982-01-01';
+
+6. Create a View Manager_Details which will show the following output:
+
+	CREATE OR REPLACE VIEW Manager_Details AS
+	SELECT 
+		CONCAT('The Manager of ', e.ENAME, ' is ', m.ENAME) AS Manager_names
+	FROM emp e
+	JOIN emp m ON e.MGR = m.EMPNO;
+

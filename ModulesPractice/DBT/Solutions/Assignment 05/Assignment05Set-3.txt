@@ -1,0 +1,54 @@
+1) Produce the following output
+
+	CREATE OR REPLACE VIEW v_job_stats AS
+	SELECT 
+		e.ENAME, 
+		e.JOB, 
+		e.SAL,
+		js.MAXIMUM,
+		js.MINIMUM,
+		js.AVERAGE
+	FROM emp e
+	JOIN (
+		SELECT 
+			JOB, 
+			MAX(SAL) AS MAXIMUM, 
+			MIN(SAL) AS MINIMUM, 
+			ROUND(AVG(SAL), 2) AS AVERAGE
+		FROM emp
+		GROUP BY JOB
+	) js ON e.JOB = js.JOB;
+
+	SELECT * FROM v_job_stats;
+
+2) Produce the following output
+
+	SELECT 
+		e.ENAME, 
+		e.DEPTNO, 
+		e.SAL AS "Existing Salary",
+		(SELECT MAX(SAL) FROM emp WHERE DEPTNO = e.DEPTNO) AS "Maximum Salary of Dept",
+		((SELECT MAX(SAL) FROM emp WHERE DEPTNO = e.DEPTNO) - e.SAL) AS "Difference"
+	FROM emp e
+	ORDER BY e.DEPTNO, e.SAL DESC;
+
+3) Display the record (s) of employee (s) having the oldest hiring date in their respective job type
+
+	SELECT * FROM emp e
+	WHERE HIREDATE = (
+		SELECT MIN(HIREDATE) 
+		FROM emp 
+		WHERE JOB = e.JOB
+	)
+	ORDER BY JOB;
+
+4) Display the highest earner (s) records in each deptno
+
+	SELECT * FROM emp e
+	WHERE NOT EXISTS (
+		SELECT 1 
+		FROM emp inner_e 
+		WHERE inner_e.DEPTNO = e.DEPTNO 
+		AND inner_e.SAL > e.SAL
+	)
+	ORDER BY DEPTNO;
