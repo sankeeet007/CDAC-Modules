@@ -1,0 +1,207 @@
+Banking Data Analytics:
+Project Requirements Document (PRD)
+Phase 1: Customer Insights & Demographics (The Marketing Hub)
+Objective: Understand our customer base to improve regional targeting.
+Q1.Provide a master list of all customers, including their full names and account balances for all active accounts.
+
+SELECT CONCAT(firstname, " ", lastname) AS FullName
+
+Q2.The Marketing team needs to identify "High-Value Borrowers." List customers with loan amounts exceeding $50,000.
+
+
+
+Q3.For a regional audit, show all transactions alongside the customer names.
+
+
+
+Q4.Track growth: Which customers joined the bank/opened accounts after 2020?
+
+
+
+Q5.Who is our most loyal customer? Display the full name of the customer who joined the bank first.
+
+
+
+Q6.Focus on the West Coast: Show all transactions made specifically by customers in California.
+
+
+
+Q7.Identify "Multi-Product" users: List customers who hold more than one account.
+
+
+
+Q8.Market Research (Texas): Display all loans taken by customers residing in Texas.
+
+
+
+Q9.Risk vs. Reward: Show account balances alongside the customer’s credit score.
+
+
+
+Q10.Product Performance: List all transactions specifically performed against Savings accounts.
+
+
+
+Phase 2: Management Information Systems (MIS) Reporting
+Objective: Generate high-level aggregations for the Executive Dashboard.
+Q11.What is our total liquidity per account type?
+
+
+
+Q12.Provide a breakdown of our customer footprint by State.
+
+
+
+Q13.What is the average loan size we provide for each loan category?
+
+
+
+Q14.Identify the "stress test" limit: What is the maximum transaction amount recorded per channel?
+
+
+
+Q15.Which cities are our most active transaction hubs? (Total amount per city).
+
+
+
+Q16.Identify popular products: Show account types that have at least 5 active accounts.
+
+
+
+Q17.Credit Quality: Find states where the average credit score of residents is above 700.
+
+
+
+Q18.Portfolio Concentration: What is the total loan amount issued per state?
+
+
+
+Q19.Channel Usage: Find the number of transactions occurring per channel (ATM, Online, etc.).
+
+
+
+Q20.Regional Wealth: Find the highest single account balance recorded in each state.
+
+
+
+Phase 3: Data Transformation & Profiling
+Objective: Standardize data and create "Derived Attributes" for the CRM system.
+Q21.For a masked report, show only the first 3 characters of customer last names.
+
+
+
+Q22.Round all loan interest rates to one decimal place for the annual report.
+
+
+
+Q23.Generate a "Customer ID Badge" using initials derived from their names.
+
+
+
+Q24.Segmentation: Categorize customers into Credit Tiers based on their scores.
+
+
+
+Q25.Ticket Sizing: Create a transaction size category (e.g., Small, Medium, Large) based on amount.
+
+
+
+Q26.Risk Profiling: Create a "Loan Risk Level" column based on the total loan amount.
+
+
+
+Phase 4: Advanced Analytical Deep-Dives
+Objective: Find outliers and performance gaps.
+Q27.Identify "Elite" customers whose credit score is above the overall bank average.
+
+
+
+Q28.Which accounts are "Over-Funded"? (Balance > average balance).
+
+
+
+Q29.Find the specific customers who hold the highest single loan amount in the bank.
+
+
+
+Q30.Identify "Abnormal Activity": Find transactions significantly greater than the average transaction value.
+
+
+
+Q31.Which customers are borrowing more than the average borrower?
+
+
+
+Q32.Regional Outliers: Find customers whose loan amount is greater than the average for their specific state.
+
+
+
+Q33.Product Outliers: Find accounts where the balance exceeds the average for that specific account type.
+
+
+
+Q34.Identify "High-Volume" transactors: Customers whose total transaction sum exceeds the overall average.
+
+
+
+Q35.Find "Heavy-User" accounts that have more transactions than the average account.
+
+
+
+Q36.State Champions: Find customers whose credit score is the highest in their respective state.
+
+
+
+Q37.Show total transaction amount per account.
+
+
+
+Q38.Display the Top 5 customers by total transaction value.
+
+
+
+Q39.Report the average loan amount per state using a nested summary.
+
+
+
+Q40.Filter for account balances that are greater than the average balance 
+
+
+
+Q41.Identify "High-Value Cities": Cities where the total transaction value exceeds $5,000.
+
+Phase 5: Relationship & Churn Analysis (The Retention Team)
+Objective: Cross-reference products and identify gaps in the customer journey.
+Q42.Unified Customer View: Combine a list of all customers appearing in either Accounts or Loans using Set operators.
+
+
+
+Q43.Intersection Report: Retrieve Customer IDs that exist in both Accounts and Loans tables.
+
+
+
+Q44.Cross-Sell Opportunity: Find customers who have an account but have never taken a loan.
+
+
+
+Q45.Product Gap: Identify customers who have loans but lack a Checking account.
+
+
+
+Q46.List the top 10 highest account balances in the system.
+
+
+
+Q47.Identify the 5 customers with the lowest credit scores for the "Credit Repair" program.
+
+
+
+Q48.Provide a log of the 10 most recent transactions.
+
+
+
+Q49.Show the Top 7 largest loan amounts currently on the books.
+
+
+
+Q50.Rank the top customers based on their transaction totals.
