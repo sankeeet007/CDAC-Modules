@@ -1,0 +1,271 @@
+simple C++ Exception Handling demos 
+
+Exception handling in C++ uses three keywords:
+
+try
+throw
+catch
+
+try → block where error may occur
+
+throw → used to generate exception
+
+catch → handles the exception
+
+1. Basic Exception Example
+#include <iostream>
+using namespace std;
+
+int main() {
+
+    int a = 10, b = 0;
+
+    try
+    {
+        if(b == 0)
+            throw "Division by zero error";
+
+        cout << a/b;
+    }
+    catch(const char* msg)
+    {
+        cout << msg;
+    }
+
+}
+
+Output
+
+Division by zero error
+2. Exception with Integer
+#include <iostream>
+using namespace std;
+
+int main() {
+
+    int age;
+
+    cout<<"Enter age: ";
+    cin>>age;
+
+    try
+    {
+        if(age < 18)
+            throw age;
+
+        cout<<"Eligible for voting";
+    }
+    catch(int a)
+    {
+        cout<<"Age "<<a<<" is too small for voting";
+    }
+}
+3. Multiple Catch Blocks
+#include <iostream>
+using namespace std;
+
+int main() {
+
+    try
+    {
+        int x = 5;
+
+        if(x==1)
+            throw 10;
+        else if(x==2)
+            throw 'A';
+        else
+            throw 5.5;
+    }
+
+    catch(int i)
+    {
+        cout<<"Integer exception";
+    }
+    catch(char c)
+    {
+        cout<<"Character exception";
+    }
+    catch(double d)
+    {
+        cout<<"Double exception";
+    }
+}
+
+Output
+
+Double exception
+4. Catch All Exception
+#include <iostream>
+using namespace std;
+
+int main() {
+
+    try
+    {
+        throw 10;
+    }
+    catch(...)
+    {
+        cout<<"Exception caught";
+    }
+
+}
+
+Output
+
+Exception caught
+5. Exception in Function
+#include <iostream>
+using namespace std;
+
+float divide(int a,int b)
+{
+    if(b==0)
+        throw "Divide by zero";
+
+    return a/b;
+}
+
+int main()
+{
+    try
+    {
+        cout<<divide(10,0);
+    }
+    catch(const char* msg)
+    {
+        cout<<msg;
+    }
+}
+6. User Defined Exception (Class)
+#include <iostream>
+using namespace std;
+
+class MyException {};
+
+int main()
+{
+    try
+    {
+        throw MyException();
+    }
+    catch(MyException e)
+    {
+        cout<<"User defined exception caught";
+    }
+}
+7. Real Example (Bank Balance)
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int balance = 5000;
+    int withdraw;
+
+    cout<<"Enter withdraw amount: ";
+    cin>>withdraw;
+
+    try
+    {
+        if(withdraw > balance)
+            throw "Insufficient balance";
+
+        balance = balance - withdraw;
+
+        cout<<"Remaining balance: "<<balance;
+    }
+    catch(const char* msg)
+    {
+        cout<<msg;
+    }
+}
+8. Important Points
+
+Code that may cause error → try
+
+Error generated using → throw
+
+Error handled using → catch
+
+Multiple catch blocks allowed
+
+catch(...) handles any exception
+
+9. Syntax Summary
+try
+{
+   // risky code
+   throw value;
+}
+catch(type variable)
+{
+   // handle exception
+}
+
+
+//student example
+#include <iostream>
+using namespace std;
+
+class Student
+{
+    int id;
+    string name;
+
+public:
+
+    Student(int i,string n)
+    {
+        id=i;
+        name=n;
+    }
+
+    int getId()
+    {
+        return id;
+    }
+
+    void display()
+    {
+        cout<<"ID: "<<id<<" Name: "<<name<<endl;
+    }
+};
+
+int searchStudent(Student* arr[],int size,int sid)
+{
+    for(int i=0;i<size;i++)
+    {
+        if(arr[i]->getId()==sid)
+            return i;
+    }
+
+    throw "Student not found";   // exception
+}
+
+int main()
+{
+    Student* arr[3];
+
+    arr[0] = new Student(101,"Amit");
+    arr[1] = new Student(102,"Neha");
+    arr[2] = new Student(103,"Rahul");
+
+    int id,pos;
+
+    cout<<"Enter student id to search: ";
+    cin>>id;
+
+    try
+    {
+        pos = searchStudent(arr,3,id);
+        cout<<"Student Found"<<endl;
+        arr[pos]->display();
+    }
+    catch(const char* msg)
+    {
+        cout<<msg<<endl;
+    }
+
+}

@@ -1,0 +1,145 @@
+1) Create a DB with name exam_db with the collection name as student in mongodb.
+Insert the following records in it:
+[{Name: "Suresh", Marks: 86},
+{Name: "Mahesh", Marks: 23},
+{Name: "Rajesh", Marks: 99},
+{Name: "Prakash", Marks: 72}]
+a) Display student names having Marks less than 75
+b) Update marks of Mahesh. Change his marks to 45.
+
+use exam_db
+db.student.insertMany[{Name: "Suresh", Marks: 86},
+{Name: "Mahesh", Marks: 23},
+{Name: "Rajesh", Marks: 99},
+{Name: "Prakash", Marks: 72}];
+db.student.find(
+  { Marks: { $lt: 75 } }, 
+  { Name: 1, _id: 0 }
+);
+db.student.updateOne(
+  { Name: "Mahesh" }, 
+  { $set: { Marks: 45 } }
+);
+
+
+Q2: Create a DB with name product_db with the collection name as products in mongodb insert the following records:
+[{prodId:1, name: "Toshiba", type: "Electronics", price: 55000},
+{prodId:2, name: "Wire", type: "Electrical", price: 200},
+{prodId:3, name: "Samsung", type: "Electronics", price: 65000},
+{prodId:4, name: "Bulb", type: "Electrical", price: 100},
+{prodId:4, name: "Vicks", type: "Medicine", price: 50}]
+a) Display records from Electrical type having price less than 150
+b) Delete the records having price greater than 60,000.
+
+use product_db
+db.products.insertMany[{prodId:1, name: "Toshiba", type: "Electronics", price: 55000},
+{prodId:2, name: "Wire", type: "Electrical", price: 200},
+{prodId:3, name: "Samsung", type: "Electronics", price: 65000},
+{prodId:4, name: "Bulb", type: "Electrical", price: 100},
+{prodId:4, name: "Vicks", type: "Medicine", price: 50}];
+db.products.find({
+  type: "Electrical",
+  price: { $lt: 150 }
+});
+db.products.deleteMany({
+  price: { $gt: 60000 }
+});
+
+
+Q.3. Create a collection named products
+db.createCollection("products");
+db.products.insertMany([
+{ name: "Laptop", category: "Electronics", price: 55000, stock: 10 },
+{ name: "Headphones", category: "Electronics", price: 2500, stock: 50 },
+{ name: "Office Chair", category: "Furniture", price: 7000, stock: 5 },
+{ name: "Desk Lamp", category: "Furniture", price: 1500, stock: 20 }
+]);
+Questions:
+1. Find all products in the “Electronics” category.
+2. Show only name and price of products where price is greater than 5000.
+3. Count how many products are in the “Furniture” category.
+
+db.products.insertMany([
+{ name: "Laptop", category: "Electronics", price: 55000, stock: 10 },
+{ name: "Headphones", category: "Electronics", price: 2500, stock: 50 },
+{ name: "Office Chair", category: "Furniture", price: 7000, stock: 5 },
+{ name: "Desk Lamp", category: "Furniture", price: 1500, stock: 20 }
+]);
+db.products.find({ category: "Electronics" });
+db.products.find(
+  { price: { $gt: 5000 } }, 
+  { name: 1, price: 1, _id: 0 }
+);
+db.products.countDocuments({ category: "Furniture" });
+
+
+Q.4. Create a collection named employees
+db.createCollection("employees");
+db.employees.insertMany([
+{ name: "Rahul Verma", department: "HR", salary: 45000, city: "Delhi" },
+{ name: "Neha Singh", department: "IT", salary: 65000, city: "Mumbai" },
+{ name: "Karan Malhotra", department: "IT", salary: 72000, city: "Pune" },
+{ name: "Sneha Iyer", department: "Finance", salary: 55000, city: "Mumbai" }
+]);
+Questions:
+1. Find all employees working in the “IT” department.
+2. Show name and salary of employees whose salary is greater than 60000.
+3. Count how many employees are from “Mumbai”.
+
+db.employees.find({ department: "IT" });
+db.employees.find(
+  { salary: { $gt: 60000 } }, 
+  { name: 1, salary: 1, _id: 0 }
+);
+db.employees.countDocuments({ city: "Mumbai" });
+
+
+Q.5. Create a collection named books
+db.createCollection("books");
+db.books.insertMany([
+{ title: "MongoDB Basics", author: "John Smith", price: 599, stock: 15 },
+{ title: "Learning Python", author: "David Miller", price: 799, stock: 8 },
+{ title: "SQL Fundamentals", author: "James Brown", price: 450, stock: 20 },
+{ title: "Data Structures", author: "Anita Rao", price: 650, stock: 5 }
+]);
+Questions:
+1. Find all books with price less than 700.
+2. Show only title and author of books where stock is less than 10.
+3. Count how many books cost more than 500.
+
+Q.6. Create a collection named payments
+db.createCollection("payments");
+db.payments.insertMany([
+{ paymentId: 101, customer: "Aarav Sharma", method: "UPI", amount: 2500 },
+{ paymentId: 102, customer: "Isha Patel", method: "Credit Card", amount: 8000 },
+{ paymentId: 103, customer: "Rohan Mehta", method: "Cash", amount: 1200 },
+{ paymentId: 104, customer: "Aarav Sharma", method: "UPI", amount: 5400 }
+]);
+Questions:
+1. Find all payments made using “UPI”.
+2. Show paymentId and amount where amount is greater than 3000.
+3. Count how many payments were made by “Aarav Sharma”.
+
+Q.7. Create a collection named courses
+db.createCollection("courses");
+db.courses.insertMany([
+{ courseName: "Power BI", duration: 30, fee: 15000, mode: "Online" },
+{ courseName: "Python", duration: 45, fee: 20000, mode: "Offline" },
+{ courseName: "SQL", duration: 25, fee: 12000, mode: "Online" },
+{ courseName: "MongoDB", duration: 20, fee: 10000, mode: "Online" }
+]);
+Questions:
+1. Find all courses conducted in “Online” mode.
+2. Show courseName and fee where fee is greater than 12000.
+3. Count how many courses have duration greater than 25 days.
+
+Q.8. Create a DB with name application_db with collection name as app Details in
+mongodb and insert the following records:
+[{appId:101, app_name: "WhatsApp", app_type: "messenger", costPerMonth: 500},
+{appId:202, app_name: "Gmail", app_type: "mail", costPerMonth: 200},
+{appId:305, app_name: "Twitter", app_type: "messenger", costPerMonth: 650},
+{appId:704, app_name: "Yahoo Mail", app_type: "mail", costPerMonth: 100},
+{appId:809, app_name: "Gpay", app_type: "payment", costPerMonth: 10},
+{appId:823, app_name: "Gpay", app_type: "payment", costPerMonth: 30}]
+a) Display total of cost per month as per each application type.
+b) Display count of documents as per each application type.

@@ -1,0 +1,110 @@
+using namespace std;
+
+class Time {
+private:
+    int hours;
+    int minutes;
+    int seconds;
+
+    void normalize() {
+        if (seconds >= 60) {
+            minutes += seconds / 60;
+            seconds %= 60;
+        }
+        if (minutes >= 60) {
+            hours += minutes / 60;
+            minutes %= 60;
+        }
+    }
+
+    int toSeconds() const {
+        return hours * 3600 + minutes * 60 + seconds;  //hrs*3600 will convert hours into seconds
+    }
+
+public:
+    // Default Constructor
+    Time() : hours(0), minutes(0), seconds(0) {
+        cout << "Default Constructor Called\n";
+    }
+
+    // Parameterized Constructor
+    Time(int h, int m, int s) : hours(h), minutes(m), seconds(s) {
+        normalize();
+        cout << "Parameterized Constructor Called\n";
+    }
+
+    // Destructor
+    ~Time() {
+        cout << "Destructor Called\n";
+    }
+
+    // Compare Operator
+    bool operator==(const Time &t) const {
+        return (hours == t.hours &&
+                minutes == t.minutes &&
+                seconds == t.seconds);
+    }
+
+    // Difference Operator
+    Time operator-(const Time &t) const {
+        int diff = abs(toSeconds() - t.toSeconds());
+
+        int h = diff / 3600;
+        diff %= 3600;
+        int m = diff / 60;
+        int s = diff % 60;
+
+        return Time(h, m, s);
+    }
+
+    // Overload >> operator
+    friend istream& operator>>(istream &in, Time &t);
+
+    // Overload << operator
+    friend ostream& operator<<(ostream &out, const Time &t);
+};
+
+// Definition of >> operator
+istream& operator>>(istream &in, Time &t) {
+    cout << "Enter Hours: ";
+    in >> t.hours;
+    cout << "Enter Minutes: ";
+    in >> t.minutes;
+    cout << "Enter Seconds: ";
+    in >> t.seconds;
+
+    t.normalize();
+    return in;
+}
+
+// Definition of << operator
+ostream& operator<<(ostream &out, const Time &t) {
+    out << t.hours << " : "
+        << t.minutes << " : "
+        << t.seconds;
+    return out;
+}
+
+int main() {
+
+    Time t1, t2;
+
+    cout << "\nEnter First Time\n";
+    cin >> t1;
+
+    cout << "\nEnter Second Time\n";
+    cin >> t2;
+
+    cout << "\nTime 1: " << t1 << endl;
+    cout << "Time 2: " << t2 << endl;
+
+    if (t1 == t2)
+        cout << "Both times are equal\n";
+    else
+        cout << "Times are not equal\n";
+
+    Time t3 = t1 - t2;
+    cout << "Difference between times: " << t3 << endl;
+
+    return 0;
+}

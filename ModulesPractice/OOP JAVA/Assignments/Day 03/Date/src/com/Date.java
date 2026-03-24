@@ -18,26 +18,7 @@ public class Date {
 		return (yyyy % 4 == 0 && yyyy % 100 != 0) || (yyyy % 400 == 0);
 	}
 	
-	
-//	public void validateMonth() {
-//		if(isLeapYear(year)) {
-//			day+=1;                     
-//		}
-//		if(month > 12) {
-//			year += month / 12;
-//			month = (month % 12 == 0) ? 12 : month % 12;
-//		}
-//	}
-//	
-//	public void validateDay() {
-//		validateMonth();
-//		int currDays = day;
-//		if(day > daysOfMonth[month]) {
-//			 day = currDays % daysOfMonth[month];
-//			 month += currDays / daysOfMonth[month];
-//		}
-//	}
-	
+
 	private int getDaysInCurrentMonth() {
         if (month == 2 && isLeapYear(year)) {
             return 29;
