@@ -34,7 +34,6 @@ public class Program {
 							System.out.println("4. Exit to Main menu");
 							System.out.println("Enter your choice: ");
 							subChoice = sc.nextInt();
-						
 							
 							switch (subChoice) 
 							{
@@ -72,13 +71,15 @@ public class Program {
 										break;
 											
 								default:
-									throw new IllegalArgumentException("Unexpected value: " + subChoice);
+									System.out.println("********Invalid choice**********");
 								}
 							}while(subChoice!=4);
 						break;
 					}
 							
 					case 2:	{
+						Object data = objList.getFirst();
+						Employee objEmployee = (Employee) data;
 						do {
 							System.out.println("1. All Employees");
 							System.out.println("2. First Employee");
@@ -89,21 +90,19 @@ public class Program {
 							System.out.println("Enter your choice: ");
 							subChoice = sc.nextInt();
 							
-						
-							
 							switch (subChoice) 
 							{
 								case 1: {
-										Object data = objList.getFirst();
-										Employee objEmployee = (Employee) data;
+										data = objList.getFirst();
+										objEmployee = (Employee) data;
 										while(objEmployee != null) 
 										{
 											
-											System.out.println("Name: "+objEmployee.getName());
-											System.out.println("Address: "+objEmployee.getAddress());
-											System.out.println("Age: "+objEmployee.getAge());
-											System.out.println("Gender: "+objEmployee.isGender());
-											System.out.println("Basic Salary: "+objEmployee.getBasicSalary());
+											System.out.println("Name: "+ objEmployee.getName());
+											System.out.println("Address: "+ objEmployee.getAddress());
+											System.out.println("Age: "+ objEmployee.getAge());
+											System.out.println("Gender: "+ objEmployee.isGender());
+											System.out.println("Basic Salary: "+ objEmployee.getBasicSalary());
 											
 											if(objEmployee instanceof Manager objManager) {
 												// DOWNCAST to Manager
@@ -126,8 +125,8 @@ public class Program {
 									}
 								case 2: 
 									{
-										Object data = objList.getFirst();
-										Employee objEmployee = (Employee) data;
+										data = objList.getFirst();
+										objEmployee = (Employee) data;
 										System.out.println("Name: "+objEmployee.getName());
 										System.out.println("Address: "+objEmployee.getAddress());
 										System.out.println("Age: "+objEmployee.getAge());
@@ -152,8 +151,8 @@ public class Program {
 									}
 								case 3: 
 									{
-										Object data = objList.getFirst();
-										Employee objEmployee = (Employee) data;
+										data = objList.getNext();
+										if(data!=null) {
 										System.out.println("Name: "+objEmployee.getName());
 										System.out.println("Address: "+objEmployee.getAddress());
 										System.out.println("Age: "+objEmployee.getAge());
@@ -174,13 +173,16 @@ public class Program {
 											Engineer objEngineer = (Engineer) objEmployee;
 											System.out.println("Overtime: "+ objEngineer.getOverTime());
 										}
-										data = objList.getNext();
-									break;
+										else {
+											System.out.println("No previous record");
+										}
+									}
+										break;
 									}
 								case 4: 
 									{
-										Object data = objList.getFirst();
-										Employee objEmployee = (Employee) data;
+										data = objList.getPrevious();
+										if(data!=null) {
 										System.out.println("Name: "+objEmployee.getName());
 										System.out.println("Address: "+objEmployee.getAddress());
 										System.out.println("Age: "+objEmployee.getAge());
@@ -201,13 +203,16 @@ public class Program {
 											Engineer objEngineer = (Engineer) objEmployee;
 											System.out.println("Overtime: "+ objEngineer.getOverTime());
 										}
-										data = objList.getPrevious();
+										}
+										else {
+											System.out.println("No previous record");
+										}
 									break;
 									}
 								case 5: 
 									{
-										Object data = objList.getLast();
-										Employee objEmployee = (Employee) data;
+										data = objList.getLast();
+										objEmployee = (Employee) data;
 										System.out.println("Name: "+objEmployee.getName());
 										System.out.println("Address: "+objEmployee.getAddress());
 										System.out.println("Age: "+objEmployee.getAge());
@@ -228,20 +233,22 @@ public class Program {
 											Engineer objEngineer = (Engineer) objEmployee;
 											System.out.println("Overtime: "+ objEngineer.getOverTime());
 										}
-										data = objList.getNext();
 									break;
 									}
 								case 6: {//Exit to Main Menu
 									break;
 									}
 							default:
-								throw new IllegalArgumentException("Unexpected value: " + subChoice);
+								System.out.println("********Invalid choice**********");
 							}
 						}while(subChoice!=6);
 					}
 					
 
 					case 3:	{
+						Object data = objList.getFirst();
+						Employee objEmployee = (Employee) data;
+
 						do {
 							System.out.println("1. Sort All Managers");
 							System.out.println("2. Sort All Engineers");
@@ -252,46 +259,150 @@ public class Program {
 							System.out.println("Enter your choice: ");
 							subChoice = sc.nextInt();
 							
+							LinkedList displayList = new LinkedList();			
 							switch (subChoice) 
 							{
 								case 1: {
-//									System.out.println("All Managers: ");
-//									LinkedList objManagerList = new LinkedList();
-//									Object data = objList.getFirst();
-//									Employee objEmployee = (Employee) data;
-//									if(objEmployee instanceof Manager) {
-//										
-//									}
-//									  
+									System.out.println("All Managers: ");
+									data = objList.getFirst();
+									objEmployee = (Employee) data;
+									while(objEmployee != null) 
+									{
+										if(objEmployee instanceof Manager objManager) {
+											displayList.add(objManager);
+										}
+										data = objList.getNext();
+										objEmployee = (Employee) data;
+									}
+									
+									//Display functionality
+									data = objList.getFirst();
+									objEmployee = (Employee) data;
+									while(objEmployee != null) 
+									{
+										
+										System.out.println("Name: "+ objEmployee.getName());
+										System.out.println("Address: "+ objEmployee.getAddress());
+										System.out.println("Age: "+ objEmployee.getAge());
+										System.out.println("Gender: "+ objEmployee.isGender());
+										System.out.println("Basic Salary: "+ objEmployee.getBasicSalary());
+										
+										if(objEmployee instanceof Manager objManager) {
+											// DOWNCAST to Manager
+											System.out.println("HRA: "+ objManager.getHra());
+										}
+										data = objList.getNext();
+										objEmployee = (Employee) data;
+									}
 									break;
 								}
 								
 								case 2: {
-									System.out.println("Sorted By Total Salary");
-//									 for(int i = 0; i < indexEmp - 1; i++) {
-//									        for(int j = i + 1; j < indexEmp; j++) {
-//									            float sal1 = DataOperations.calculateTotalSalary(empArr[i]);
-//									            float sal2 = DataOperations.calculateTotalSalary(empArr[j]);
-//									            if(sal1 > sal2) {
-//									                Employee temp = empArr[i];
-//									                empArr[i] = empArr[j];
-//									                empArr[j] = temp;
-//									            }
-//									        }
-//									    }
+									System.out.println("All Sales Persons: ");
+									data = objList.getFirst();
+									objEmployee = (Employee) data;
+									while(objEmployee != null) 
+									{
+										if(objEmployee instanceof SalesPerson objSalesPerson) {
+											displayList.add(objSalesPerson);
+										}
+										data = objList.getNext();
+										objEmployee = (Employee) data;
+									}
+									
+									//Display functionality
+									data = objList.getFirst();
+									objEmployee = (Employee) data;
+									while(objEmployee != null) 
+									{
+										
+										System.out.println("Name: "+ objEmployee.getName());
+										System.out.println("Address: "+ objEmployee.getAddress());
+										System.out.println("Age: "+ objEmployee.getAge());
+										System.out.println("Gender: "+ objEmployee.isGender());
+										System.out.println("Basic Salary: "+ objEmployee.getBasicSalary());
+										
+										if(objEmployee instanceof SalesPerson objSalesPerson) {
+											// DOWNCAST to Manager
+											System.out.println("Commission: "+ objSalesPerson.getCommission());
+										}
+										data = objList.getNext();
+										objEmployee = (Employee) data;
+									}
 									break;
 								}
 								
 								case 3: {
-									System.out.println("Sorted By Designation");
+									System.out.println("All Engineers: ");
+									data = objList.getFirst();
+									objEmployee = (Employee) data;
+									while(objEmployee != null) 
+									{
+										if(objEmployee instanceof Engineer objEngineer) {
+											displayList.add(objEngineer);
+										}
+										data = objList.getNext();
+										objEmployee = (Employee) data;
+									}
+									
+									//Display functionality
+									data = objList.getFirst();
+									objEmployee = (Employee) data;
+									while(objEmployee != null) 
+									{
+										
+										System.out.println("Name: "+ objEmployee.getName());
+										System.out.println("Address: "+ objEmployee.getAddress());
+										System.out.println("Age: "+ objEmployee.getAge());
+										System.out.println("Gender: "+ objEmployee.isGender());
+										System.out.println("Basic Salary: "+ objEmployee.getBasicSalary());
+										
+										if(objEmployee instanceof Engineer objEngineer) {
+											// DOWNCAST to Manager
+											System.out.println("Overtime: "+ objEngineer.getOverTime());
+										}
+										data = objList.getNext();
+										objEmployee = (Employee) data;
+									}
 									break;
 								}
 								case 4: {
-							
+										// Ascending alphabetical
+//									System.out.println("Sort All Employees Alphabetic Order Ascending: ");
+//									data = objList.getFirst();
+//									objEmployee = (Employee) data;
+//									while(objEmployee != null) 
+//									{
+//										if(objEmployee instanceof Manager objManager) {
+//											displayList.add(objManager);
+//										}
+//										data = objList.getNext();
+//										objEmployee = (Employee) data;
+//									}
+//									
+//									//Display functionality
+//									data = objList.getFirst();
+//									objEmployee = (Employee) data;
+//									while(objEmployee != null) 
+//									{
+//										
+//										System.out.println("Name: "+ objEmployee.getName());
+//										System.out.println("Address: "+ objEmployee.getAddress());
+//										System.out.println("Age: "+ objEmployee.getAge());
+//										System.out.println("Gender: "+ objEmployee.isGender());
+//										System.out.println("Basic Salary: "+ objEmployee.getBasicSalary());
+//										
+//										if(objEmployee instanceof Manager objManager) {
+//											// DOWNCAST to Manager
+//											System.out.println("HRA: "+ objManager.getHra());
+//										}
+//										data = objList.getNext();
+//										objEmployee = (Employee) data;
+//									}
 									break;
 								}
 								case 5: {
-						
+										// Descending alphabetical
 									break;
 								}
 								case 6: {
@@ -299,9 +410,9 @@ public class Program {
 									break;
 								}			
 								default:
-									throw new IllegalArgumentException("Unexpected value: " + subChoice);
+									System.out.println("********Invalid choice**********");
 								}
-							}while(subChoice!=4);
+							}while(subChoice!=6);
 							break;
 						}
 					case 4:	{
@@ -317,7 +428,7 @@ public class Program {
 						break;
 						}
 					default:
-						throw new IllegalArgumentException("Unexpected value: " + choice);
+						System.out.println("********Invalid choice**********");
 				}
 		}while(choice!=6);
 		sc.close();
