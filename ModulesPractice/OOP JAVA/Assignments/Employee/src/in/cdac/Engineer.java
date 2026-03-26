@@ -19,19 +19,10 @@ public class Engineer extends Employee{
 		this.OverTime = OverTime;
 	}
 	
-	public String display() {
-		StringBuffer sb = new StringBuffer("Name: ");
-		sb.append(name);
-		sb.append("Address: ");
-		sb.append(address);
-		sb.append("Age: ");
-		sb.append(age);
-		sb.append("Gender: ");
-		sb.append(gender);
-		sb.append("Basic Salary: ");
-		sb.append(basicSalary);
-		sb.append("OverTime: ");
-		sb.append(OverTime);
+
+	public String displayData() {
+		StringBuffer sb = new StringBuffer(super.displayData());
+		sb.append("Overtime: "+getOverTime());
 		return sb.toString();		
 	}
 }

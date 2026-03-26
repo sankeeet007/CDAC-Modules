@@ -58,5 +58,14 @@ public abstract class Employee {
 		this.basicSalary = basicSalary;
 	}
 	
+	public String displayData() {
+		StringBuffer sBuffer = new StringBuffer();
+		sBuffer.append("Name: "+getName());
+		sBuffer.append("Address: "+getAddress());
+		sBuffer.append("Age: "+getAge());
+		sBuffer.append("Gender: "+isGender());
+		sBuffer.append("Basic Salary: "+getBasicSalary());
+		return sBuffer.toString();
+	}
 	
 }

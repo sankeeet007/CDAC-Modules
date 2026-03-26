@@ -18,19 +18,9 @@ public class Manager extends Employee{
 		Hra = hra;
 	}
 
-	public String display() {
-		StringBuffer sb = new StringBuffer("Name: ");
-		sb.append(name);
-		sb.append("Address: ");
-		sb.append(address);
-		sb.append("Age: ");
-		sb.append(age);
-		sb.append("Gender: ");
-		sb.append(gender);
-		sb.append("Basic Salary: ");
-		sb.append(basicSalary);
-		sb.append("HRA: ");
-		sb.append(Hra);
+	public String displayData() {
+		StringBuffer sb = new StringBuffer(super.displayData());
+		sb.append("HRA: "+getHra());
 		return sb.toString();		
 	}
 }

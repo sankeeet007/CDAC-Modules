@@ -9,6 +9,7 @@ public class Program {
 	public static void main(String args[]) {
 		Scanner sc = new Scanner(System.in);
 		//Employee empArr[] = new Employee[100];
+		
 		LinkedList objList = new LinkedList();		//LinkedList from in.cdac package
 		
 		int choice, indexEmp=0;
@@ -95,31 +96,28 @@ public class Program {
 								case 1: {
 										data = objList.getFirst();
 										objEmployee = (Employee) data;
-										while(objEmployee != null) 
-										{
-											
-											System.out.println("Name: "+ objEmployee.getName());
-											System.out.println("Address: "+ objEmployee.getAddress());
-											System.out.println("Age: "+ objEmployee.getAge());
-											System.out.println("Gender: "+ objEmployee.isGender());
-											System.out.println("Basic Salary: "+ objEmployee.getBasicSalary());
-											
+										for(int i=0; i<objList.maxCount; i++) {
+											objEmployee.displayData();
+//											System.out.println("Name: "+ objEmployee.getName());
+//											System.out.println("Address: "+ objEmployee.getAddress());
+//											System.out.println("Age: "+ objEmployee.getAge());
+//											System.out.println("Gender: "+ objEmployee.isGender());
+//											System.out.println("Basic Salary: "+ objEmployee.getBasicSalary());
+//											
 											if(objEmployee instanceof Manager objManager) {
 												// DOWNCAST to Manager
-												System.out.println("HRA: "+ objManager.getHra());
+												objManager.displayData();
 											}
 											else if(objEmployee instanceof SalesPerson) {
 												// DOWNCAST to SalesPerson
 												SalesPerson objSalesPerson = (SalesPerson) objEmployee;
-												System.out.println("Comission: "+ objSalesPerson.getCommission());
+												objSalesPerson.displayData();
 											}
 											else if(objEmployee instanceof Engineer) {
 												// DOWNCAST to Engineer
 												Engineer objEngineer = (Engineer) objEmployee;
-												System.out.println("Overtime: "+ objEngineer.getOverTime());
+												objEngineer.displayData();
 											}
-											data = objList.getNext();
-											objEmployee = (Employee) data;
 										}
 									break;
 									}
@@ -280,7 +278,6 @@ public class Program {
 									objEmployee = (Employee) data;
 									while(objEmployee != null) 
 									{
-										
 										System.out.println("Name: "+ objEmployee.getName());
 										System.out.println("Address: "+ objEmployee.getAddress());
 										System.out.println("Age: "+ objEmployee.getAge());

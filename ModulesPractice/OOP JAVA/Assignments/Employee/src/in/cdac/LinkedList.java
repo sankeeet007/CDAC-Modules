@@ -88,20 +88,17 @@ public class LinkedList {
 	public int getMaxCount() {
 		return maxCount;
 	}
-	//	public Node deepCopy(Node head) {
-//	    if (head == null) 
-//	    	return null;
-//	    Node newHead = new Node(head.data);
-//	    Node newCurrent = newHead;
-//	    Node oldCurrent = head.next;
-//	    
-//	    while (oldCurrent != null) {
-//	        newCurrent.next = new Node(oldCurrent.data);
-//	        newCurrent = newCurrent.next;
-//	        oldCurrent = newCurrent.next;
-//	    }
-//	    return newHead;
-//	}
+
+	public Object get(int index) {
+		if(start == null) {
+			return null;
+		}
+		Node tmpNode = start;
+		for(int i=0; i<index; i++) {
+			tmpNode = tmpNode.next;
+		}
+		return tmpNode.data;
+	}
 
 }
 
