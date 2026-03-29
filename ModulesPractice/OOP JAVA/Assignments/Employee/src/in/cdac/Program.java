@@ -12,8 +12,8 @@ public class Program {
 		
 		LinkedList objList = new LinkedList();		//LinkedList from in.cdac package
 		
-		int choice, indexEmp=0;
-		
+		int choice;
+		try{
 		do {
 				System.out.println("1. Add");
 				System.out.println("2. Display");
@@ -28,6 +28,7 @@ public class Program {
 				switch (choice) 
 				{
 					case 1:	{
+						try {
 							do {
 							System.out.println("1. Manager");
 							System.out.println("2. Sales Person");
@@ -42,7 +43,6 @@ public class Program {
 									DataOperations.acceptData();
 									System.out.println("Enter HRA: ");
 									float Hra = sc.nextFloat();
-									// UPCAST to Employee
 									Manager objManager = new Manager(DataOperations.name, DataOperations.address, DataOperations.age, DataOperations.gender, DataOperations.basicSalary,Hra);
 									objList.add(objManager);
 									break;
@@ -52,7 +52,6 @@ public class Program {
 									DataOperations.acceptData();
 									System.out.println("Enter Commission: ");
 									float Commission = sc.nextFloat();
-									// UPCAST to Employee
 									SalesPerson objSalesPerson = new SalesPerson(DataOperations.name, DataOperations.address, DataOperations.age, DataOperations.gender, DataOperations.basicSalary, Commission);
 									objList.add(objSalesPerson);
 									break;
@@ -62,7 +61,6 @@ public class Program {
 									DataOperations.acceptData();
 									System.out.println("Enter Overtime: ");
 									float OverTime = sc.nextFloat();
-									// UPCAST to Employee
 									Engineer objEngineer = new Engineer(DataOperations.name, DataOperations.address, DataOperations.age, DataOperations.gender, DataOperations.basicSalary, OverTime);
 									objList.add(objEngineer);
 									break;
@@ -72,15 +70,19 @@ public class Program {
 										break;
 											
 								default:
-									System.out.println("********Invalid choice**********");
+									throw new Exception("Invalid Input" + subChoice);
 								}
 							}while(subChoice!=4);
+						}catch(Exception e) {
+							e.printStackTrace();
+						}
 						break;
 					}
 							
 					case 2:	{
 						Object data = objList.getFirst();
-						Employee objEmployee = (Employee) data;
+						Employee objEmployee;
+						try {
 						do {
 							System.out.println("1. All Employees");
 							System.out.println("2. First Employee");
@@ -94,30 +96,12 @@ public class Program {
 							switch (subChoice) 
 							{
 								case 1: {
-										data = objList.getFirst();
-										objEmployee = (Employee) data;
 										for(int i=0; i<objList.maxCount; i++) {
-											objEmployee.displayData();
-//											System.out.println("Name: "+ objEmployee.getName());
-//											System.out.println("Address: "+ objEmployee.getAddress());
-//											System.out.println("Age: "+ objEmployee.getAge());
-//											System.out.println("Gender: "+ objEmployee.isGender());
-//											System.out.println("Basic Salary: "+ objEmployee.getBasicSalary());
-//											
-											if(objEmployee instanceof Manager objManager) {
-												// DOWNCAST to Manager
-												objManager.displayData();
-											}
-											else if(objEmployee instanceof SalesPerson) {
-												// DOWNCAST to SalesPerson
-												SalesPerson objSalesPerson = (SalesPerson) objEmployee;
-												objSalesPerson.displayData();
-											}
-											else if(objEmployee instanceof Engineer) {
-												// DOWNCAST to Engineer
-												Engineer objEngineer = (Engineer) objEmployee;
-												objEngineer.displayData();
-											}
+											data = objList.get(i);
+											objEmployee = (Employee) data;
+											
+											System.out.println(objEmployee.displayData());
+											
 										}
 									break;
 									}
@@ -125,281 +109,182 @@ public class Program {
 									{
 										data = objList.getFirst();
 										objEmployee = (Employee) data;
-										System.out.println("Name: "+objEmployee.getName());
-										System.out.println("Address: "+objEmployee.getAddress());
-										System.out.println("Age: "+objEmployee.getAge());
-										System.out.println("Gender: "+objEmployee.isGender());
-										System.out.println("Basic Salary: "+objEmployee.getBasicSalary());
 										
-										if(objEmployee instanceof Manager objManager) {
-											// DOWNCAST to Manager
-											System.out.println("HRA: "+ objManager.getHra());
-										}
-										else if(objEmployee instanceof SalesPerson) {
-											// DOWNCAST to SalesPerson
-											SalesPerson objSalesPerson = (SalesPerson) objEmployee;
-											System.out.println("Comission: "+ objSalesPerson.getCommission());
-										}
-										else if(objEmployee instanceof Engineer) {
-											// DOWNCAST to Engineer
-											Engineer objEngineer = (Engineer) objEmployee;
-											System.out.println("Overtime: "+ objEngineer.getOverTime());
-										}
+										System.out.println(objEmployee.displayData());
+										
 										break;
 									}
 								case 3: 
 									{
 										data = objList.getNext();
-										if(data!=null) {
-										System.out.println("Name: "+objEmployee.getName());
-										System.out.println("Address: "+objEmployee.getAddress());
-										System.out.println("Age: "+objEmployee.getAge());
-										System.out.println("Gender: "+objEmployee.isGender());
-										System.out.println("Basic Salary: "+objEmployee.getBasicSalary());
+										objEmployee = (Employee) data;
 										
-										if(objEmployee instanceof Manager objManager) {
-											// DOWNCAST to Manager
-											System.out.println("HRA: "+ objManager.getHra());
-										}
-										else if(objEmployee instanceof SalesPerson) {
-											// DOWNCAST to SalesPerson
-											SalesPerson objSalesPerson = (SalesPerson) objEmployee;
-											System.out.println("Comission: "+ objSalesPerson.getCommission());
-										}
-										else if(objEmployee instanceof Engineer) {
-											// DOWNCAST to Engineer
-											Engineer objEngineer = (Engineer) objEmployee;
-											System.out.println("Overtime: "+ objEngineer.getOverTime());
-										}
-										else {
-											System.out.println("No previous record");
-										}
-									}
+										System.out.println(objEmployee.displayData());
 										break;
 									}
 								case 4: 
 									{
 										data = objList.getPrevious();
-										if(data!=null) {
-										System.out.println("Name: "+objEmployee.getName());
-										System.out.println("Address: "+objEmployee.getAddress());
-										System.out.println("Age: "+objEmployee.getAge());
-										System.out.println("Gender: "+objEmployee.isGender());
-										System.out.println("Basic Salary: "+objEmployee.getBasicSalary());
+										objEmployee = (Employee) data;
 										
-										if(objEmployee instanceof Manager objManager) {
-											// DOWNCAST to Manager
-											System.out.println("HRA: "+ objManager.getHra());
-										}
-										else if(objEmployee instanceof SalesPerson) {
-											// DOWNCAST to SalesPerson
-											SalesPerson objSalesPerson = (SalesPerson) objEmployee;
-											System.out.println("Comission: "+ objSalesPerson.getCommission());
-										}
-										else if(objEmployee instanceof Engineer) {
-											// DOWNCAST to Engineer
-											Engineer objEngineer = (Engineer) objEmployee;
-											System.out.println("Overtime: "+ objEngineer.getOverTime());
-										}
-										}
-										else {
-											System.out.println("No previous record");
-										}
-									break;
+										System.out.println(objEmployee.displayData());
+										break;
 									}
 								case 5: 
 									{
 										data = objList.getLast();
 										objEmployee = (Employee) data;
-										System.out.println("Name: "+objEmployee.getName());
-										System.out.println("Address: "+objEmployee.getAddress());
-										System.out.println("Age: "+objEmployee.getAge());
-										System.out.println("Gender: "+objEmployee.isGender());
-										System.out.println("Basic Salary: "+objEmployee.getBasicSalary());
 										
-										if(objEmployee instanceof Manager objManager) {
-											// DOWNCAST to Manager
-											System.out.println("HRA: "+ objManager.getHra());
-										}
-										else if(objEmployee instanceof SalesPerson) {
-											// DOWNCAST to SalesPerson
-											SalesPerson objSalesPerson = (SalesPerson) objEmployee;
-											System.out.println("Comission: "+ objSalesPerson.getCommission());
-										}
-										else if(objEmployee instanceof Engineer) {
-											// DOWNCAST to Engineer
-											Engineer objEngineer = (Engineer) objEmployee;
-											System.out.println("Overtime: "+ objEngineer.getOverTime());
-										}
-									break;
+										System.out.println(objEmployee.displayData());
+										break;
 									}
 								case 6: {//Exit to Main Menu
-									break;
 									}
+								break;
 							default:
-								System.out.println("********Invalid choice**********");
+								throw new Exception("Invalid Input" + subChoice);
 							}
 						}while(subChoice!=6);
+					}catch(Exception e) {
+						e.printStackTrace();
 					}
-					
+						break;
+					}
 
 					case 3:	{
-						Object data = objList.getFirst();
-						Employee objEmployee = (Employee) data;
-
+						Object data;
+					try {
 						do {
 							System.out.println("1. Sort All Managers");
-							System.out.println("2. Sort All Engineers");
-							System.out.println("3. Sort All Sales Persons");
+							System.out.println("2. Sort All Sales Persons");
+							System.out.println("3. Sort All Engineers");
 							System.out.println("4. Sort All Employees Alphabetic Order Ascending");
 							System.out.println("5. Sort All Employees Alphabetic Order Descending");
 							System.out.println("6. Exit to Main menu");
 							System.out.println("Enter your choice: ");
 							subChoice = sc.nextInt();
-							
-							LinkedList displayList = new LinkedList();			
+		
 							switch (subChoice) 
 							{
 								case 1: {
 									System.out.println("All Managers: ");
+									LinkedList displayList = new LinkedList();
+
 									data = objList.getFirst();
-									objEmployee = (Employee) data;
-									while(objEmployee != null) 
-									{
-										if(objEmployee instanceof Manager objManager) {
-											displayList.add(objManager);
-										}
-										data = objList.getNext();
-										objEmployee = (Employee) data;
+
+									for (int i = 0; i < objList.getMaxCount(); i++) {
+									    Employee emp = (Employee) data;
+
+									    if (emp instanceof Manager) {
+									        displayList.add(emp);
+									    }
+
+									    data = objList.getNext();
 									}
-									
-									//Display functionality
-									data = objList.getFirst();
-									objEmployee = (Employee) data;
-									while(objEmployee != null) 
-									{
-										System.out.println("Name: "+ objEmployee.getName());
-										System.out.println("Address: "+ objEmployee.getAddress());
-										System.out.println("Age: "+ objEmployee.getAge());
-										System.out.println("Gender: "+ objEmployee.isGender());
-										System.out.println("Basic Salary: "+ objEmployee.getBasicSalary());
-										
-										if(objEmployee instanceof Manager objManager) {
-											// DOWNCAST to Manager
-											System.out.println("HRA: "+ objManager.getHra());
-										}
-										data = objList.getNext();
-										objEmployee = (Employee) data;
+
+									// Display
+									data = displayList.getFirst();
+									for (int i = 0; i < displayList.getMaxCount(); i++) {
+									    Employee emp = (Employee) data;
+									    System.out.println(emp.displayData());
+									    data = displayList.getNext();
 									}
 									break;
 								}
 								
 								case 2: {
 									System.out.println("All Sales Persons: ");
+									
+									LinkedList displayList = new LinkedList();
+
 									data = objList.getFirst();
-									objEmployee = (Employee) data;
-									while(objEmployee != null) 
-									{
-										if(objEmployee instanceof SalesPerson objSalesPerson) {
-											displayList.add(objSalesPerson);
-										}
-										data = objList.getNext();
-										objEmployee = (Employee) data;
+
+									for (int i = 0; i < objList.getMaxCount(); i++) {
+									    Employee emp = (Employee) data;
+
+									    if (emp instanceof SalesPerson) {
+									        displayList.add(emp);
+									    }
+
+									    data = objList.getNext();
+									}
+
+
+									// Display
+									data = displayList.getFirst();
+									for (int i = 0; i < displayList.getMaxCount(); i++) {
+									    Employee emp = (Employee) data;
+									    System.out.println(emp.displayData());
+									    data = displayList.getNext();
 									}
 									
-									//Display functionality
-									data = objList.getFirst();
-									objEmployee = (Employee) data;
-									while(objEmployee != null) 
-									{
-										
-										System.out.println("Name: "+ objEmployee.getName());
-										System.out.println("Address: "+ objEmployee.getAddress());
-										System.out.println("Age: "+ objEmployee.getAge());
-										System.out.println("Gender: "+ objEmployee.isGender());
-										System.out.println("Basic Salary: "+ objEmployee.getBasicSalary());
-										
-										if(objEmployee instanceof SalesPerson objSalesPerson) {
-											// DOWNCAST to Manager
-											System.out.println("Commission: "+ objSalesPerson.getCommission());
-										}
-										data = objList.getNext();
-										objEmployee = (Employee) data;
-									}
 									break;
 								}
 								
 								case 3: {
 									System.out.println("All Engineers: ");
-									data = objList.getFirst();
-									objEmployee = (Employee) data;
-									while(objEmployee != null) 
-									{
-										if(objEmployee instanceof Engineer objEngineer) {
-											displayList.add(objEngineer);
-										}
-										data = objList.getNext();
-										objEmployee = (Employee) data;
-									}
 									
-									//Display functionality
+									LinkedList displayList = new LinkedList();
+
 									data = objList.getFirst();
-									objEmployee = (Employee) data;
-									while(objEmployee != null) 
-									{
-										
-										System.out.println("Name: "+ objEmployee.getName());
-										System.out.println("Address: "+ objEmployee.getAddress());
-										System.out.println("Age: "+ objEmployee.getAge());
-										System.out.println("Gender: "+ objEmployee.isGender());
-										System.out.println("Basic Salary: "+ objEmployee.getBasicSalary());
-										
-										if(objEmployee instanceof Engineer objEngineer) {
-											// DOWNCAST to Manager
-											System.out.println("Overtime: "+ objEngineer.getOverTime());
-										}
-										data = objList.getNext();
-										objEmployee = (Employee) data;
+
+									for (int i = 0; i < objList.getMaxCount(); i++) {
+									    Employee emp = (Employee) data;
+
+									    if (emp instanceof Engineer) {
+									        displayList.add(emp);
+									    }
+
+									    data = objList.getNext();
+									}
+
+
+									// DISPLAY
+									data = displayList.getFirst();
+									for (int i = 0; i < displayList.getMaxCount(); i++) {
+									    Employee emp = (Employee) data;
+									    System.out.println(emp.displayData());
+									    data = displayList.getNext();
 									}
 									break;
 								}
 								case 4: {
-										// Ascending alphabetical
-//									System.out.println("Sort All Employees Alphabetic Order Ascending: ");
-//									data = objList.getFirst();
-//									objEmployee = (Employee) data;
-//									while(objEmployee != null) 
-//									{
-//										if(objEmployee instanceof Manager objManager) {
-//											displayList.add(objManager);
-//										}
-//										data = objList.getNext();
-//										objEmployee = (Employee) data;
-//									}
-//									
-//									//Display functionality
-//									data = objList.getFirst();
-//									objEmployee = (Employee) data;
-//									while(objEmployee != null) 
-//									{
-//										
-//										System.out.println("Name: "+ objEmployee.getName());
-//										System.out.println("Address: "+ objEmployee.getAddress());
-//										System.out.println("Age: "+ objEmployee.getAge());
-//										System.out.println("Gender: "+ objEmployee.isGender());
-//										System.out.println("Basic Salary: "+ objEmployee.getBasicSalary());
-//										
-//										if(objEmployee instanceof Manager objManager) {
-//											// DOWNCAST to Manager
-//											System.out.println("HRA: "+ objManager.getHra());
-//										}
-//										data = objList.getNext();
-//										objEmployee = (Employee) data;
-//									}
+									LinkedList displayList = new LinkedList();
+								    data = objList.getFirst();
+								    //adding all employees to display list
+								    for (int i = 0; i < objList.getMaxCount(); i++) {
+								        displayList.add((Employee) data);
+								        data = objList.getNext();
+								    }
+								    displayList.sortByNameAsc();	//sort using linked list
+								    //displaying
+								    data = displayList.getFirst();
+								    for (int i = 0; i < displayList.getMaxCount(); i++) {
+								        Employee emp = (Employee) data;
+								        System.out.println(emp.displayData());
+								        data = displayList.getNext();
+								    }
 									break;
 								}
 								case 5: {
-										// Descending alphabetical
+								    LinkedList displayList = new LinkedList();
+								    data = objList.getFirst();
+								    //adding all employees to display list
+								    for (int i = 0; i < objList.getMaxCount(); i++) {
+								        displayList.add((Employee) data);
+								        data = objList.getNext();
+								    }
+								  //sort using linked list
+								    displayList.sortByNameDesc();	
+								    //displaying
+
+								    data = displayList.getFirst();
+								    for (int i = 0; i < displayList.getMaxCount(); i++) {
+								        Employee emp = (Employee) data;
+								        System.out.println(emp.displayData());
+								        data = displayList.getNext();
+								    }
+
 									break;
 								}
 								case 6: {
@@ -407,13 +292,16 @@ public class Program {
 									break;
 								}			
 								default:
-									System.out.println("********Invalid choice**********");
+									throw new Exception("Invalid Input" + subChoice);
 								}
 							}while(subChoice!=6);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
 							break;
 						}
 					case 4:	{
-								// Saving Data to local File
+								
 						break;
 						}
 					case 5:	{
@@ -425,10 +313,15 @@ public class Program {
 						break;
 						}
 					default:
-						System.out.println("********Invalid choice**********");
+						throw new Exception("Invalid Input" + choice);
 				}
 		}while(choice!=6);
+	}catch(Exception e) {
+		e.printStackTrace();
+	}
 		sc.close();
 	}
+	
+	
 
 }

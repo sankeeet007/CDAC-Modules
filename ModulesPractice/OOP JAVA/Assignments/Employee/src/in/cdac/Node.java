@@ -1,12 +1,14 @@
 package in.cdac;
-
-public class Node {
+//USING GENERICS
+public class Node<T> {
 	
-	Object data;  //Object is a Top level class in java (All classes are inherited from Object class in java)
-	Node previous;	
-	Node next;
+	T data;  //Object<T> is a Top level class in java (All classes are inherited from Object class in java)
+	Node<T> previous;	
+	Node<T> next;
 	
-	public Node(Object tmp) {
-		data = tmp;
+	public Node(T tmp) {
+		this.data = tmp;
+		this.previous = null;
+	    this.next = null;
 	}
 }

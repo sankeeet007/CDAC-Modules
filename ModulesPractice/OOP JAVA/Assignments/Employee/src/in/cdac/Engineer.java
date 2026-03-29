@@ -22,7 +22,12 @@ public class Engineer extends Employee{
 
 	public String displayData() {
 		StringBuffer sb = new StringBuffer(super.displayData());
-		sb.append("Overtime: "+getOverTime());
+		sb.append("Overtime: "+getOverTime()+"\n");
 		return sb.toString();		
+	}
+	
+	@Override
+	public float calculateTotalSalary() {
+	    return getBasicSalary() + getOverTime();
 	}
 }

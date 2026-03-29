@@ -5,14 +5,10 @@ public class ConsoleInput {
 	static String getString() {
 		try 
 		{
-			byte[] input = new byte[100];
-			
-			int len = System.in.read(input);
-			
+			byte[] input = new byte[100];			// byte array created
+			int len = System.in.read(input);		
 			byte[] finalInput = new byte[len-2];
-			
 			System.arraycopy(input, 0, finalInput, 0, len-2);
-			
 			String objString = new String(finalInput);
 			
 			return objString;
@@ -31,6 +27,11 @@ public class ConsoleInput {
 	public static int getInt() {
 		String data = getString();	
 		return Integer.parseInt(data);
+	}
+	
+	public static boolean getBoolean() {
+		String data = getString();
+		return Boolean.parseBoolean(data);
 	}
 	
 	public static float getDouble() {

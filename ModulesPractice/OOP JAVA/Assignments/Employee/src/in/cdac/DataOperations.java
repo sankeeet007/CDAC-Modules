@@ -18,41 +18,25 @@ public class DataOperations {
 
         System.out.println("Enter Name: ");
         name = sc.nextLine();
+        if(name == null || name.equals("") || name.length()<2)	//validation
+			name = "Default";
+        
         System.out.println("Enter Address: ");
         address = sc.nextLine();
+        if(address == null || address.equals("") || address.length()<2)	//validation
+			address = "CDAC Acts, Pashan";
+        
         System.out.println("Enter Age: ");
         age = sc.nextInt();
+		if(age<18 || age>58)		//validation
+			age=21;
+		
         System.out.println("Enter Gender: ");
         gender = sc.nextBoolean();
         System.out.println("Enter Basic Salary: ");
         basicSalary = sc.nextFloat();
+		if(basicSalary < 0)		//validation
+			basicSalary = 12000.0F;
     }
-    
-    public static float calculateTotalSalary(Employee emp) {
-
-        float total = emp.getBasicSalary();
-
-        if(emp instanceof Manager) {
-
-            Manager obManager = (Manager) emp;
-            total += obManager.getHra();
-
-        }
-        else if(emp instanceof SalesPerson) {
-
-            SalesPerson obSalesPerson = (SalesPerson) emp;
-            total += obSalesPerson.getCommission();
-
-        }
-        else if(emp instanceof Engineer) {
-
-            Engineer obEngineer = (Engineer) emp;
-            total += obEngineer.getOverTime();
-
-        }
-
-        return total;
-    }
-    
     
 }

@@ -19,7 +19,12 @@ public class SalesPerson extends Employee{
 
 	public String displayData() {
 		StringBuffer sb = new StringBuffer(super.displayData());
-		sb.append("Commission: "+getCommission());
+		sb.append("Commission: "+getCommission()+"\n");
 		return sb.toString();		
+	}
+	
+	@Override
+	public float calculateTotalSalary() {
+	    return getBasicSalary() + getCommission();
 	}
 }

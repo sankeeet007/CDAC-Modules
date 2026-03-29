@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.util.Scanner;
 
 
-public class Main {
-	static File objFile = new File("D:\\BATCH 2\\ModulesPractice\\OOP JAVA\\Assignments\\EncrytionDecryption\\src\\com\\cdac\\content.txt");
+public class Main {	
+	static File objFile = new File("C:\\Users\\solan\\Desktop\\CDAC\\CDAC Data\\ModulesPractice\\OOP JAVA\\Assignments\\EncrytionDecryption\\src\\com\\cdac\\content.txt");
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 	
@@ -63,14 +63,14 @@ public class Main {
 			}
 			
 		}while(choice != EXIT);
-		
+		sc.close();
 	}
 	
 	// Write Content to the file
 	static void writeToFile(String data) {
 		FileOutputStream fileStream = null;
 		try{
-		fileStream = new FileOutputStream("D:\\BATCH 2\\ModulesPractice\\OOP JAVA\\Assignments\\EncrytionDecryption\\src\\com\\cdac\\content.txt");
+		fileStream = new FileOutputStream("C:\\Users\\solan\\Desktop\\CDAC\\CDAC Data\\ModulesPractice\\OOP JAVA\\Assignments\\EncrytionDecryption\\src\\com\\cdac\\content.txt");
 		fileStream.write(data.getBytes());	// .write() method to write into file
 		}catch(IOException io){
 			io.printStackTrace();
@@ -88,7 +88,7 @@ public class Main {
 	
 	// Encrypt content of the file
 	static void encryptContentOfFile() {
-		try(FileInputStream fileStream = new FileInputStream("D:\\BATCH 2\\ModulesPractice\\OOP JAVA\\Assignments\\EncrytionDecryption\\src\\com\\cdac\\content.txt")){
+		try(FileInputStream fileStream = new FileInputStream("C:\\Users\\solan\\Desktop\\CDAC\\CDAC Data\\ModulesPractice\\OOP JAVA\\Assignments\\EncrytionDecryption\\src\\com\\cdac\\content.txt")){
 			int size = (int)objFile.length();
 			
 			byte[] data = new byte[size];
@@ -106,7 +106,7 @@ public class Main {
 	
 	
 	static void decryptContentOfFile() {
-		try(FileInputStream fileStream = new FileInputStream("D:\\BATCH 2\\ModulesPractice\\OOP JAVA\\Assignments\\EncrytionDecryption\\src\\com\\cdac\\content.txt")){
+		try(FileInputStream fileStream = new FileInputStream("C:\\\\Users\\\\solan\\\\Desktop\\\\CDAC\\\\CDAC Data\\\\ModulesPractice\\\\OOP JAVA\\\\Assignments\\\\EncrytionDecryption\\\\src\\\\com\\\\cdac\\\\content.txt")){
 			int size = (int)objFile.length();
 			
 			byte[] data = new byte[size];
@@ -125,7 +125,7 @@ public class Main {
 	
 	// Reading data from the file
 	static void readContentOfFile() {
-		try(FileInputStream fileStream = new FileInputStream("D:\\BATCH 2\\ModulesPractice\\OOP JAVA\\Assignments\\EncrytionDecryption\\src\\com\\cdac\\content.txt")){
+		try(FileInputStream fileStream = new FileInputStream("C:\\\\Users\\\\solan\\\\Desktop\\\\CDAC\\\\CDAC Data\\\\ModulesPractice\\\\OOP JAVA\\\\Assignments\\\\EncrytionDecryption\\\\src\\\\com\\\\cdac\\\\content.txt")){
 			int size = (int)objFile.length();
 			
 			byte[] data = new byte[size];

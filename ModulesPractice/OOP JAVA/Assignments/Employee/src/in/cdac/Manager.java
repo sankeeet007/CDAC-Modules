@@ -20,7 +20,12 @@ public class Manager extends Employee{
 
 	public String displayData() {
 		StringBuffer sb = new StringBuffer(super.displayData());
-		sb.append("HRA: "+getHra());
+		sb.append("HRA: "+getHra()+"\n");
 		return sb.toString();		
+	}
+	
+	@Override
+	public float calculateTotalSalary() {
+	    return getBasicSalary() + getHra();
 	}
 }
