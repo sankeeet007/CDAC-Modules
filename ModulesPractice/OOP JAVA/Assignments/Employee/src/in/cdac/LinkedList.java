@@ -21,7 +21,7 @@ public class LinkedList<T> {
     }
 
     // DELETE NODE
-    public void delete(int index) throws LinkedListException{
+    public void delete(int index){
         if (start == null || index < 0 || index >= maxCount) {
             return;
         }
@@ -51,15 +51,15 @@ public class LinkedList<T> {
     }
 
     // Get First
-    public T getFirst() throws LinkedListException{
-        if (start == null) throw new LinkedListException("Empty List");
+    public T getFirst() {
+        if (start == null) 
         current = start;
         return current.data;
     }
 
     // Get Last
-    public T getLast() throws LinkedListException{
-        if (end == null) throw new LinkedListException("Empty Lists");
+    public T getLast(){
+        if (end == null)
         current = end;
         return current.data;
     }
@@ -105,38 +105,39 @@ public class LinkedList<T> {
         return maxCount;
     }
 
-    public void sortByNameAsc() {
-        if (start == null) return;
-
-        for (Node<T> i = start; i != null; i = i.next) {
-            for (Node<T> j = i.next; j != null; j = j.next) {
-                Employee e1 = (Employee) i.data;
-                Employee e2 = (Employee) j.data;
-                if (e1.getName().compareToIgnoreCase(e2.getName()) > 0) {
-                    T temp = i.data;
-                    i.data = j.data;
-                    j.data = temp;
-                }
-            }
-        }
-    }
+  
+//    public void sortByNameAsc() {
+//        if (start == null) return;
+//
+//        for (Node<T> i = start; i != null; i = i.next) {
+//            for (Node<T> j = i.next; j != null; j = j.next) {
+//                Employee e1 = (Employee) i.data;
+//                Employee e2 = (Employee) j.data;
+//                if (e1.getName().compareToIgnoreCase(e2.getName()) > 0) {
+//                    T temp = i.data;
+//                    i.data = j.data;
+//                    j.data = temp;
+//                }
+//            }
+//        }
+//    }
     
     
-    public void sortByNameDesc() {
-        if (start == null) return;
-
-        for (Node<T> i = start; i != null; i = i.next) {
-            for (Node<T> j = i.next; j != null; j = j.next) {
-                Employee e1 = (Employee) i.data;
-                Employee e2 = (Employee) j.data;
-                if (e1.getName().compareToIgnoreCase(e2.getName()) < 0) {
-                    T temp = i.data;
-                    i.data = j.data;
-                    j.data = temp;
-                }
-            }
-        }
-    }
+//    public void sortByNameDesc() {
+//        if (start == null) return;
+//
+//        for (Node<T> i = start; i != null; i = i.next) {
+//            for (Node<T> j = i.next; j != null; j = j.next) {
+//                Employee e1 = (Employee) i.data;
+//                Employee e2 = (Employee) j.data;
+//                if (e1.getName().compareToIgnoreCase(e2.getName()) < 0) {
+//                    T temp = i.data;
+//                    i.data = j.data;
+//                    j.data = temp;
+//                }
+//            }
+//        }
+//    }
     
     // Rest Pointer
     public void reset() {

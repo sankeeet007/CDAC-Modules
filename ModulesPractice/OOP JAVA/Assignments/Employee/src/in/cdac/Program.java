@@ -256,7 +256,7 @@ public class Program {
 								        displayList.add((Employee) data);
 								        data = objList.getNext();
 								    }
-								    displayList.sortByNameAsc();	//sort using linked list
+								 //   displayList.sortByNameAsc();	//sort using linked list
 								    //displaying
 								    data = displayList.getFirst();
 								    for (int i = 0; i < displayList.getMaxCount(); i++) {
@@ -275,7 +275,7 @@ public class Program {
 								        data = objList.getNext();
 								    }
 								  //sort using linked list
-								    displayList.sortByNameDesc();	
+								  //  displayList.sortByNameDesc();	
 								    //displaying
 
 								    data = displayList.getFirst();
