@@ -105,39 +105,7 @@ public class LinkedList<T> {
         return maxCount;
     }
 
-  
-//    public void sortByNameAsc() {
-//        if (start == null) return;
-//
-//        for (Node<T> i = start; i != null; i = i.next) {
-//            for (Node<T> j = i.next; j != null; j = j.next) {
-//                Employee e1 = (Employee) i.data;
-//                Employee e2 = (Employee) j.data;
-//                if (e1.getName().compareToIgnoreCase(e2.getName()) > 0) {
-//                    T temp = i.data;
-//                    i.data = j.data;
-//                    j.data = temp;
-//                }
-//            }
-//        }
-//    }
-    
-    
-//    public void sortByNameDesc() {
-//        if (start == null) return;
-//
-//        for (Node<T> i = start; i != null; i = i.next) {
-//            for (Node<T> j = i.next; j != null; j = j.next) {
-//                Employee e1 = (Employee) i.data;
-//                Employee e2 = (Employee) j.data;
-//                if (e1.getName().compareToIgnoreCase(e2.getName()) < 0) {
-//                    T temp = i.data;
-//                    i.data = j.data;
-//                    j.data = temp;
-//                }
-//            }
-//        }
-//    }
+  isUnique
     
     // Rest Pointer
     public void reset() {
