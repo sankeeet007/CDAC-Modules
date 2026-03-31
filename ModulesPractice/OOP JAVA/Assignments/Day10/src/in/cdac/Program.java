@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Program {
-	public static void Main(String[] args) {
+	public static void main(String[] args) {
 		int choice;
 
 		Scanner sc = new Scanner(System.in);
@@ -18,19 +18,25 @@ public class Program {
 		ArrayList<String> name = new ArrayList<String>();
 
 		do {
-			System.out.println(
-					"1)Add \n2)Transfer into ArrayList to LinkedList \n3)diaplay \n4)Sort salary \n5)Sort name \n6)exit");
+			System.out.println("1. Add \n"
+					+ "2. Transfer ArrayList into LinkedList \n"
+					+ "3. Display \n"
+					+ "4. Sort salary \n"
+					+ "5. Sort by name \n"
+					+ "6. Exit");
 			System.out.print("Enter choice:");
 			choice = sc.nextInt();
-
+			
 			switch (choice) {
 			case 1: {
 				int choiceAdd;
 				do {
-
-					System.out.println("1)Add into ArrayList \n2)Add into LinkedList \n3)exit");
+					System.out.println("1. Add into ArrayList\n"
+							+ "2. Add into LinkedList\n"
+							+ "3. Exit");
 					System.out.println("Enter choice:");
 					choiceAdd = sc.nextInt();
+					
 					switch (choiceAdd) {
 					case 1: {
 						addEmpArrayList(empArrayList, sc);
@@ -39,7 +45,6 @@ public class Program {
 					case 2: {
 						addEmpLinkedList(empLinkedList, sc);
 						break;
-
 					}
 
 					default:
@@ -51,11 +56,14 @@ public class Program {
 			}
 			case 2: {
 				transferArrayListToLinkedList(empArrayList.iterator(), empLinkedList);
+				break;
 			}
 			case 3: {
 				int choiceDisplay = 0;
 				do {
-					System.out.println("1)Display LinkedList \n2)Display ArrayList \n3)exit");
+					System.out.println("1. Display LinkedList\n"
+							+ "2. Display ArrayList\n"
+							+ "3. Exit");
 					System.out.println("Enter choice:");
 					choiceDisplay = sc.nextInt();
 
@@ -124,7 +132,6 @@ public class Program {
 			System.out.println("Id:" + objEmp.getEmpId());
 			System.out.println("Name:" + objEmp.getName());
 			System.out.println("Salary:" + objEmp.getSalary());
-
 		}
 	}
 
@@ -139,7 +146,6 @@ public class Program {
 	}
 
 	public static void addEmpArrayList(ArrayList<Employee> empArrayList, Scanner sc) {
-
 		System.out.println("Enter Employee Id ");
 		int id = sc.nextInt();
 
@@ -154,7 +160,6 @@ public class Program {
 	}
 
 	public static void addEmpLinkedList(LinkedList<Employee> empLinkedList, Scanner sc) {
-
 		System.out.println("Enter Employee Id ");
 		int id = sc.nextInt();
 
