@@ -1,0 +1,101 @@
+package javafile;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Fields {
+		public static void getClassFields(Scanner sc,ArrayList<String> farr) {
+			System.out.println("enter the access modifer: ");
+			System.out.println("1. Private ");
+			System.out.println("2. Public ");
+			System.out.println("3. Default ");
+			System.out.println("4. Protected ");
+			System.out.println("access modifer choice: ");
+			final int PRIVATE = 1;
+			final int PROTECTED = 2;
+			final int PUBLIC = 3;
+			final int DEFAULT = 4;
+			final int EXIT_AM = 5;
+			int subchoice = sc.nextInt();
+			String am="";
+			switch(subchoice) {
+				case PRIVATE:{
+					am = "private";
+					break;
+				}
+				case PUBLIC:{
+					am = "public";
+					break;
+				}
+				case PROTECTED:{
+					am = "protected";
+					break;
+				}
+				case DEFAULT:{
+					am = "";
+					break;
+				}
+				case EXIT_AM:{
+					System.out.println("exit..........");
+					break;
+				}
+				default:
+					System.out.println("wrong input");
+					
+			}
+			System.out.println("1. Int ");
+			System.out.println("2. String ");
+			System.out.println("3. Float ");
+			System.out.println("4. Double ");
+			System.out.println("5. Boolean ");
+			System.out.println("6. Long ");
+			System.out.println("7. Exit ");
+			System.out.println("datatype choice: ");
+			subchoice = sc.nextInt();
+			final int INT = 1;
+			final int STRING = 2;
+			final int FLOAT = 3;
+			final int DOUBLE = 4;
+			final int BOOL = 5;
+			final int LONG = 6;
+			final int EXIT_DT = 7;
+			
+			String dt="";
+			switch(subchoice) {
+				case INT:{
+					dt = "Integer";
+					break;
+				}
+				case STRING:{
+					dt = "String";
+					break;
+				}
+				case FLOAT:{
+					dt = "Float";
+					break;
+				}
+				case DOUBLE:{
+					dt = "Double";
+					break;
+				}
+				case BOOL:{
+					dt = "Boolean";
+					break;
+				}
+				case LONG:{
+					dt = "Long";
+					break;
+				}
+				case EXIT_DT:{
+					System.out.println("exit..........");
+					break;
+				}
+				default:
+					System.out.println("wrong input");
+				
+			}
+			System.out.println("enter the variable name: ");
+			String vn = sc.nextLine();
+			farr.add(am+ " "+ dt+ " "+vn+";");
+		}
+}

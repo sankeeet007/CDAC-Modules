@@ -1,0 +1,15 @@
+package javafile;
+
+import java.io.File;
+
+public class CreateClass {
+	static public void getClass(String classname) {
+		String str = classname.replace(".", "\\\\");
+		int ind = str.lastIndexOf('\\');
+		str = str.substring(0,ind);
+		
+		if(!fobj.exists()) {
+			fobj.mkdir();
+		}
+	}
+}

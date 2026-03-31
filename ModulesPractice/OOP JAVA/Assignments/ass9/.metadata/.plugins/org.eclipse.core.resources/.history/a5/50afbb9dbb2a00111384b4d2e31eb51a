@@ -1,0 +1,54 @@
+package javafile;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class MainClass {
+	static ArrayList<String>farr = new ArrayList<>();
+	static ArrayList<String>marr = new ArrayList<>();
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int choice;
+		Fields f = new Fields();
+		final int ADD_CLASS_AND_PACKAGE = 1;
+		final int ADD_FIELDS = 2;
+		final int ADD_METHODS = 3;
+		final int GENERATE_CLASS = 4;
+		final int EXIT = 5;
+		try (Scanner sc = new Scanner(System.in)) {
+					do {
+						System.out.println("1. enter class name and package name");
+						System.out.println("2. add field");
+						System.out.println("3. add method");
+						System.out.println("4. generate class");
+						System.out.println("5. exit");
+						System.out.println("Choice : ");
+						choice = sc.nextInt();
+						String classname;
+						switch(choice) {
+							case ADD_CLASS_AND_PACKAGE:{
+								System.out.println("enter the class name: ");
+								classname = sc.nextLine();
+								getClass(classname);
+								break;
+							}
+							case ADD_FIELDS:{
+								Fields.getClassFields(sc,farr);
+								break;
+							}
+							case ADD_METHODS:{
+								Methods.getClassMethods(sc, marr);
+								break;
+							}
+							case GENERATE_CLASS:{
+								
+								break;
+							}
+							
+						}
+					}while(choice!=5);
+//					sc.close();
+		}
+	}
+
+}

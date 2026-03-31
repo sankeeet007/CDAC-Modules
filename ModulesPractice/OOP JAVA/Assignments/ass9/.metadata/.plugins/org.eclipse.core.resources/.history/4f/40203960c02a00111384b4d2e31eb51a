@@ -1,0 +1,14 @@
+package javafile;
+
+import java.util.ArrayList;
+
+public class Generate {
+	public void generateFile() {
+		String classname;
+
+		
+		
+		
+		ArrayList<String>methods = new ArrayList<>();
+	}
+}

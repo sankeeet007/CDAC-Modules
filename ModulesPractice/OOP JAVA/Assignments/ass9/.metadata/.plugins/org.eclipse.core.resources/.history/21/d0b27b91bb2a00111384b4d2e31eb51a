@@ -1,0 +1,16 @@
+package javafile;
+
+import java.io.File;
+
+public class CreateClass {
+	static public void getClass(String classname) {
+		String []dir = classname.split("\\.");
+		File fobj = new File("");
+		int n = dir.length;
+		for(int i=0;i<n-1;i++) {
+			if(!fobj.exists()) {
+				fobj.mkdirs(dir[i].toString());
+			}
+		}
+	}
+}

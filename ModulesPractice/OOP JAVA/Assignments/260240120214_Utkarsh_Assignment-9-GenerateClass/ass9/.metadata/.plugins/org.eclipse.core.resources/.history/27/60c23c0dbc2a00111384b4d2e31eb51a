@@ -1,0 +1,11 @@
+package javafile;
+
+import java.io.File;
+
+public class CreateClass {
+	static public void getClass(String classname) {
+		classname.replaceAll(".", "\\");
+		File fobj = new File("");
+		System.out.println(classname);
+	}
+}

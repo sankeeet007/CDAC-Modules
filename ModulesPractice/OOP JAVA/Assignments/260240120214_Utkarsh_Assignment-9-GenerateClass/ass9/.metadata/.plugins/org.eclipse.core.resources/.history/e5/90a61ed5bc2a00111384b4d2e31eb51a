@@ -1,0 +1,13 @@
+package javafile;
+
+import java.io.File;
+
+public class CreateClass {
+	static public void getClass(String classname) {
+		String str = classname.replace(".", "\\");
+		File fobj = new File(str);
+		if(!fobj.exists()) {
+			fobj.mkdir();
+		}
+	}
+}

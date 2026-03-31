@@ -1,0 +1,22 @@
+package javafile;
+
+import java.io.File;
+
+public class CreateClass {
+	static String path;
+	void setPath(String p){
+		path = p;
+	}
+	static public void getClass(String classname) {
+		String str = classname.replace(".", File.separator);
+		setPath(str);
+		int ind = str.lastIndexOf('\\');
+		str = str.substring(0,ind);
+		System.out.println(str);
+		
+		File fobj = new File("C:\\"+str);
+		if(!fobj.exists()) {
+			fobj.mkdirs();
+		}
+	}
+}
