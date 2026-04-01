@@ -1,0 +1,19 @@
+Create the following using Lambda and Collection Framework
+
+Create a class called Transaction that contains the following data members
+1. txId int
+2. txDate LocalDate
+3. txAmount float
+4. txStatus boolean
+5. txArrears boolean
+
+Create 5 objects of the above Transaction object by taking input from the user and store the same in a Collection object.
+
+
+Create the Lambda expressions for
+1. Getting all the Transactions from the Collection where the txAmount is > 5000
+
+2. Getting all the Transactions where the txStatus is false
+
+3. Write a Lambda Function to generate the amount due. The amount due is calculated as the txAmount + Rs. 500/- + 18% of txAmount if the txArrears is true else if txArrears if false then only the txAmount will be returned
+
