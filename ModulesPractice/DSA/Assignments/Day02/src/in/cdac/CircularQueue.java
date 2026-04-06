@@ -1,30 +1,32 @@
 package in.cdac;
 
-public class QueueADT<T> implements Queue<T> {
+public class CircularQueue<T> implements Queue<T> {
 	private T[] arr;
 	private int rear;
 	private int front;
 	private int size;
+	private int currCapacity;
 	
 	// Parameterized Constructor
 	@SuppressWarnings("unchecked")
-	public QueueADT(int s) {
+	public CircularQueue(int s) {
 		this.size = s;
 		this.arr = (T[]) new Object[size];
 		this.front = 0;
 		this.rear = -1;
+		this.currCapacity = 0;
 	}
 	
 	@Override
 	public boolean isEmpty() {
 		
-		return front > rear;
+		return currCapacity == 0;
 	}
 
 	@Override
 	public boolean isFull() {
 		
-		return rear == size - 1;
+		return currCapacity == size;
 	}
 	
 	@Override
@@ -32,7 +34,9 @@ public class QueueADT<T> implements Queue<T> {
 		if(isFull()) {
 			throw new Exception("Queue is Full");
 		}
-		arr[++rear] = data;
+		rear = (rear + 1) % size;
+		arr[rear] = data;
+		currCapacity++;
 	}
 
 	@Override
@@ -43,7 +47,8 @@ public class QueueADT<T> implements Queue<T> {
 		
 		T dequeuedElement = arr[front];
 		arr[front] = null;
-		front++;
+		front = (front + 1) % size;
+		currCapacity--;
 		return dequeuedElement;
 	}  
 

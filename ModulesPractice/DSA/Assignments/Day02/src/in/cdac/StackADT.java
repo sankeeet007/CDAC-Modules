@@ -1,41 +1,19 @@
 package in.cdac;
 
-public class StackADT implements Stack {
-	private int []arr;
+public class StackADT<T> implements Stack<T> {
+	private T[] arr;
 	private int top;
 	private int size;
 	
 	// Parameterized Constructor
 	
+	@SuppressWarnings("unchecked")
 	public StackADT(int s) {
 		this.size = s;
-		arr = new int[this.size];
-		top = -1;
+		this.arr = (T[]) new Object[this.size];
+		this.top = -1;
 	}
 	
-	@Override
-	public int peek() {
-		return arr[top];
-	}
-
-	@Override
-	public void push(int data) {
-		if(top==size-1) {
-			System.out.println("Stack is Full.");
-		}
-		arr[++top] = data;
-	}
-
-	@Override
-	public int pop() {
-		
-		if(isEmpty() || top<0) {
-			System.out.println("Stack is Empty.");
-			return -1;
-		}
-		return arr[top--];
-	}
-
 	@Override
 	public boolean isEmpty() {
 		if(top == -1) {
@@ -45,6 +23,34 @@ public class StackADT implements Stack {
 			return false;
 		}
 	}
+	
+	@Override
+	public T peek() {
+		if(isEmpty()) return null;
+		return arr[top];
+	}
+
+	@Override
+	public void push(T data) throws Exception{
+		if(top == size - 1) {
+			throw new Exception("Stack is Full.");
+		}
+		arr[++top] = data;
+	}
+
+	@Override
+	public T pop() {
+		if(isEmpty()) {
+			System.out.println("Stack is Empty.");
+			return null;
+		}
+		T popedElemenT = arr[top];
+		arr[top] = null;
+		top--;
+		return popedElemenT;
+	}
+
+
 
 	@Override
 	public void displayStack() {

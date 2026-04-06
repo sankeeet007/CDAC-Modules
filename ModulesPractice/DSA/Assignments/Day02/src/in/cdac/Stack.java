@@ -1,10 +1,10 @@
 package in.cdac;
 
-public interface Stack {
+public interface Stack<T> {
 	
-	public int peek();
-	public void push(int data);
-	public int pop();
+	public T peek();
+	public void push(T data) throws Exception;
+	public T pop();
 	public boolean isEmpty();
 	public void displayStack();
 }
