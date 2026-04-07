@@ -1,9 +1,9 @@
 package in.cdac;
 
-public interface Queue<T> {
+public interface Queue {
 	
-	public void enqueue(T data) throws Exception;
-	public T dequeue() throws Exception;
+	public void enqueue(int data);
+	public int dequeue();
 	public boolean isEmpty();
-	public boolean isFull();
+	public void displayQueue();
 }

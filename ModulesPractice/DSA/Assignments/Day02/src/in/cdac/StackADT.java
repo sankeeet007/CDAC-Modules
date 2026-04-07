@@ -1,6 +1,6 @@
 package in.cdac;
 
-public class StackADT<T> implements Stack<T> {
+public class StackADT<T> implements StackGeneric<T> {
 	private T[] arr;
 	private int top;
 	private int size;

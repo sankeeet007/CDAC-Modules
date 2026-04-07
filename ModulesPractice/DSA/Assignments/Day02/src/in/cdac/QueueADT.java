@@ -1,6 +1,6 @@
 package in.cdac;
 
-public class QueueADT<T> implements Queue<T> {
+public class QueueADT<T> implements QueueGeneric<T> {
 	private T[] arr;
 	private int rear;
 	private int front;

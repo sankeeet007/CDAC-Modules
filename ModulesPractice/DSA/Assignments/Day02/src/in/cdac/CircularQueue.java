@@ -1,6 +1,6 @@
 package in.cdac;
 
-public class CircularQueue<T> implements Queue<T> {
+public class CircularQueue<T> implements QueueGeneric<T> {
 	private T[] arr;
 	private int rear;
 	private int front;
