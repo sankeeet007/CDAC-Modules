@@ -75,6 +75,62 @@ public class SinglyLinkedListADT implements List {
 		return deletedNode.data;
 	}
 	
+	// Deletion for the first occurrence
+	public int deleteByValue(int value) {
+		if(isEmpty()) {
+			throw new RuntimeException("LinkedList is Empty.");
+		}
+		Node SearcherNode = head;
+		if(head.data == value) {
+			int deletedValue = head.data;
+
+			deleteFirst();
+			return deletedValue;
+		}
+		while(SearcherNode.next.data != value) {
+			SearcherNode = SearcherNode.next;
+			if(SearcherNode.next == null) {
+				throw new RuntimeException("Data NOT found.");
+			}
+		}
+		int deletedValue = SearcherNode.next.data;
+		SearcherNode.next  = SearcherNode.next.next;
+		return deletedValue;
+	}
+	
+	// Deleting all the occurrences of value 
+	public void deleteAll(int value) {
+		if(isEmpty()) {
+			throw new RuntimeException("LinkedList is Empty.");
+		}
+		Node SearcherNode = head;
+
+		while(SearcherNode != null) {
+			if(SearcherNode.data == value) {
+				deleteByValue(SearcherNode.data);
+			}
+			SearcherNode = SearcherNode.next;
+		}
+	}
+	
+	public boolean searchValue(int value) {
+		
+		Node SearcherNode = head;
+		if(head.data == value) {
+			return true;
+		}
+		if(tail.data == value) {
+			return true;
+		}
+		while(SearcherNode.next != null) {
+			if(SearcherNode.data == value) {
+				return true;
+			}
+			SearcherNode = SearcherNode.next;
+			
+		}
+		return false;
+	}
 	
 	public int getHead() {
 		return head.data;
