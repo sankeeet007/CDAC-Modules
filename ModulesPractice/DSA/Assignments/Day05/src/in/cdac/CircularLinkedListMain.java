@@ -2,13 +2,18 @@ package in.cdac;
 
 import java.util.Scanner;
 
-public class SinglyLinkedListTest {
-
+public class CircularLinkedListMain {
 	public static void main(String[] args) throws Exception{
 		Scanner scanner = new Scanner(System.in);
 		int choice;
 		
-		SinglyLinkedListADT Slist = new SinglyLinkedListADT();
+		CircularLinkedListADT Slist = new CircularLinkedListADT();
+		Slist.addFirst(15);
+		Slist.addFirst(5);
+		Slist.addLast(25);
+		Slist.addLast(35);
+		Slist.addLast(45);
+		Slist.addLast(55);
 		
 		do {
 			System.out.println("1. Add at First\n"
@@ -40,26 +45,26 @@ public class SinglyLinkedListTest {
 						System.out.println("Deleted element: " + Slist.deleteLast());
 					}
 					break;
-				case 5: {
-						System.out.println("Enter a value to be deleted.");
-					System.out.println("Deleted Item: "+Slist.deleteByValue(scanner.nextInt()));
-				}
-				break;
+//				case 5: {
+//						System.out.println("Enter a value to be deleted.");
+//					System.out.println("Deleted Item: "+Slist.deleteByValue(scanner.nextInt()));
+//				}
+//				break;
 				case 6: {
 					System.out.println("Enter a value to be deleted.");
 					Slist.deleteAll(scanner.nextInt());
 				}
 			break;
-				case 7: {
-						System.out.println("Enter a value to be Searched.");
-							if(Slist.searchValue(scanner.nextInt())) {
-								System.out.println("Element Found.");
-							}
-							else {
-								System.out.println("Element NOT Found");
-							}
-				}
-				break;
+//				case 7: {
+//						System.out.println("Enter a value to be Searched.");
+//							if(Slist.searchValue(scanner.nextInt())) {
+//								System.out.println("Element Found.");
+//							}
+//							else {
+//								System.out.println("Element NOT Found");
+//							}
+//				}
+//				break;
 				case 8: {
 						Slist.displayList();
 					}
@@ -73,5 +78,4 @@ public class SinglyLinkedListTest {
 		scanner.close();
 
 	}
-
 }

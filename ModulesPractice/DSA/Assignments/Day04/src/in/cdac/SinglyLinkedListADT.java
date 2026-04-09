@@ -136,6 +136,21 @@ public class SinglyLinkedListADT implements List {
 		return head.data;
 	}
 	
+	public int findMid() {
+		if(isEmpty()) throw new RuntimeException("List is Empty.");
+		Node FastNode = head;
+		Node SlowNode = head;
+		int i=0;
+		while(FastNode != null) {
+			i++;
+			FastNode = FastNode.next;
+			if(i % 2 == 0) {
+				SlowNode = SlowNode.next;
+			}
+		}
+		return SlowNode.data;
+	}
+	
 	@Override
 	public void displayList(){
 		if(isEmpty()) {
