@@ -62,7 +62,6 @@ public class CircularLinkedListADT implements CircularList {
 		return 0;
 	}
 
-	@Override
 	public void deleteAll(int value) {
 		if(isEmpty()) throw new RuntimeException("List is Empty.");
 		
@@ -78,13 +77,11 @@ public class CircularLinkedListADT implements CircularList {
 		
 	}
 
-	@Override
 	public int search() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 	
-	@Override
 	public void displayList() {
 		if(isEmpty()) throw new RuntimeException("List is Empty.");
 		CircularNode tmpNode = head;
