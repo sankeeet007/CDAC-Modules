@@ -24,7 +24,8 @@ public class BinaryTreeMain {
 							 + "7. Total count of Leaf Nodes: \n"
 							 + "8. Total count of Nodes: \n"
 							 + "9. Count of node having data: \n"
-							 + "10. Exit");
+							 + "10. Calucalte Height of the Tree: \n"
+							 + "11. Exit");
 			choice = scanner.nextInt();
 			switch(choice) {
 				case 1: {
@@ -74,11 +75,16 @@ public class BinaryTreeMain {
 				 }
 				break;
 				case 10: {
-					System.out.println("Exiting...");
+						System.out.println("Height of Tree: " + btree.getHightOfTree());
+						
+				 }
+				break;
+				case 11: {
+						System.out.println("Exiting...");
 				 }
 				break;
 			}
-		}while(choice != 10);
+		}while(choice != 11);
 		scanner.close();
 	}
 

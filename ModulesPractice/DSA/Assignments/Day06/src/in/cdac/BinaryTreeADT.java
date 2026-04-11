@@ -108,10 +108,21 @@ public class BinaryTreeADT implements Tree{
 		return CountNodesWithValue(rootNode, data);
 	}
 	
-	public int CountNodesWithValue(TNode root, int data) {
+	private int CountNodesWithValue(TNode root, int data) {
 		if(root == null) return 0;
 		int match = (root.data == data) ? 1 : 0;
 		return match + CountNodesWithValue(root.leftNode, data) + CountNodesWithValue(root.rightNode, data);
 	}
 
+	public int getHightOfTree() {
+		return getHightOfTree(rootNode);
+	}
+	
+	private int getHightOfTree(TNode rootNode) {
+		if(rootNode == null)	return -1;
+		int leftHeight = getHightOfTree(rootNode.leftNode);
+		int rightHeight = getHightOfTree(rootNode.rightNode);	
+		return (leftHeight > rightHeight) ? leftHeight + 1: rightHeight + 1;
+	}
+	
 }
