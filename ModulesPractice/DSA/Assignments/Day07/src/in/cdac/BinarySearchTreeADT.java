@@ -29,30 +29,35 @@ public class BinarySearchTreeADT implements BST{
 		return root;
 	}
 	
-	public TNode searchNode(int value) {
+	@Override
+	public boolean searchNode(int value) {
 		if(rootNode == null) throw new RuntimeException("Root is Null.");
 		return searchNode(rootNode, value);
 	}
 	
-	private TNode searchNode(TNode root, int value) {
-		if(root.data == value) return root;
-		
-		if(root.data > value) return searchNode(root.rightChild, value);
-		return searchNode(root.rightChild, value);
-	}
+	private boolean searchNode(TNode root, int value) {
+		if(root == null) return false;
+		if(root.data == value) return true;
+		if(value > root.data) return searchNode(root.rightChild, value);
+		else {
+			return searchNode(root.leftChild, value);
+		}
+	 }
 
-
+	@Override
 	public int findSmallest(TNode root) {
 		if(root.leftChild == null) return root.data;
 		int smallest = findSmallest(root.leftChild);
 		return Math.max(smallest,findSmallest(root.leftChild));
 	}
 	
+	@Override
 	public int findLargest(TNode root) {
 		if(root.rightChild == null) return root.data;
 		int largest =  findSmallest(root.rightChild);
 		return Math.max(largest, findLargest(root.rightChild));
 	}
+	
 	
 	
 	public void printUsingInorder(TNode root) {
