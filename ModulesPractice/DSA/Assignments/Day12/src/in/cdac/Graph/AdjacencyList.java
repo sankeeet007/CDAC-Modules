@@ -104,4 +104,16 @@ public class AdjacencyList implements Graph {
 	@Override
 	public void dijkstraShortestPath(int startVertex, int destVertex) {
 	}
+
+	@Override
+	public boolean isConnected(int startVertex) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public int connectedComponentCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
