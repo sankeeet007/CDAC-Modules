@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{ 
+            width: 45%;
+            background: rgb(234, 220, 220);
+        }
+    </style>
+</head>
+<body>
+    
+    <div>
+    <fieldset>
+        <legend> Name Details </legend>
+        <form action="GET">
+            <label for="fav">Favourite Name: </label>
+            <input type="text" id="fav"><br><br>
+            <label for="curr">Current Name: </label>
+            <input type="text" id="curr"><br><br>
+            <label for="next">Your Next Name: </label>
+            <input type="text" id="next"><br><br>
+        </form>
+    </fieldset>
+    
+    <fieldset>
+        <legend> Address Details </legend>
+        <form action="GET">
+            <label for="add">Your Address: </label>
+            <select name="Earth" id="add">
+                    <option value="Earth">Earth</option>
+                    <option value="Saturn">Saturn</option>
+                    <option value="Neptune">Neptune</option>
+                </select><br><br>
+                <label for="like">Like It?: </label>
+                <input type="radio" id="like" checked>
+                <label for="yes">Yes</label>
+                <input type="radio" id="like">
+                <label for="no">No</label>
+                <br><br>
+            </form>
+        </fieldset>
+        <button style="height: auto; width: auto;">Send Away!</button>
+    </div>
+</body>
+</html>

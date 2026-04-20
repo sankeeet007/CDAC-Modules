@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        div{
+           display: flex;
+  justify-content: center; /* Horizontally centers */
+  align-items: center;     /* Vertically centers */
+  height: 100vh;  
+        }
+    </style>
+
+</head>
+
+<body>
+    <div>
+        <table>
+            <tr>
+                <th>Last Name</th>
+                <td><input type="text" id="lastname"></td>
+            </tr>
+            <tr>
+                <th>First Name</th>
+                <td><input type="text" id="firstname"></td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td><textarea rows="3" cols="100"></textarea></td>
+                <td style="border: 0px;"></td>
+                <td style="border: 0px;"></td>
+
+            </tr>
+
+            <tr>
+                <th>City</th>
+                <td><input type="text" id="city">
+                    State
+                    <input type="text" id="state">
+                </td>
+            </tr>
+            <tr>
+                <th>Zip/Postal Code</th>
+                <td><input type="text" id="zip"></td>
+            </tr>
+            <tr>
+                <th>Country</th>
+                <td>
+                    <select name="country" id="country">
+                        <option value="India">India</option>
+                        <option value="Bulgaria">Bulgaria</option>
+                        <option value="Romania">Romania</option>
+                        <option value="Albenia">Albenia</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Phone(country code, <br>
+                    area code, number)</th>
+                <td>(+<input type="text" id="phone">)<input type="text" id="phone">-<input type="text" id="phone"></td>
+            </tr>
+            <tr>
+                <th>E-mail</th>
+                <td><input type="text" id="email"></td>
+            </tr>
+            <tr>
+                <th>Birth date</th>
+                <td>Month<input type="text" id="email">Day<input type="text" id="email">Year(4 digit)<input type="text"
+                        id="email"></td>
+            </tr>
+            <tr>
+                <th>Gender</th>
+                <td>
+                    <select>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Starting date</th>
+                <td>
+                    <input type="radio" id="email" checked>Spring 2006
+                    <input type="radio" id="email">Summer 2006
+                </td>
+            </tr>
+            <tr>
+                <th>Comments/Questions</th>
+                <td><textarea name="comments" id="comments" rows="3"
+                        cols="100">Please send me more information about the lodging.</textarea></td>
+            </tr>
+
+            <tr align="center">
+                <td colspan="2">
+                    <button style="align-self: center;;">Submit</button>
+                    <button style="align-self: center;;">Clear This Form</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
