@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Question 07</title>
+    <style>
+        .container{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            background-color: rgb(37, 180, 208);
+            height: 700px;
+            width: 900px;
+        }
+        .content-top {
+            font-size: 20px;
+        }
+        .content-main{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #div1-content{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            color: white;
+            align-items: center;
+        }
+        .priceCard{
+            display: flex;
+            background-color: aliceblue;
+            flex-direction: column;
+            height: 450px;
+            width: 280px;
+            border: 1px solid black;
+            border-radius: 20px;
+            margin: 20px;
+            padding: 2px;
+            align-items: center;
+        }
+        .features{
+            display: flex;
+            flex-direction: column;
+            justify-items: flex-end;
+        }
+
+        .features p {
+            margin: 0px;
+            padding: 6px;
+            opacity: 80%;
+        }
+
+        .underLine {
+            border: 1px solid rgb(37, 180, 208);
+            border-radius: 30px;
+            border-width: 1px 50px;
+            margin-top: 0px;
+            margin-bottom: 30px;
+        }
+
+        button {
+            color: white;
+            height: 30px;
+            width: 200px;
+            background-color: rgb(24, 125, 198);
+            border: 1px solid rgb(24, 125, 198);
+            border-radius: 30px;
+            margin-top: 20px;
+        }
+        span {
+            font-weight:100;
+            font-size: 18px;
+            opacity: 40%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content-top">
+            <h2 id="div1-content">Bootstrap pricing table</h2>
+            <p id="div1-content">Easily create a classy pricing table in Bootstrap 4.</p>
+            <p id="div1-content">Bootstrap snippet by Bootstrapious</p>
+        </div>
+         <div class="content-main">
+                <div class="priceCard" >
+                    <p style="font-size: 20px; font-weight: bolder; ">BASIC</p>
+                    <p style="font-size: 25px; font-weight: bolder;"> $ 199  <span>/month</span></p>
+                    <hr class="underLine">
+                    <div class="features">
+                        <p><i class="fa-solid fa-check"></i>  Lorem ispsum dolor sit amet</p>
+                        <p><i class="fa-solid fa-check"></i>  Sed ut perspicious</p>
+                        <p><i class="fa-solid fa-check"></i>  At verso eso et accusmus</p>
+                        <p style="opacity: 40%; text-decoration:line-through;"><span><i class="fa-solid fa-xmark"></i></span>Nam libro tempore</p>
+                        <p style="opacity: 40%; text-decoration:line-through;"><span><i class="fa-solid fa-xmark"></i></span>Sed ut prespicious</p>
+                        <p style="opacity: 40%; text-decoration:line-through;"><span><i class="fa-solid fa-xmark"></i></span>Sed ut prespicious</p>
+                    </div>
+                    <button>Subscribe</button>
+                </div>
+
+                <div class="priceCard">
+                    <p style="font-size: 20px; font-weight: bolder; ">PRO</p>
+                    <p style="font-size: 25px; font-weight: bolder;"> $ 399  <span>/month</span></p>
+                    <hr class="underLine">
+                    <div class="features">
+                        <p><i class="fa-solid fa-check"></i>  Lorem ispsum dolor sit amet</p>
+                        <p><i class="fa-solid fa-check"></i>  Sed ut perspicious</p>
+                        <p><i class="fa-solid fa-check"></i>  At verso eso et accusmus</p>
+                        <p><i class="fa-solid fa-check"></i>  Nam libro tempore</p>
+                        <p><i class="fa-solid fa-check"></i>  Sed ut prespicious</p>
+                        <p style="opacity: 40%; text-decoration:line-through;"><span><i class="fa-solid fa-xmark"></i></span> ut prespicious</p>
+                    </div>
+                    <button>Subscribe</button>
+                </div>
+
+                <div class="priceCard">
+                      <p style="font-size: 20px; font-weight: bolder; ">ENTERPRISE</p>
+                    <p style="font-size: 25px; font-weight: bolder;"> $ 899  <span>/month</span></p>
+                    <hr class="underLine">
+                    <div class="features">
+                        <p><i class="fa-solid fa-check"></i>  Lorem ispsum dolor sit amet</p>
+                        <p><i class="fa-solid fa-check"></i>  Sed ut perspicious</p>
+                        <p><i class="fa-solid fa-check"></i>  At verso eso et accusmus</p>
+                        <p><i class="fa-solid fa-check"></i>  Nam libro tempore</p>
+                        <p><i class="fa-solid fa-check"></i>  Sed ut prespicious</p>
+                        <p><i class="fa-solid fa-check"></i>  Sed ut prespicious</p>
+                    </div>
+                    <button>Subscribe</button>
+                </div>
+        </div>
+    </div>
+</body>
+</html>
