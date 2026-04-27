@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <title>Question 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .container{
+            display: flex;
+            justify-content: center
+        }
+
+        table {
+            /* border-collapse: collapse; */
+            font-size: 18px;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid black;
+        }
+
+        .error { color: red; font-size: 0.8em; }
+
+        .title-header {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        input[type="text"], select, textarea {
+            width: 98%;
+            padding: 5px;
+            font-size: 16px;
+        }
+
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .radio-group label, .checkbox-group label {
+            display: inline-block;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+
+        button {
+            padding: 5px 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <table border="1" width="100%">
+        <tr>
+            <th colspan="2" class="title-header">Pizza Shop 2.0</th>
+        </tr>
+
+        <tr>
+            <td width="30%">Name</td>
+            <td><input type="text" name="customer_name"></td>
+        </tr>
+
+        <tr>
+            <td>Pizza Topping</td>
+            <td class="radio-group">
+                <input type="radio" id="supreme" name="topping" value="supreme">
+                <label for="supreme">Supreme</label><br>
+                <input type="radio" id="vegetarian" name="topping" value="vegetarian">
+                <label for="vegetarian">Vegetarian</label><br>
+                <input type="radio" id="hawaiian" name="topping" value="hawaiian">
+                <label for="hawaiian">Hawaiian</label>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Pizza Sauce</td>
+            <td>
+                <select name="sauce">
+                    <option value="tomato">Tomato</option>
+                    <option value="bbq">BBQ</option>
+                    <option value="garlic">Garlic</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Optional Extras</td>
+            <td class="checkbox-group">
+                <input type="checkbox" id="cheese" name="extras" value="cheese">
+                <label for="cheese">Extra Cheese</label>
+                <input type="checkbox" id="gluten_free" name="extras" value="gluten_free">
+                <label for="gluten_free">Gluten Free Base</label>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <label for="instructions">Delivery Instructions:</label><br><br>
+                <textarea id="instructions" name="instructions"></textarea>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <button type="submit">Send my Order</button>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

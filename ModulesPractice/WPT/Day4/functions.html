@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <script>
+
+        //Normal function
+        function hello() {
+            console.log("Hi Sid")
+        }
+        hello()
+        function sum(a, b) {
+            var res = a + b
+            return res
+        }
+        // if function doesnot have return statement, it returns undefined
+        var data = sum(10, 20)
+        console.log(data)
+
+        //anonymous function: function without name, Assign to a variable, callback, as arg,as value,closure
+        var x = function (a,b){
+            var res = a + b
+            return res
+        }
+        var data = x(10,40)
+        console.log(data)
+
+
+        //arrow function: without name , uses arrow system, assign to a variable, callback, as arg, as value,closure
+        var x = (a,b)=>{
+            var res = a + b
+            return res
+        }
+        var data = x(10,60)
+        console.log(data)
+
+        //if the number of arg is 1, you can skip () of arg
+        var x = a =>{
+            var res = a + a
+            return res
+        }
+        var data = x(10)
+        console.log(data)
+
+        //if arrow function got single return statement
+        var x = (a,b)=> a + b
+        var data = x(20,30)
+        console.log(data)
+
+
+        var x = a =>  a * a
+        var data = x(10)
+        console.log(data)
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

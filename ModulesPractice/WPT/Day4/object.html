@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <script>
+        //object: collection of property/key value pair
+        //object properties are not ordered
+        var std = {} // empty object
+        var std = {
+            name: "Siddhant",
+            age: 23,
+            marks: 23,
+            email: 's@gmail.com'
+        }
+        console.log(std)
+        //access object data
+        console.log(std.name)
+        console.log(std["name"])
+
+        //modify the object data
+        std.age = 30
+        std.email = "sid@gmail.com"
+        std["name"] = "sid"
+        console.log(std)
+
+        // Add new property to object
+        std.city = "Pune" // if city property exists modify otherwise create it
+        std["state"] = "MH"
+        console.log(std)
+
+        //delete property from object
+        delete std.age
+        console.log(std)
+
+        var std = {
+            name: "Siddhant",
+            age: 23,
+            address: {
+                location: {
+                    floor: 1,
+                    street: 'panchavati'
+                },
+                city: "Pune",
+                state: "MH"
+            },
+            lang: ['Hindi', 'english', 'marathi'],
+            getMarks: function () {
+                return 98
+            }
+        }
+        console.log(std.address.location.street)
+        console.log(std["address"].location["street"])
+        std.lang //["Hindi", "english", "marathi"]
+        std.lang[2]
+        var std1 = {
+            name : "siddhant"
+        }
+        var std2 = {
+            name : "rajat"
+        }
+
+        var stds = [
+            {name : "sid", age: 23}, //0
+            {name : "Siddhant", age:30}, //1
+            {name : "rajat", age: 34} //2
+        ]
+
+        stds[1] // {name : "Siddhant", age:30}
+        console.log(stds[1].name) // Siddhant
+        //std[1]["name"]
+
+
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

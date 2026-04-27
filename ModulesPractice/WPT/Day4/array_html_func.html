@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <script>
+        var fruits = ["Apple", "Mango", "Banana", "Pineapple"]
+            /*
+                <ol><li>Apple</li>
+                    <li>Mango</li>
+                    <li>Banana</li>
+                </ol>
+            */ 
+        function printHtml(){
+            var htmlStr = '<ol>'
+            for(var i =0 ; i < fruits.length; i++){
+                htmlStr = htmlStr + '<li>'+fruits[i] + '</li>'
+                //0:<ol><li>Apple</li>
+                //1:<ol><li>Apple</li><li>Mango</li>
+            }
+            htmlStr = htmlStr + "</ol>"
+            //<ol><li>Apple</li><li>Mango</li>...</ol>
+            document.write(htmlStr)
+        }
+        
+        printHtml()
+        
+    </script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // var stds = [
+        //     { name: "sid", age: 23 }, //0
+        //     { name: "Siddhant", age: 30 }, //1
+        //     { name: "rajat", age: 34 } //2
+        // ]
+        var stds=[]
+        for(var i=0; i < 3; i++){
+            var n = prompt("Enter name")
+            var a = prompt("Enter age")
+            var temp = {
+                name : n,
+                age : a
+            }
+            stds.push(temp)
+        }
+
+        /*
+            <table>
+                <tr><td>Name</td><td>Age</td></tr>
+                <tr><td>sid</td><td>23</td></tr>
+                <tr><td>Siddhant</td><td>30</td></tr>
+            </table>
+        
+        */
+        var htmlStr = "<table border=1><tr><td>Name</td><td>Age</td></tr>"
+        
+        for(var i =0 ; i < stds.length; i++){
+            //htmlStr = htmlStr + "<tr><td>"+stds[i].name+"</td><td>"+stds[i].age+"</td></tr>"
+            htmlStr = htmlStr + `
+                            <tr>
+                                <td>${stds[i].name}</td>
+                                <td>${stds[i].age}</td>
+                            </tr>
+            `
+            //0 : <table><tr><td>Name</td><td>Age</td></tr> <tr><td>sid</td><td>23</td></tr>
+        }
+        htmlStr += "</table>"
+        document.write(htmlStr)
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

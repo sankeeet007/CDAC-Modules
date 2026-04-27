@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 1</title>
+    <style>
+        .container { 
+            display: flex;
+            justify-content: space-around
+        }
+        .error { color: red; font-size: 0.8em; }
+    </style>
+    <script>
+        var movies = [];
+
+        function validate_name() {
+            var name = document.getElementById("movieName").value;
+            var actor = document.getElementById("actorName").value;
+
+            document.getElementById("movieName_err").innerHTML = name.length < 5 ? "Min 5 chars required" : "";
+            document.getElementById("actorName_err").innerHTML = actor.length < 3 ? "Min 3 chars required" : "";
+        }
+
+        function save() {
+            var movieName = document.getElementById("movieName").value;
+            var actorName = document.getElementById("actorName").value;
+            var releaseDate = document.getElementById("releaseDate").value;
+
+            var movie_doms = document.getElementsByName("movietype");
+            var movietype = [];
+            for (var i = 0; i < movie_doms.length; i++) {
+                if (movie_doms[i].checked) movietype.push(movie_doms[i].value);
+            }
+
+            var lang_doms = document.getElementsByName("language");
+            var language = "";
+            for (var i = 0; i < lang_doms.length; i++) {
+                if (lang_doms[i].checked) language = lang_doms[i].value;
+            }
+
+            var localTime = document.getElementById("localTime").value || new Date().toLocaleTimeString();
+
+            var temp = {
+                movieName: movieName,
+                actorName: actorName,
+                releaseDate: releaseDate,
+                movietype: movietype,
+                language: language,
+                localTime: localTime
+            };
+
+            movies.push(temp);
+            display();
+        }
+
+        function display() {
+            var htmlStr = "";
+            for (var i = 0; i < movies.length; i++) {
+                htmlStr += `
+                    <tr>
+                        <td>${movies[i].movieName}</td>
+                        <td>${movies[i].actorName}</td>
+                        <td>${movies[i].releaseDate}</td>
+                        <td>${movies[i].movietype.join(", ")}</td>
+                        <td>${movies[i].language}</td>
+                        <td>${movies[i].localTime}</td>
+                    </tr>`;
+            }
+            document.getElementById("tablebody").innerHTML = htmlStr;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div>
+            Movie Name: <input type="text" id="movieName" onblur="validate_name()"><br>
+            <span id="movieName_err" class="error"></span><br>
+
+            Actor Name: <input type="text" id="actorName" onblur="validate_name()"><br>
+            <span id="actorName_err" class="error"></span><br>
+
+            Release Date: <input type="date" id="releaseDate"><br><br>
+
+            Movie Type:
+            <input type="checkbox" name="movietype" value="2d">2D
+            <input type="checkbox" name="movietype" value="3d">3D
+            <input type="checkbox" name="movietype" value="imax">IMAX<br><br>
+
+            Language:
+            <input type="radio" name="language" value="English">English
+            <input type="radio" name="language" value="Hindi">Hindi
+            <input type="radio" name="language" value="Marathi">Marathi<br><br>
+
+            Local Time: <input type="time" id="localTime"><br><br>
+            
+            <button onclick="save()">Save Movie</button>
+        </div>
+
+        <div>
+            <table border=1 style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Movie Name</th>
+                        <th>Actor Name</th>
+                        <th>Release Date</th>
+                        <th>Movie Type</th>
+                        <th>Language</th>
+                        <th>Local Time</th>
+                    </tr>
+                </thead>
+                <tbody id="tablebody"></tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

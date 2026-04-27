@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 1</title>
+    <script>
+        var first = 0
+        var second = 1
+        var size = 100;
+
+        document.write(first+" ")
+        document.write(second+" ")
+        function fibonacci(size){
+            for(var i = 2; i <= size; ++i){
+                var next = first + second
+                first = second
+                second = next
+                document.write(next+" ")
+            }
+        }
+
+        fibonacci(100)
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

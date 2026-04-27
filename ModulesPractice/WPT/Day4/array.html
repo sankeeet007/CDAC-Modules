@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <script>
+        var arr = [] // empty array
+        var arr = [12, 'Siddhant', 2.44, true]
+        //variabe.attrbute
+        //variable.function(arg)
+        //by subscript operator
+        console.log(arr[0])
+        console.log(arr[1])
+        console.log(arr.length)
+        //modify at the index
+        arr[0] = 'Sid'
+        console.log(arr)
+        //insert data
+        arr.push('Verma') // insert at the end of the array
+        console.log(arr)
+        arr.unshift('rajat') // insert at the begining of the array
+        console.log(arr)
+
+        //remove data from the array
+        arr.pop() // delete data from the end
+        console.log(arr)
+        arr.shift() // delete data from the start
+        console.log(arr)
+        //delete at the middle
+        arr.splice(1, 2) // delete count of element from index
+        console.log(arr)
+
+        var arr = [12,'Siddhant','Siddhant', 2.44, true]
+        //search in array
+        console.log(arr.indexOf('Siddhant')) // first occurance from the start
+        console.log(arr.lastIndexOf('Siddhant' )) // first occurance from the end
+
+        //reverse the array
+        var arr = arr.reverse() // returns the reversed array
+        console.log(arr)
+
+        //includes
+        console.log(arr.includes('Siddhant'))
+
+        var arr = ['This', 'is', 'para']
+        var data = arr.join() 
+        // joins the element of the array and returns string
+        // delimiter to join, if delimter is not passed then join comma
+        console.log(data)
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
