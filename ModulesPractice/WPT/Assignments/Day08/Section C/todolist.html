@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 1</title>
+    <style>
+        .task-card { border: 1px solid #ddd; padding: 10px; margin-top: 10px; border-left: 5px solid gray; }
+        .done { border-left-color: green; opacity: 0.7; }
+        .due { border-left-color: orange; }
+    </style>
+    <script>
+        let taskList = [];
+
+        function addTask(){
+            const name = document.getElementById("taskName").value
+            const desc = document.getElementById("taskDesc").value
+            const date = document.getElementById("taskDate").value
+            const status = document.getElementById("taskStatus").value
+
+            if(!name) return alert("Please enter a task name")
+
+            const newTask = {
+                id: Date.now(),
+                name,
+                desc,
+                date,
+                status
+            };
+
+            taskList.push(newTask)
+            renderTasks()
+            clearInputs()
+        }
+
+        function deleteTask(id){
+            taskList = taskList.filter(task => task.id !== id)
+            renderTasks()
+        }
+
+        function renderTasks() {
+            const container = document.getElementById("taskListContainer");
+            container.innerHTML = ""; 
+
+            taskList.forEach(task => {
+                const taskDiv = document.createElement("div");
+                taskDiv.className = `task-card ${task.status.toLowerCase()}`;
+                
+                taskDiv.innerHTML = `
+                    <h3>${task.name} <small>(${task.status})</small></h3>
+                    <p>${task.desc}</p>
+                    <p><strong>Due:</strong> ${task.date}</p>
+                    <button onclick="deleteTask(${task.id})" style="background:red; color:white;">Delete</button>
+                    <hr>
+                `;
+                container.appendChild(taskDiv);
+            });
+        }
+
+        function clearInputs() {
+            document.getElementById("taskName").value = "";
+            document.getElementById("taskDesc").value = "";
+            document.getElementById("taskDate").value = "";
+        }
+    </script>
+</head>
+<body>
+    <h2>To-Do List</h2>
+    
+    <div class="input-section">
+        <label>Task Name:</label> 
+        <input type="text" id="taskName"><br><br>
+        
+        <label>Description:</label> 
+        <textarea id="taskDesc"></textarea><br><br>
+        
+        <label>Due Date:</label> 
+        <input type="date" id="taskDate"><br><br>
+        
+        <label>Status:</label>
+        <select id="taskStatus">
+            <option value="DUE">DUE</option>
+            <option value="DONE">DONE</option>
+        </select><br><br>
+        
+        <button onclick="addTask()" style="background: #28a745; color: white; padding: 10px; border: none; cursor: pointer;">
+            Add Task
+        </button>
+    </div>
+
+    <hr>
+
+    <div id="taskListContainer"></div>
+</body>
+</html>

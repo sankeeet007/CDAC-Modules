@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 1</title>
+    <script>
+
+        function Employee(name, email, salary, department){
+            this.name = name;
+            this.email = email;
+            this.salary = salary;
+            this.department = department;
+
+            this.calculateTax = function(){
+                const taxRate = 0.15;
+                return this.salary * taxRate;
+            };
+        }
+
+        const emp1 = new Employee("Shubham Sagar", "shubham@gmail.com", 600000, "IT");
+
+        console.log("--- Employee Details ---");
+        console.log(`Name: ${emp1.name}`);
+        console.log(`Email: ${emp1.email}`);
+        console.log(`Department: ${emp1.department}`);
+        console.log(`Annual Salary: $${emp1.salary}`);
+        console.log(`Calculated Tax: $${emp1.calculateTax()}`);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 2</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .section { margin-bottom: 15px; border-bottom: 1px solid #ccc; padding-bottom: 10px; }
+        label { display: inline-block; width: 100px; font-weight: bold; }
+        .subject-row { margin-top: 5px; }
+        button { margin-top: 20px; padding: 10px; cursor: pointer; background: #28a745; color: white; border: none; }
+    </style>
+    <script>
+        class Student {
+            #name = ""
+            #email = ""
+            #department = ""
+            #dob = 0
+            #marks = []
+
+            constructor(name, email, department, dob, marksData) {
+                this.name = name
+                this.email = email
+                this.department = department
+                this.dob = dob
+                this.#marks = marksData || [];
+            }
+
+            calculateMarks() {
+                let total = 0;
+                for (let i = 0; i < this.#marks.length; i++) {
+                    const markValue = parseFloat(this.#marks[i].mark);
+                    if (!isNaN(markValue)) {
+                        total += markValue;
+                    }
+                }
+                return total;
+            }
+
+            get name() { 
+                return this.#name; 
+            }
+
+            get email() { 
+                return this.#email; 
+            }
+
+            get department() { 
+                return this.#department; 
+            }
+
+            get dob() {
+                return this.#dob;
+            }
+
+            get marks() {
+                return this.#marks;
+            }
+
+            set name(value) { 
+                this.#name = value; 
+            }
+
+            set email(value) { 
+                this.#email = value; 
+            }
+
+            set department(value) { 
+                this.#department = value; 
+            }
+
+            set dob(value) {
+                this.#dob = value;
+            }
+        }
+
+        function createStudent() {
+            const name = document.getElementById("stdName").value;
+            const email = document.getElementById("stdEmail").value;
+            const dept = document.getElementById("stdDept").value;
+            const dob = document.getElementById("stdDob").value;
+
+            const subjectRows = document.querySelectorAll(".subject-row");
+            const marksData = [];
+
+            subjectRows.forEach(row => {
+            const subName = row.querySelector(".sub-name").value;
+            const subMark = row.querySelector(".sub-mark").value;
+            
+                if (subName || subMark) {
+                    marksData.push({ subject: subName, mark: subMark });
+                }
+            });
+
+            const std = new Student(name, email, dept, dob, marksData);
+    
+            console.log("New Student Object:", std);
+            console.log("Total Marks:", std.calculateMarks());
+        }
+
+    </script>
+</head>
+<body>
+
+    <h2>Student Information</h2>
+    <div class="section">
+        <label>Name:</label> <input type="text" id="stdName"><br>
+        <label>Email:</label> <input type="email" id="stdEmail"><br>
+        <label>Dept:</label> <input type="text" id="stdDept"><br>
+        <label>DOB:</label> <input type="date" id="stdDob">
+    </div>
+
+    <h3>Marks (3 Subjects)</h3>
+    <div id="marksInput">
+        <div class="subject-row">
+            <input type="text" class="sub-name" placeholder="Subject 1"> 
+            <input type="number" class="sub-mark" placeholder="Mark">
+        </div>
+        <div class="subject-row">
+            <input type="text" class="sub-name" placeholder="Subject 2"> 
+            <input type="number" class="sub-mark" placeholder="Mark">
+        </div>
+        <div class="subject-row">
+            <input type="text" class="sub-name" placeholder="Subject 3"> 
+            <input type="number" class="sub-mark" placeholder="Mark">
+        </div>
+    </div>
+
+    <button onclick="createStudent()">Create Student Object</button>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 2</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .section { margin-bottom: 15px; border-bottom: 1px solid #ccc; padding-bottom: 10px; }
+        label { display: inline-block; width: 100px; font-weight: bold; }
+        .subject-row { margin-top: 5px; }
+        button { margin-top: 20px; padding: 10px; cursor: pointer; background: #28a745; color: white; border: none; }
+    </style>
+</head>
+<body>
+
+    <h2>Student Information</h2>
+    <div class="section">
+        <label>Name:</label> <input type="text" id="stdName"><br>
+        <label>Email:</label> <input type="email" id="stdEmail"><br>
+        <label>Dept:</label> <input type="text" id="stdDept"><br>
+        <label>DOB:</label> <input type="date" id="stdDob">
+    </div>
+
+    <h3>Marks (3 Subjects)</h3>
+    <div id="marksInput">
+        <div class="subject-row">
+            <input type="text" class="sub-name" placeholder="Subject 1"> 
+            <input type="number" class="sub-mark" placeholder="Mark">
+        </div>
+        <div class="subject-row">
+            <input type="text" class="sub-name" placeholder="Subject 2"> 
+            <input type="number" class="sub-mark" placeholder="Mark">
+        </div>
+        <div class="subject-row">
+            <input type="text" class="sub-name" placeholder="Subject 3"> 
+            <input type="number" class="sub-mark" placeholder="Mark">
+        </div>
+    </div>
+
+    <button onclick="generateStudent()">Create Student Object</button>
+
+    <script>
+        function Student(name, email, department, dob, marks) {
+            this.name = name;
+            this.email = email;
+            this.department = department;
+            this.dob = dob;
+            this.marks = marks; 
+
+            this.calculateTotalMarks = function() {
+                let total = 0;
+                for (let i = 0; i < this.marks.length; i++) {
+                    total += parseFloat(this.marks[i].mark || 0);
+                }
+                return total;
+            };
+        }
+
+        function generateStudent() {
+            const name = document.getElementById('stdName').value;
+            const email = document.getElementById('stdEmail').value;
+            const dept = document.getElementById('stdDept').value;
+            const dob = document.getElementById('stdDob').value;
+
+            const subNames = document.getElementsByClassName('sub-name');
+            const subMarks = document.getElementsByClassName('sub-mark');
+            const marksArray = [];
+
+            for (let i = 0; i < subNames.length; i++) {
+                marksArray.push({
+                    subject: subNames[i].value,
+                    mark: subMarks[i].value
+                });
+            }
+
+            const studentObj = new Student(name, email, dept, dob, marksArray);
+
+            console.log("--- Student Object Instance ---");
+            console.log(studentObj);
+            console.log("Total Marks Calculated:", studentObj.calculateTotalMarks());
+            
+            alert("Check the browser console. Right-click -> Inspect -> Console to see your Student object!");
+        }
+    </script>
+</body>
+</html>

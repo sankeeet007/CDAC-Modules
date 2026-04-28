@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 1</title>
+    <script>
+
+        function Student(name, email, department, dob, marks) {
+            this.name = name;
+            this.email = email;
+            this.department = department;
+            this.dob = dob;
+            this.marks = marks;
+
+            this.calculateTotalMarks = function() {
+                var sum = 0;
+                for (var i = 0; i < this.marks.length; i++) {
+                    sum += this.marks[i].mark;
+                }
+                return sum;
+            };
+        }
+
+        const studentMarks = [
+            { subject: "C++", mark: 55 },
+            { subject: "DBT", mark: 58 }
+        ];
+
+        const student1 = new Student(
+            "Sanket Solanke",
+            "sanket@cdac.in",
+            "PGCP-AC",
+            "2002-05-14",
+            studentMarks
+        );
+
+        console.log(`--- Student Report: ---`);
+        console.log(`Name: ${student1.name}`);
+        console.log(`Email: ${student1.email}`);
+        console.log(`Department: ${student1.department}`);
+        console.log(`Date of Birth: ${student1.dob}`);
+        console.log(`Total Marks: ${student1.calculateTotalMarks()}`);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
