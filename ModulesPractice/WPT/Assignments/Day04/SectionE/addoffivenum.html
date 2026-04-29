@@ -5,19 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Question 2</title>
     <script>
-        let noofele = prompt("No. of elements: ")
-        var arr = []
+        let str = prompt("Enter Comma saperated numbers: ")
+        var len = str.length
 
-        for(var i = 0; i < noofele; i++){
-            let ele = prompt("Enter element: ")
-            arr.push(ele);
-        }
-        
         let sum = 0
-        for(var i = 0; i < arr.length; i++){
-            sum=sum+Number(arr[i])
+        for(var i = 0; i < len; i++){
+
+            if(str.charAt(i) !== ','){
+                sum = sum + Number(str.charAt(i))
+            }
         }
-    
+            
         document.write("Addition of sequence is: "+sum)
 
     </script>

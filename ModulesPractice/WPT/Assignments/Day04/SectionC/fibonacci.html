@@ -9,14 +9,14 @@
         var second = 1
         var size = 100;
 
-        document.write(first+" ")
-        document.write(second+" ")
+        document.writeln(first)
+        document.writeln(second)
         function fibonacci(size){
             for(var i = 2; i <= size; ++i){
                 var next = first + second
                 first = second
                 second = next
-                document.write(next+" ")
+                document.writeln(next)
             }
         }
 

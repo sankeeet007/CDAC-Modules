@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 1</title>
+</head>
+<script>
+    let taskList = []
+    
+    function addTask(){
+        var name = $("#name").val()
+        var desc = $("#desc").val()
+        var date = $("#date").val()
+        var status = $("#status").val()
+
+        if(!name) 
+            return alert("Please enter a task name")
+
+        const newTask = {
+            id: Date.now(),
+            name,
+            desc,
+            date,
+            status
+        };
+
+        taskList.push($(newTask).val())
+        renderTasks()
+        clearInputs()
+    }
+
+    function deleteTask(){
+        taskList = taskList.filter(task => task.id !== id)
+        renderTasks()
+    }
+</script>
+<body>
+    
+</body>
+</html>

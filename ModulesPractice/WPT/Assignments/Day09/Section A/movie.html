@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 1</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body class="bg-light">
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card border-0 shadow">
+                <div class="card-header bg-dark text-white text-center py-3">
+                    <h5 class="mb-0">Enter Movie Details</h5>
+                </div>
+                <div class="card-body p-4">
+                    <form id="movieForm">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Movie Name</label>
+                            <input type="text" id="movieName" class="form-control" placeholder="e.g. Avatar" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Price (₹)</label>
+                            <input type="number" id="moviePrice" class="form-control" placeholder="e.g. 12" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Seat Number</label>
+                            <input type="text" id="movieSeat" class="form-control" placeholder="e.g. J-01" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 py-2">Add to Table</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-7">
+            <div class="card border-0 shadow">
+                <div class="card-header bg-primary text-white text-center py-3">
+                    <h5 class="mb-0">Movie Database</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover mt-2" id="movieTable">
+                        <thead class="table-light">
+                            <tr>
+                                <th>#</th>
+                                <th>Movie Name</th>
+                                <th>Price</th>
+                                <th>Seat</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            </tbody>
+                    </table>
+                    <div id="emptyMsg" class="text-center text-muted py-3">
+                        No movies added yet.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        let movieCount = 0;
+
+        $('#movieForm').on('submit', function(e) {
+            e.preventDefault(); 
+            
+            $('#emptyMsg').hide();
+
+            movieCount++;
+
+            const name = $('#movieName').val();
+            const price = $('#moviePrice').val();
+            const seat = $('#movieSeat').val();
+
+            const row = `
+                <tr>
+                    <td>${movieCount}</td>
+                    <td><strong>${name}</strong></td>
+                    <td>$${price}</td>
+                    <td><span class="badge bg-info text-dark">${seat}</span></td>
+                </tr>`;
+
+            $('#movieTable tbody').append(row);
+
+            this.reset();
+            $('#movieName').focus();
+        });
+    });
+</script>
+
+</body>
+</html>
