@@ -3,81 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Question 1</title>
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <title>Pizza Shop 2.0</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        .pizza-table { border: 2px solid #000; max-width: 500px; margin: 20px auto; }
+        .row-border { border-bottom: 1px solid #000; }
+        .col-border { border-right: 1px solid #000; padding: 10px; }
+        .header { background: #fff; font-weight: bold; font-size: 1.5rem; border-bottom: 2px solid #000; }
+        label { margin-bottom: 0; }
+    </style>
 </head>
 <body>
-    <table border="1"  width="600px" align="center">
-        <tr>
-            <th colspan="2" class="title-header">Pizza Shop 2.0</th>
-        </tr>
 
-        <tr>
-            <td width="30%">Name</td>
-            <td><input type="text" id="pizzaName"></td>
-        </tr>
+<div class="container pizza-table p-0">
+    <form id="pizzaForm">
+        <div class="header text-center p-2">Pizza Shop 2.0</div>
 
-        <tr>
-            <td>Pizza Topping</td>
-            <td>
-                <input type="radio" id="supreme" name="topping" value="supreme">
-                <label for="supreme">Supreme</label><br>
-                <input type="radio" id="vegetarian" name="topping" value="vegetarian">
-                <label for="vegetarian">Vegetarian</label><br>
-                <input type="radio" id="hawaiian" name="topping" value="hawaiian">
-                <label for="hawaiian">Hawaiian</label>
-            </td>
-        </tr>
+        <div class="row g-0 row-border">
+            <div class="col-4 col-border">Name</div>
+            <div class="col-8 p-2">
+                <input type="text" id="custName" class="form-control form-control-sm border-dark">
+            </div>
+        </div>
 
-        <tr>
-            <td>Pizza Sauce</td>
-            <td>
-                <select id="sauce">
-                    <option value="tomato">Tomato</option>
-                    <option value="bbq">BBQ</option>
-                    <option value="garlic">Garlic</option>
+        <div class="row g-0 row-border">
+            <div class="col-4 col-border">Pizza Topping</div>
+            <div class="col-8 p-2">
+                <div class="form-check">
+                    <input class="form-check-input border-dark" type="radio" name="topping" id="supreme" value="Supreme" checked>
+                    <label class="form-check-label" for="supreme">Supreme</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input border-dark" type="radio" name="topping" id="vegetarian" value="Vegetarian">
+                    <label class="form-check-label" for="vegetarian">Vegetarian</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input border-dark" type="radio" name="topping" id="hawaiian" value="Hawaiian">
+                    <label class="form-check-label" for="hawaiian">Hawaiian</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-0 row-border">
+            <div class="col-4 col-border">Pizza Sauce</div>
+            <div class="col-8 p-2">
+                <select id="sauce" class="form-select form-select-sm border-dark w-50">
+                    <option value="Tomato">Tomato</option>
+                    <option value="BBQ">BBQ</option>
                 </select>
-            </td>
-        </tr>
+            </div>
+        </div>
 
-        <tr>
-            <td>Optional Extras</td>
-            <td>
-                <input type="checkbox" name="extras" value="Extra Cheese">
-                <label>Extra Cheese</label>
-                <input type="checkbox" name="extras" value="Gluten Free Base">
-                <label>Gluten Free Base</label>
-            </td>
-        </tr>
+        <div class="row g-0 row-border">
+            <div class="col-4 col-border">Optional Extras</div>
+            <div class="col-8 p-2">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input border-dark" type="checkbox" id="cheese" value="Extra Cheese">
+                    <label class="form-check-label" for="cheese">Extra Cheese</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input border-dark" type="checkbox" id="gluten" value="Gluten Free Base">
+                    <label class="form-check-label" for="gluten">Gluten Free Base</label>
+                </div>
+            </div>
+        </div>
 
-        <tr>
-            <td colspan="2">
-                Delivery Instructions:<br><br>
-                <textarea id="instructions"></textarea>
-            </td>
-        </tr>
+        <div class="row g-0 row-border">
+            <div class="col-12 p-2">
+                <label class="d-block mb-1">Delivery Instructions:</label>
+                <textarea id="instructions" class="form-control border-dark" rows="3"></textarea>
+            </div>
+        </div>
 
-        <tr>
-            <td colspan="2">
-                <button type="button" onclick="save()">Send my Order</button>
-            </td>
-        </tr>
-    </table>
+        <div class="p-2">
+            <button type="submit" class="btn btn-light border-dark btn-sm">Send my Order</button>
+            <div id="errorArea" class="text-danger mt-2 small fw-bold"></div>
+        </div>
+    </form>
+</div>
 
-    <h3 style="text-align:center;">Order History</h3>
-    <table id="resultTable" border="1" align="center">
-        <thead>
+<!-- Output Table -->
+<div class="container mt-4" style="max-width: 800px;">
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
             <tr>
-                <th>Customer Name</th>
+                <th>Name</th>
                 <th>Topping</th>
                 <th>Sauce</th>
                 <th>Extras</th>
                 <th>Instructions</th>
             </tr>
         </thead>
-        <tbody id="tablebody">
-            </tbody>
+        <tbody id="resultBody"></tbody>
     </table>
+</div>
+
+<script>
+$(document).ready(function() {
+    $('#pizzaForm').on('submit', function(e) {
+        e.preventDefault();
+        $('#errorArea').text(""); // Clear errors
+
+        const name = $('#custName').val().trim();
+        const topping = $('input[name="topping"]:checked').val();
+        const sauce = $('#sauce').val();
+        const instr = $('#instructions').val().trim();
+        
+        let extras = [];
+        if($('#cheese').is(':checked')) extras.push("Extra Cheese");
+        if($('#gluten').is(':checked')) extras.push("Gluten Free");
+        const extrasText = extras.length > 0 ? extras.join(", ") : "None";
+
+        if (name.length < 5) {
+            $('#errorArea').text("Validation Error: Name must be at least 5 characters.");
+            return;
+        }
+
+        if (sauce === "Tomato" && topping === "Supreme") {
+            $('#errorArea').text("Validation Error: You cannot select Supreme toppings with Tomato sauce.");
+            return;
+        }
+
+        const words = instr.split(/\s+/).filter(w => w.length > 0);
+        if (words.length < 5) {
+            $('#errorArea').text("Validation Error: Delivery instructions must be at least 5 words.");
+            return;
+        }
+
+        const row = `<tr>
+            <td>${name}</td>
+            <td>${topping}</td>
+            <td>${sauce}</td>
+            <td>${extrasText}</td>
+            <td>${instr}</td>
+        </tr>`;
+        $('#resultBody').append(row);
+        this.reset();
+    });
+});
+</script>
+
 </body>
 </html>
