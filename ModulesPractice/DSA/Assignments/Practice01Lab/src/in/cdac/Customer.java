@@ -9,7 +9,7 @@ public class Customer extends Booking{
 
 	@Override
 	public double calculateServiceCost() {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 
