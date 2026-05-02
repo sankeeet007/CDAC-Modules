@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 2</title>
+    <script>
+        $(document).ready(function() {
+    
+            $('#userText').on('input', function() {
+                const length = $(this).val().length;
+                
+                $('#charCount').text(length);
+                
+                if (length > 100) {
+                    $('#charCount').parent().removeClass('bg-secondary').addClass('bg-danger');
+                } else {
+                    $('#charCount').parent().removeClass('bg-danger').addClass('bg-secondary');
+                }
+            });
+            
+        });
+    </script>
+</head>
+<body>
+    <div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Character Counter</h5>
+                    <div class="mb-3">
+                        <textarea id="userText" class="form-control" rows="5" placeholder="Start typing..."></textarea>
+                    </div>
+                    <div class="text-end">
+                        <span class="badge bg-secondary">
+                            Characters: <span id="charCount">0</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
