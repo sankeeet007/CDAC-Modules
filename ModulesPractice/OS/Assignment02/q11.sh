@@ -1,0 +1,6 @@
+#!/bin/bash
+
+echo "Argument1 = $1"
+echo "Argument2 = $2"
+
+
