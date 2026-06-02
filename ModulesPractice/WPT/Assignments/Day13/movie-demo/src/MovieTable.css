@@ -1,0 +1,24 @@
+.table-container {
+  margin-top: 20px;
+}
+
+.movie-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.movie-table th, 
+.movie-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.movie-table th {
+  background-color: #f4f4f4;
+}
+
+.empty-message {
+  color: #666;
+  font-style: italic;
+}

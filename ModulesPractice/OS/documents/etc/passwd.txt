@@ -1,0 +1,10 @@
+The
+password
+that
+is
+stored
+in
+this
+file
+is
+admin@123
