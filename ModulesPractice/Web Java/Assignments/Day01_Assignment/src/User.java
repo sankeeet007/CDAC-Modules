@@ -1,7 +1,7 @@
 import java.sql.*;
 import java.util.Scanner;
 
-public class Main {
+public class User {
     public static void registerUser(Scanner sc, Connection con) throws SQLException{
         System.out.println("Enter Name: ");
         String name = sc.next();
@@ -32,20 +32,51 @@ public class Main {
         String city = sc.next();
         String query="Select * from users where city=?";
         try(PreparedStatement st=con.prepareStatement(query)){
-//            ResultSet rs = st.executeQuery();
             st.setString(1,city);
-            System.out.println("User registered successfully!");
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
+                System.out.println(rs.getString(1));
+            }
         }catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     public static void updatePassword(Scanner sc, Connection con) throws SQLException{
-
+        System.out.println("Enter Username: ");
+        String userName = sc.next();
+        System.out.println("Enter New Password: ");
+        String password = sc.next();
+        String query="Update users Set password=? where username=?";
+        try(PreparedStatement st=con.prepareStatement(query)){
+            st.setString(1,password);
+            st.setString(2, userName);
+            int rs = st.executeUpdate();
+            if(rs!=0){
+                System.out.println("Password updated successfully!");
+            }
+            else
+                System.out.println("Error");
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void displayUser(Scanner sc, Connection con) throws SQLException{
-
+        System.out.println("Enter Username: ");
+        String userName = sc.next();
+        String query="Select * from users where username=?";
+        try(PreparedStatement st=con.prepareStatement(query)){
+            st.setString(1,userName);
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
+                System.out.println("Name: "+rs.getString(1)+
+                        "\nEmail: "+rs.getString(4)+
+                        "\nCity: "+rs.getString(5));
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) throws SQLException {
